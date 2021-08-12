@@ -1,10 +1,13 @@
-/*!
-    style.css
-    nykim@nykim.net
-*/
-
 @use "helpers/variables";
 @use "helpers/mediaQueries";
 @use "helpers/mixins";
+
 @use "base/font";
 @use "base/reset";
+
+@use "layout/visual";
+
+h2 {
+  color: rgb(131, 220, 218);
+  display: flex;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "cosmos_lab",
+  "version": "1.0.0",
+  "description": "COSMOS LAB HOMEPAGE",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "dart-sass": "^1.25.0",
+    "del": "^6.0.0",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-file-include": "^2.3.0",
+    "gulp-header-comment": "^0.9.0",
+    "gulp-header-commentgulp": "^0.9.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp",
+    "build": ""
+  },
+  "paths": {
+    "src": "app/src",
+    "dist": "app/dist"
+  },
+  "browserslist": [
+    "iOS > 7",
+    "Android >= 4.1",
+    "Chrome > 40",
+    "ChromeAndroid > 50",
+    "FirefoxAndroid >= 46",
+    "OperaMobile >= 37"
+  ],
+  "license": "ISC",
+  "port": 8899,
+  "author": "Nana <nykim@nykim.net>"
+}
