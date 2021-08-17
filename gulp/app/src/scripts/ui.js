@@ -27,9 +27,17 @@ const tween_visual_video = TweenMax.to(
   }
 );
 
-const tween_battery_section = TweenMax.from(
+const tween_battery_title = new TimelineMax().from(
   '.showcase__title',
-  1,
+  .5,
+  {
+    alpha: 0,
+    ease: Linear.easeNone
+  }
+)
+.from(
+  '.showcase__img',
+  .5,
   {
     alpha: 0,
     ease: Linear.easeNone
@@ -57,28 +65,32 @@ const scene_visual = new ScrollMagic.Scene({
 .addIndicators({
   name: "비주얼 씬 트리거"
 })
+.setClassToggle('.battery', 'is-hidden')
 .on("progress", function (e) {
   visualPlayer.style.transform = `translateZ(${(e.progress)*10}rem)`;
 })
 // .on("end", function (e) {
-//   visualSection.style.display = 'none';
+//   batterySection.classList.add("is-visible");
+// });
+// .on("start", function (e) {
+//   batterySection.classList.remove("is-visible");
 // });
 
 const batterySection = document.querySelector("#battery");
 const showcaseArticle = document.querySelector(".showcase");
-// const scene_battery = new ScrollMagic.Scene({
-//   triggerElement: "#battery",
-//   triggerHook: 0,
-//   duration: "100%"
-// })
-// .setPin(showcaseArticle)
-// .setTween([
-//   // tween_battery_section
-// ])
-// .addTo(controller)
-// .addIndicators({
-//   name: "배터리 씬 트리거"
-// })
+const scene_battery = new ScrollMagic.Scene({
+  triggerElement: ".showcase",
+  triggerHook: 0,
+  duration: "200%"
+})
+.setPin(showcaseArticle)
+.setTween([
+  tween_battery_title
+])
+.addTo(controller)
+.addIndicators({
+  name: "쇼케이스 씬 트리거"
+})
 
 
 // --------
