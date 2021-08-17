@@ -19,7 +19,7 @@ const files = {
 };
 
 const comment = require('./config/headerComment');
-const isBuildMode = false;
+let isBuildMode = false;
 
 const html = () => {
   return gulp
@@ -52,7 +52,7 @@ var styleSheet = () => {
   let stream = gulp
     .src(files.css, {
       cwd: path.resolve(__dirname, paths.src),
-      since: gulp.lastRun(styleSheet)
+      // since: gulp.lastRun(styleSheet)
     })
     .pipe(sourcemaps.init())
     .pipe(sass(opts.sass)).on('error', sass.logError)
@@ -124,9 +124,11 @@ const tasks = gulp.series(
 
 gulp.task('default', async function () {
   tasks();
-  console.log(" >>>> 😎 나나는 쩐다 😎 <<<<");
+  console.log("🔫🤠 얍");
 });
 
 gulp.task('build', async function () {
-  console.log("🛠 빌드하고 있습니다.");
+  isBuildMode = true;
+  tasks();
+  console.log("🛠 Build Mode");
 })

@@ -5,9 +5,6 @@
 @use "base/font";
 @use "base/reset";
 
+@use "layout/common";
 @use "layout/visual";
-
-h2 {
-  color: rgb(131, 220, 218);
-  display: flex;
-}
+@use "layout/battery";

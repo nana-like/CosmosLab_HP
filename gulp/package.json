@@ -22,7 +22,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
-    "build": ""
+    "build": "gulp build"
   },
   "paths": {
     "src": "app/src",
