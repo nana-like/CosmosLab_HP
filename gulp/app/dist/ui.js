@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-08-17 19:19:39
+ * Last Modified: 2021-08-24 21:12:03
  * -----------------------------------------------
  */
 
@@ -19,7 +19,7 @@ var controller = new ScrollMagic.Controller();
 
 const tween_visual_text = TweenMax.to(
   '.visual__text',
-  .8,
+  .9,
   {
     alpha: 0,
     ease: Linear.easeNone

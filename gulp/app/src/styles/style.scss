@@ -1,10 +1,14 @@
-@use "helpers/variables";
-@use "helpers/mediaQueries";
+@use "helpers/variables" as var;
+@use "helpers/mediaQueries" as md;
 @use "helpers/mixins";
 
 @use "base/font";
 @use "base/reset";
 
 @use "layout/common";
+@use "layout/header";
 @use "layout/visual";
 @use "layout/battery";
+@use "layout/app";
+@use "layout/contact";
+@use "layout/footer";

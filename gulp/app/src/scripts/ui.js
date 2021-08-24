@@ -11,7 +11,7 @@ var controller = new ScrollMagic.Controller();
 
 const tween_visual_text = TweenMax.to(
   '.visual__text',
-  .8,
+  .9,
   {
     alpha: 0,
     ease: Linear.easeNone

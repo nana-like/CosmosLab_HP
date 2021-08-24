@@ -1,2 +1,16 @@
 $path-image: "../images/";
 $path-font: "../fonts/";
+
+$light: 300;
+$regular: 400;
+$medium: 600;
+
+$max-width: 192rem;
+$inner-width: 128rem;
+// $inner-height: 108rem; //TODO:
+$inner-height: 88rem;
+$inner-padding: 4rem;
+
+$z-index: (
+  "header": 100
+);

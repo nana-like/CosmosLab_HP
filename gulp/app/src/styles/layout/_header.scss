@@ -1,0 +1,88 @@
+@use "helpers/variables" as var;
+@use "helpers/mediaQueries" as md;
+
+
+.header {
+  z-index: map-get(var.$z-index, "header");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 10rem;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    max-width: 132rem;
+    padding: 0 2rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 1.8rem;
+  }
+
+  .logo {
+    display: block;
+    min-width: 12rem;
+    margin-right: 9rem;
+  }
+
+  &__nav {
+    width: calc(100% - 21rem);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    display: flex;
+
+    &-item {
+      font-size: 1.8rem;
+      margin-left: 5rem;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__lang {
+    display: flex;
+
+    &-item {
+      position: relative;
+      opacity: 0.6;
+      margin-left: 1.6rem;
+
+      &:before {
+        position: absolute;
+        top: .2rem;
+        left: -.8rem;
+        display: inline-block;
+        content: '';
+        width: .1rem;
+        height: 1.6rem;
+        background-color: rgba(255, 255, 255, .6);
+      }
+
+      &.is-active {
+        opacity: 1;
+      }
+
+      &:first-child {
+        margin-left: 0;
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  a {
+    color: inherit;
+    font-size: inherit;
+    text-transform: uppercase;
+  }
+}

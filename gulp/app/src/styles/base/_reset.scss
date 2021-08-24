@@ -96,8 +96,8 @@ html {
   -webkit-touch-callout: none;
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font: normal 62.5% "Helvetica Neue", Helvetica, AppleSDGothicNeo, sans-serif;
-  font-size: 62.5%;
+  font: normal 62.5% "Noto Sans KR", "Helvetica Neue", Helvetica, AppleSDGothicNeo, sans-serif;
+  font-weight: 400;
 }
 
 body {
@@ -200,4 +200,11 @@ input[type="search"] {
     &::-webkit-search-results-decoration {
         display: none;
     }
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }

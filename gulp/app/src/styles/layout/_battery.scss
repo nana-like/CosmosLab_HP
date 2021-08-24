@@ -1,33 +1,33 @@
+@use "helpers/variables" as var;
+@use "helpers/mediaQueries" as md;
+
 .battery {
   position: relative;
   z-index: 1;
   width: 100%;
-  // height: 100vh;
-  // background-color: orange;
+  background-color: #1d1f2d;
 
-  // &__inner {
-  //   height: inherit;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   padding: 0 calc(3rem + 5vmin);
-  //   box-sizing: border-box;
-  // }
+  &__inner {
+    max-width: var.$max-width;
+    margin: 0 auto;
+  }
 
   &.is-hidden {
     z-index: -1;
   }
 
   .showcase {
-    margin-top: calc(10rem + 5vmin);
-    height: 100vh;
-    // background-color: rgb(155, 68, 68);
-    background-color: #222;
+    // height: 100vh;
+    padding-top: 10rem;
+    background-color: rgb(155, 68, 68);
 
     &__title {
       color: #fff;
-      font-size: calc(1rem + 5vmin);
-      margin-bottom: 2.5rem;
+      margin-bottom: 3.5rem;
+
+      @include md.desktop {
+        font-size: 4.8rem;
+      }
 
       span {
         display: block;
@@ -35,7 +35,6 @@
     }
 
     &__img {
-      outline: 3px solid yellow;
       height: calc(90vh - 10rem - 5vmin);
 
       & > * {
@@ -72,12 +71,9 @@
     }
   }
 
-
-
   .points {
-    padding: calc(2rem + 6vmin) 0;
+    padding-bottom: 10rem;
     box-sizing: border-box;
-    background-color: rgb(194, 165, 223);
 
     &__list {
       display: flex;
@@ -87,34 +83,43 @@
 
     &__button {
       display: block;
-      width: calc(20rem + 10vmin);
-      height: calc(10rem + 10vmin);
-      font-size: calc(1rem + 5vmin);
+      color: #fff;
       background-color: transparent;
-      border: .1rem solid #fff;
+
+      @include md.desktop {
+        font-size: 2.4rem;
+      }
 
       &:not(:first-child) {
-        margin-left: calc(2rem + 3vmin);
+        margin-left: 12rem;
       }
 
       &:hover {
-        color: #fff;
-        background-color: #222;
+        color: #4f96f5;
+        font-weight: var.$medium;
+
+        .points__icon {
+          background-color: #4f96f5;
+        }
       }
     }
+
+    &__icon {
+      display: block;
+      width: 12.8rem;
+      height: 12.8rem;
+      margin-bottom: 2rem;
+      //TODO:
+        border-radius: 50%;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+      //-----
+    }
+
+    &__text {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: var.$regular;
+    }
   }
-
-
-
 }
-
-
-.lp {
-  display: none; //TODO:
-}
-
-
-// #bt-trigger1 {
-//   outline: 3px solid red;
-//   height: 100vh;
-// }

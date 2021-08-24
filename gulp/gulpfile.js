@@ -21,6 +21,7 @@ const files = {
 const comment = require('./config/headerComment');
 let isBuildMode = false;
 
+const includeVariables = {};
 const html = () => {
   return gulp
     .src([files.html, '!views/**/_*.*'], {
@@ -29,9 +30,7 @@ const html = () => {
     .pipe(fileinclude({
       prefix: "@@",
       basepath: "@file",
-      context: {
-        "id": ""
-      },
+      context: includeVariables
     }))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
     .pipe(browserSync.stream());

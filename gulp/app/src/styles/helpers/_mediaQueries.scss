@@ -1,16 +1,24 @@
 // Break Point
+$desktop: 1920px;
 $laptop : 1460px;
 $tablet: 768px;
 
+// Desktop
+@mixin desktop {
+  @media screen and (min-width: #{$desktop}) {
+    @content;
+  }
+}
+
 // Laptop
-@mixin res--laptop {
+@mixin laptop {
   @media screen and (max-width: #{$laptop}) {
     @content;
   }
 }
 
 // Tablet
-@mixin res--tablet {
+@mixin tablet {
   @media screen and (max-width: #{$tablet}) {
     @content;
   }

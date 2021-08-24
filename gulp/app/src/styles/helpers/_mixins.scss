@@ -1,7 +1,16 @@
-@charset "utf-8";
+@use "helpers/variables" as var;
 
 // **** MIXIN SCSS (nykim@nykim.net)
 // **** Last Modified : 2018-09-05
+
+@mixin setLayout {
+  max-width: calc(#{var.$inner-width} + #{var.$inner-padding} + #{var.$inner-padding});
+  padding-left: var.$inner-padding;
+  padding-right: var.$inner-padding;
+  box-sizing: border-box;
+  outline: 3px solid red;
+  margin: 0 auto;
+}
 
 // 폰트
 @mixin font-main {

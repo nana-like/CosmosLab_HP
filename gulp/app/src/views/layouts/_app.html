@@ -1,20 +1,47 @@
 <section id="app" class="section app">
-  <div class="section__inner">
-    <h2 class="app__title">
-      <span>가장 완벽한 ESS용 배터리</span>
-    </h2>
-    <div class="app__img">
-      나는야 멀리서 다가오는 배터리~~
-    </div>
-    <div class="section__content">
-      <p>친환경적이고, 안전하며,<br/>낮은 가격으로 최대의 효율을 낼 수 있는<br/>차세대 아연 금속 Staionary 배터리</p>
+  <div class="ess">
+    <div class="inner">
+      <h2 class="ess__title">
+        <span>가장 완벽한 ESS용 배터리</span>
+      </h2>
+      <p class="ess__info">친환경적이고 안전하며 낮은 가격으로<br /> 최대의 효율을 낼 수 있는 차세대 아연 금속 Staionary 배터리</p>
+      <div class="ess__img">
+        Battery
+      </div>
     </div>
   </div>
-  <article class="article article__camp">
-    <h3 class="article__title">안전한 배터리가 필요한 곳이라면 어디든.</h3>
-    <div class="article__content">
-      <strong class="article__point">캠핑용 배터리</strong>
-      <p class="article__text">항상 사용자의 가까운 곳에 있는 만큼,<br/>캠핑용 배터리의 안전성은 타협할 수 없습니다.<br/>아연 브롬 배터리의 사용으로 당신의 안전을 보장받으세요.</p>
-    </div>
-  </article>
+  <div class="articles">
+    @@loop('_app_article.html', [
+      {
+        "class": "camp",
+        "point": "캠핑용 배터리",
+        "eng": "Camping",
+        "text": "항상 사용자의 가까운 곳에 있는 만큼,<br>캠핑용 배터리의 안전성은 타협할 수 없습니다.<br>아연 브롬 배터리의 사용으로 당신의 안전을 보장받으세요."
+      },
+      {
+        "class": "home",
+        "point": "가정용 ESS",
+        "eng": "Home Battery",
+        "text": "그 어디보다 가족의 안전이 보장되어야 하는 곳,<br>바로 우리 집입니다.<br>안전한 아연 금속 배터리를 사용한 ESS로 전기료 절감과 동시에<br>가족들에게 행복을 선물하세요."
+      },
+      {
+        "class": "elec",
+        "point": "전기차 충전소",
+        "eng": "Electric Vehicle Charging Station",
+        "text": "전기차 충전소용 ESS를 설치하면 언제나 안정적으로 전기차를 충전할 수 있습니다.<br>게다가 안전한 아연 금속 배터리를 ESS에 사용한다면,<br>폭발의 걱정 없이 도심 속에도 전기차 충전소를 마련할 수 있습니다."
+      },
+      {
+        "class": "indust",
+        "point": "산업용 ESS",
+        "eng": "Industrial ESS Battery",
+        "text": "적은 비용으로 가능한 안정적인 전기 공급, 산업에서 포기할 수 없는 가치입니다.<br>이제는 안정적일 뿐만 아니라 안전하게 아연 금속 배터리로 당신의 일터에 안전을 더할 수 있습니다."
+      },
+      {
+        "class": "energy",
+        "point": "신재생 연계용 ESS",
+        "eng": "Renewable Energy Application ESS Battery",
+        "text": "신재생 에너지의 유일한 단점.<br>불안정성을 ESS가 해결해줄 수 있습니다.<br>대규모 ESS에 적합한 아연 금속 배터리의 사용으로 신재생 에너지의 안정성을 더한 완벽한 에너지원을 경험하세요."
+      }
+    ])
+  </div>
 </section>
