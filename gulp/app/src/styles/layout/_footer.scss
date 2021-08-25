@@ -3,16 +3,6 @@
 @use "helpers/mediaQueries" as md;
 @use "helpers/mixins" as *;
 
-section {
-  display: none; //TODO:
-}
-
-.contact,
-.app,
-.battery {
-  display: block; //TODO:
-}
-
 .footer {
   width: 100%;
   height: 27rem;

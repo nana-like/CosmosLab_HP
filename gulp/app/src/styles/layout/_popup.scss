@@ -1,0 +1,88 @@
+@use "helpers/variables" as var;
+@use "helpers/mediaQueries" as md;
+@use "helpers/mixins" as *;
+
+.lp {
+  z-index: map-get(var.$z-index, "popup");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: var.$inner-width; //TODO:
+  height: 100vh;
+  // opacity: 0;
+  // visibility: hidden;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  transition-property: opacity, visibility;
+  transition-delay: 100ms;
+
+
+  &__dim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__container {
+    z-index: 1;
+    position: relative;
+    color: #fff;
+    width: 128rem;
+    margin: 0 auto;
+    outline: 3px solid red;
+  }
+
+  &__main {
+    width: 100%;
+    height: 72rem;
+    padding: 12rem;
+    box-sizing: border-box;
+    background: darkred;
+  }
+
+  &__title {
+    display: block;
+    font-size: 4.4rem;
+    letter-spacing: -.13rem;
+  }
+
+  &__point {
+    margin-top: 1.3rem;
+    margin-bottom: 6.4rem;
+    line-height: 1.7;
+    font-size: 2.4rem;
+    letter-spacing: -.1rem;
+  }
+
+  &__content {
+    max-width: 49rem;
+    opacity: 0.7;
+    color: #fff;
+    line-height: 1.75;
+    font-size: 1.8rem;
+    letter-spacing: -.08rem;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 13rem;
+    right: 12rem;
+    width: 11.4rem;
+    height: 11.4rem;
+    background: blue;
+  }
+
+  &__close {
+    position: absolute;
+    bottom: calc(100% + 3.2rem);
+    right: 0;
+    width: 4rem;
+    height: 4rem;
+  }
+
+ }
