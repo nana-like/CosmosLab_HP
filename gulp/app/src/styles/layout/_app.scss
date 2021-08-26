@@ -71,7 +71,7 @@
     @each $list in $_article-list {
       &.article__#{$list} {
         background-color: rgb(random(220), random(100), random(220));
-        background-image: url(#{var.$path-image}bg_#{$list}.png);
+        background-image: url(#{var.$path-image}bg_article_#{$list}.png);
       }
     }
 

@@ -1,8 +1,11 @@
+@use "helpers/svg" as svg;
 @use "helpers/variables" as var;
 @use "helpers/mediaQueries" as md;
 @use "helpers/mixins" as *;
 
 .lp {
+  $_points-list : flame, eco, price;
+
   z-index: map-get(var.$z-index, "popup");
   position: fixed;
   top: 0;
@@ -10,14 +13,25 @@
   width: 100%;
   min-width: var.$inner-width; //TODO:
   height: 100vh;
-  // opacity: 0;
-  // visibility: hidden;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
   transition-property: opacity, visibility;
   transition-delay: 100ms;
 
+  display: none; //TODO:
+  // opacity: 0;
+  // visibility: hidden;
+
+  @each $points in $_points-list {
+    &.lp-#{$points} .lp__main {
+      background-color: rgb(random(100), random(100), random(100));
+      background-image: url(#{var.$path-image}bg_lp_#{$points}.png);
+    }
+    &.lp-#{$points} .lp__icon  {
+      background-image: svg.img(#{$points});
+    }
+  }
 
   &__dim {
     position: fixed;
@@ -34,7 +48,6 @@
     color: #fff;
     width: 128rem;
     margin: 0 auto;
-    outline: 3px solid red;
   }
 
   &__main {
@@ -42,7 +55,7 @@
     height: 72rem;
     padding: 12rem;
     box-sizing: border-box;
-    background: darkred;
+    background-color: #bada77; //TODO:
   }
 
   &__title {
@@ -74,7 +87,8 @@
     right: 12rem;
     width: 11.4rem;
     height: 11.4rem;
-    background: blue;
+    background-repeat: no-repeat;
+    background-size: 100%;
   }
 
   &__close {
@@ -83,6 +97,6 @@
     right: 0;
     width: 4rem;
     height: 4rem;
+    background-image: svg.img(close);
   }
-
- }
+}

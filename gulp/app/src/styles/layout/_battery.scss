@@ -1,7 +1,7 @@
-@use "helpers/svg" as svg;
-@use "helpers/variables" as var;
-@use "helpers/mediaQueries" as md;
-@use "helpers/mixins" as *;
+@use "helpers/svg"as svg;
+@use "helpers/variables"as var;
+@use "helpers/mediaQueries"as md;
+@use "helpers/mixins"as *;
 
 .battery {
   position: relative;
@@ -9,7 +9,12 @@
   width: 100%;
   background-color: #1d1f2d;
 
+  &.is-hidden {
+    z-index: -1;
+  }
+
   .showcase {
+    position: relative;
     width: 100%;
     height: 100vh;
     min-width: var.$inner-width; //TODO:
@@ -36,46 +41,109 @@
       }
     }
 
-    &__img {
+    &__main {
+      position: relative;
       width: 100%;
-      height: calc(90vh - 10rem);
+      // height: calc(90vh - 10rem);
+      height: 50rem;
       outline: 3px dashed greenyellow;
+    }
 
-      & > * {
-        position: absolute;
-        display: block;
-        width: 30vmin;
-        height: 30vmin;
-        background: red;
-      }
+    &__img {
+      opacity: 0;
+      display: block;
+      top: 10%;
+      left: 50%;
+      margin-left: -12rem;
+      font-size: 3vmin;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      position: absolute;
+      width: 24rem;
+      height: 23rem;
+      // display: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
 
-      &-2 {
-        background: orange;
-      }
+      &.sc {
 
-      &-3 {
-        background: yellow;
-      }
+        &-all {
+          top: 10%;
+          // 전체
+          // transform: scale(2);
+          opacity: 1;
+          // background-color: black;
+          background-image: url(#{var.$path-image}sc_all.png);
+        }
 
-      &-4 {
-        background: green;
-      }
-
-      &-5 {
-        background: blue;
-      }
-
-      &-6 {
-        background: navy;
-      }
-
-      &-7 {
-        background: purple;
+        @for $i from 1 through 7 {
+          &-#{$i} {
+            // outline: 3px solid rgb(random(100), random(100), random(100));
+            background-image: url(#{var.$path-image}sc_#{$i}.png);
+          }
+        }
       }
     }
 
-    &__info {
+    &__guide {
+      position: relative;
+      width: 100%;
+      // height: calc(90vh - 10rem);
+      height: 100%;
+      outline: 3px dashed rgb(87, 208, 180);
+      color: #fff;
+      font-size: 30px;
+    }
 
+    &__text {
+      position: absolute;
+      font-size: 1.8rem;
+      letter-spacing: -.1rem;
+      outline: 3px solid red;
+
+      .sc-line {
+        position: absolute;
+        display: block;
+        width: 9.5rem;
+        height: 5.2rem;
+      }
+
+      .sc-path {
+        opacity: 0;
+
+        &.on {
+          opacity: 1;
+          stroke-dasharray: 1214;
+          stroke-dashoffset: 1214;
+          animation: drawLine .5s linear forwards;
+        }
+      }
+
+      .sc-span {
+        opacity: 0;
+      }
+
+      &.sc-text-1 {
+        top: 2rem;
+        left: 6rem;
+
+        .sc-line {
+          top: -.4rem;
+          left: calc(100% + .5rem);
+          width: 9.5rem;
+          height: 5.2rem;
+        }
+      }
+    }
+  }
+
+  @keyframes drawLine {
+    0% {
+        stroke-dashoffset: 1214;
+      }
+    100% {
+        stroke-dashoffset: 0;
     }
   }
 
@@ -93,7 +161,7 @@
     }
 
     &__button {
-      $_points-list : flame, eco, price;
+      $_points-list: flame, eco, price;
 
       display: block;
       color: #fff;
@@ -110,9 +178,10 @@
       }
 
       @each $points in $_points-list {
-        &.points-#{$points} .points__icon  {
+        &.points-#{$points} .points__icon {
           background-image: svg.img(#{$points});
         }
+
         &.points-#{$points}:hover .points__icon {
           background-image: svg.img(#{$points}, '4f96f5');
         }
