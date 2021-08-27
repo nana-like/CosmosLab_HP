@@ -46,9 +46,8 @@
       flex-shrink: 0;
       position: relative;
       width: 100%;
-      // height: calc(90vh - 10rem);
       height: 40rem;
-      outline: 3px dashed greenyellow;
+      // outline: 3px dashed greenyellow; //TODO:
     }
 
     &__img {
@@ -92,9 +91,7 @@
     &__guide {
       position: relative;
       width: 100%;
-      // height: calc(90vh - 10rem);
       height: 100%;
-      outline: 3px dashed rgb(87, 208, 180);
       color: #fff;
       font-size: 30px;
     }
@@ -112,7 +109,7 @@
       }
 
       .sc-path {
-        // opacity: 0;
+        opacity: 0;
 
         &.on {
           opacity: 1;
@@ -169,9 +166,9 @@
       }
 
       &.sc-text-2 {
-        top: 4.8rem;
+        top: 5rem;
         left: 50%;
-        margin-left: 15.6rem;
+        margin-left: 15.4rem;
 
         .sc-line {
           top: 1.2rem;
@@ -181,8 +178,8 @@
         }
 
         .sc-dot {
-          left: -1.3rem;
-          bottom: -1.6rem;
+          left: -1.2rem;
+          bottom: -1.3rem;
         }
       }
       &.sc-text-3 {
@@ -204,9 +201,9 @@
       }
 
       &.sc-text-4 {
-        top: 14.4rem;
+        top: 14.6rem;
         left: 50%;
-        margin-left: 26.8rem;
+        margin-left: 26.6rem;
 
         .sc-line {
           top: 1.2rem;
@@ -216,8 +213,8 @@
         }
 
         .sc-dot {
-          bottom: -1.3rem;
-          left: -1.3rem;
+          bottom: -1.1rem;
+          left: -1.1rem;
         }
       }
 
@@ -242,7 +239,7 @@
 
     &.on {
       .points__button {
-        animation-name: showPoints;
+        // animation-name: showPoints;
       }
     }
 
@@ -255,12 +252,15 @@
     &__button {
       $_points-list: flame, eco, price;
 
+      opacity: 0;
       display: block;
       color: #fff;
       background-color: transparent;
       font-size: 2.4rem;
+      transition: opacity .6s .1s, transform .6s;
+      transform: translateY(-2vmin);
 
-      animation-duration: 1s;
+      animation-duration: 700ms;
       animation-fill-mode: both;
 
       &:not(:first-child) {
@@ -282,9 +282,15 @@
         }
       }
 
-      @for $i from 1 through length($_points-list) {
+      @for $i from 0 through length($_points-list) {
         &:nth-child(#{$i}) {
-          animation-delay: #{$i*150}ms;
+          animation-delay: #{$i*110}ms;
+        }
+
+        &:nth-child(#{$i+1}).on {
+          opacity: 1;
+          transform: translateY(0);
+          transition-delay: #{$i*140}ms;
         }
       }
     }
