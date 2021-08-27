@@ -6,7 +6,11 @@ var winH = $(window).height();
 
 
 
-
+const visualSection = document.querySelector("#visual");
+const batterySection = document.querySelector("#battery");
+const appSection = document.querySelector("#app");
+const visualPlayer = document.querySelector("#player");
+const showcase = document.querySelector("#showcase");
 const showcaseTitle = document.querySelector(".showcase__title");
 const showcaseMain = document.querySelector(".showcase__main");
 const showcaseImgs = document.querySelectorAll(".showcase__img");
@@ -14,6 +18,9 @@ const showcaseSpans = document.querySelectorAll(".sc-span");
 const showcasePaths = document.querySelectorAll(".sc-path");
 const showcaseDots = document.querySelectorAll(".sc-dot");
 const batteryPoints = document.querySelector(".points");
+const ess = document.querySelector(".ess");
+const essImg = document.querySelector(".ess__img");
+const essImgShadow = document.querySelector(".ess__img-shadow");
 
 const controller = new ScrollMagic.Controller(); // 컨트롤러 추가
 
@@ -167,7 +174,7 @@ const tween_showcase_img_1 = new TimelineMax()
   }, 0
 );
 
-const timing = '.4',
+const timing = '.4';
 const tween_showcase_text_1 = new TimelineMax()
 .to(
   showcaseDots[0],
@@ -291,32 +298,91 @@ const tween_showcase_text_1 = new TimelineMax()
   }
 )
 
+// const tween_app_title = TweenMax
+// .from(
+//   '.ess__title',
+//   .5,
+//   {
+//     alpha: 0,
+//     ease: Linear.easeNone
+//   }
+// );
+
+const tween_ess = new TimelineMax()
+.fromTo(
+  '.ess__img',
+  .7,
+  {
+    scale: 0.5,
+    alpha: 0,
+  },
+  {
+    scale: 1,
+    alpha: 1,
+    delay: .5,
+    ease: Linear.easeNone
+  }, 0
+)
+.from(
+  '.ess__title',
+  .4,
+  {
+    alpha: 0,
+    y: 40,
+    delay: 1,
+  }
+)
+.from(
+  '.ess__info',
+  .4,
+  {
+    alpha: 0,
+    y: 20,
+    delay: 0,
+  }
+)
+.to(
+  '.ess__img',
+  .6,
+  {
+    x: -40,
+    delay: 2,
+  }, 0
+)
+.from(
+  '.ess__img-shadow',
+  .6,
+  {
+    alpha: 0,
+    x: -40,
+    y: 10,
+    delay: 2,
+  }, 0
+)
+.to (
+  '.ess__spacer',
+  1,
+  {
+    alpha: 0,
+    ease: Linear.easeNone
+  }
+)
 
 
-// .eventCallback("onRepeat", function() {
-//   $(".points").removeClass('on');
-// });
-
-
-// tween_showcase_text_1.eventCallback("onComplete", function() {
-//   $(".points").addClass('on');
-// });
-
-// tween_showcase_img_6.eventCallback("onComplete", function() {
-//   $(".sc-path").addClass('on');
-// });
+const tween_parallax = TweenMax
+.to (
+  ess,
+  .6,
+  {
+    y: "-100%"
+  }
+)
 
 
 
 
 
 // 1. 비주얼 - 물속으로 들어가기!
-const visualSection = document.querySelector("#visual");
-const batterySection = document.querySelector("#battery");
-const appSection = document.querySelector("#app");
-const visualPlayer = document.querySelector("#player");
-const showcase = document.querySelector("#showcase");
-
 const scene_visual = new ScrollMagic.Scene({
   triggerElement: visualSection,
   triggerHook: "onLeave",
@@ -349,12 +415,8 @@ const scene_showcase = new ScrollMagic.Scene({
   tween_showcase_img,
   tween_showcase_img_all,
   tween_showcase_img_1,
-  // tween_showcase_img_2,
-  // tween_showcase_img_3,
-  // tween_showcase_img_4,
-  // tween_showcase_img_5,
-  // tween_showcase_img_6,
-  tween_showcase_text_1
+  tween_showcase_text_1,
+  // tween_parallax
 ])
 .addTo(controller)
 .addIndicators({
@@ -364,78 +426,33 @@ const scene_showcase = new ScrollMagic.Scene({
   $(".points__button").toggleClass("on");
 })
 
-// function test() {
-//   scene_visual.removePin(true);
-//   scene_visual.reverse(false);
-// }
 
-// 배터리 - 포인트!
-// const scene_points = new ScrollMagic.Scene({
-//   triggerElement: batteryPoints,
-//   triggerHook: "0.8",
-//   duration: "100%"
-// })
-// .setTween([
-//   tween_points
-// ])
-// .addTo(controller)
-// .addIndicators({
-//   name: "포인츠 씬 트리거"
-// })
+// 3. 어플리케이션 - 패럴렉싱!
+const scene_app_pallax = new ScrollMagic.Scene({
+  triggerElement: ess,
+  triggerHook: "onEnter",
+  duration: "100%",
+  // offset: "-50"
+})
+.setPin(ess, {pushFollowers: false}) // 비주얼 섹션 고정
 
-// . 어플리케이션 - 멀리서 두둥!
-
-// --------
-
-
-
-const tween_bt_title = TweenMax.from(
-  '.battery__title',
-  0.5,
-  {
-    y: "50%",
-    alpha: 0,
-    ease: Linear.easeNone
-  }
-);
-
-const tween_bt_images = TweenMax.to(
-  '.battery__main-1',
-  0.5,
-  {
-    x: "50%",
-    y: "100%",
-    alpha: 1,
-    ease: Linear.easeNone
-  }
-);
-
-
-
-// IntersectionObserver 를 등록한다.
-const options = {
-  root: null,
-  threshold: 0
-}
-const io = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    console.log(entry.intersectionRatio);
-    // 관찰 대상이 viewport 안에 들어온 경우 'tada' 클래스를 추가
-    if (entry.intersectionRatio > 0) {
-      entry.target.classList.add('on');
-      test();
-    }
-    // 그 외의 경우 'tada' 클래스 제거
-    else {
-      entry.target.classList.remove('on');
-    }
-  })
-},options)
-
-// 관찰할 대상을 선언하고, 해당 속성을 관찰시킨다.
-const boxElList = document.querySelectorAll('.points__button');
-boxElList.forEach((el) => {
-  // io.observe(el);
+.addTo(controller)
+.addIndicators({
+  name: "패럴렉스 씬 트리거"
 })
 
-// io.observe(appSection);
+// 3. 어플리케이션 - !
+const scene_app = new ScrollMagic.Scene({
+  triggerElement: ess,
+  triggerHook: "onStart",
+  duration: "100%",
+  // offset: "50%"
+})
+.setTween([ // 트윈 지정
+  // tween_app_title,
+  tween_ess,
+])
+.addTo(controller)
+.addIndicators({
+  name: "APP 씬 트리거"
+})
