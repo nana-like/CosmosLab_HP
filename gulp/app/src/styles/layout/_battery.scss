@@ -7,6 +7,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  padding-bottom: 10rem;
   background-color: #1d1f2d;
 
   &.is-hidden {
@@ -30,7 +31,7 @@
 
     &__title {
       margin-top: 10.5rem;
-      margin-bottom: 3.5rem;
+      margin-bottom: 6rem;
       color: #fff;
       font-size: 4.8rem;
       text-align: center;
@@ -42,10 +43,11 @@
     }
 
     &__main {
+      flex-shrink: 0;
       position: relative;
       width: 100%;
       // height: calc(90vh - 10rem);
-      height: 50rem;
+      height: 40rem;
       outline: 3px dashed greenyellow;
     }
 
@@ -61,7 +63,7 @@
       color: #fff;
       position: absolute;
       width: 24rem;
-      height: 23rem;
+      height: 24.5rem;
       // display: none;
       background-repeat: no-repeat;
       background-size: 100% 100%;
@@ -69,10 +71,11 @@
       &.sc {
 
         &-all {
-          top: 10%;
+          top: 8%;
           // 전체
           // transform: scale(2);
           opacity: 1;
+          width: 25rem;
           // background-color: black;
           background-image: url(#{var.$path-image}sc_all.png);
         }
@@ -100,7 +103,6 @@
       position: absolute;
       font-size: 1.8rem;
       letter-spacing: -.1rem;
-      outline: 3px solid red;
 
       .sc-line {
         position: absolute;
@@ -110,7 +112,7 @@
       }
 
       .sc-path {
-        opacity: 0;
+        // opacity: 0;
 
         &.on {
           opacity: 1;
@@ -121,20 +123,104 @@
       }
 
       .sc-span {
+        display: block;
         opacity: 0;
+      }
+
+      .sc-dot {
+        opacity: 0;
+        position: absolute;
+        display: block;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: #4f96f5;
+        border-radius: 50%;
+
+        &:after {
+          position: absolute;
+          top: -.1rem;
+          left: -.1rem;
+          display: block;
+          width: 100%;
+          height: 100%;
+          transform: scale(1.4);
+          border: 1px solid #fff;
+          border-radius: 50%;
+          content: '';
+        }
       }
 
       &.sc-text-1 {
         top: 2rem;
-        left: 6rem;
+        left: 50%;
+        margin-left: -55rem;
 
         .sc-line {
-          top: -.4rem;
-          left: calc(100% + .5rem);
+          top: 1.2rem;
+          left: calc(100% + 1.5rem);
           width: 9.5rem;
           height: 5.2rem;
         }
+
+        .sc-dot {
+          right: -1.2rem;
+          bottom: -1.3rem;
+        }
       }
+
+      &.sc-text-2 {
+        top: 4.8rem;
+        left: 50%;
+        margin-left: 15.6rem;
+
+        .sc-line {
+          top: 1.2rem;
+          right: calc(100% + 1.5rem);
+          width: 15rem;
+          height: 9rem;
+        }
+
+        .sc-dot {
+          left: -1.3rem;
+          bottom: -1.6rem;
+        }
+      }
+      &.sc-text-3 {
+        bottom: 4.1rem;
+        left: 50%;
+        margin-left: -32rem;
+
+        .sc-line {
+          bottom: 1.2rem;
+          left: calc(100% + 1.5rem);
+          width: 12.7rem;
+          height: 4.2rem;
+        }
+
+        .sc-dot {
+          top: -1.2rem;
+          right: -1.2rem;
+        }
+      }
+
+      &.sc-text-4 {
+        top: 14.4rem;
+        left: 50%;
+        margin-left: 26.8rem;
+
+        .sc-line {
+          top: 1.2rem;
+          right: calc(100% + 1.5rem);
+          width: 19.2rem;
+          height: 4.7rem;
+        }
+
+        .sc-dot {
+          bottom: -1.3rem;
+          left: -1.3rem;
+        }
+      }
+
     }
   }
 
@@ -150,9 +236,15 @@
   .points {
     width: 100%;
     min-width: var.$inner-width; //TODO:
-    padding: 4rem 0 10rem;
+    padding-top: 7.6rem;
     background-color: #1d1f2d;
     box-sizing: border-box;
+
+    &.on {
+      .points__button {
+        animation-name: showPoints;
+      }
+    }
 
     &__list {
       display: flex;
@@ -167,6 +259,9 @@
       color: #fff;
       background-color: transparent;
       font-size: 2.4rem;
+
+      animation-duration: 1s;
+      animation-fill-mode: both;
 
       &:not(:first-child) {
         margin-left: 12rem;
@@ -184,6 +279,12 @@
 
         &.points-#{$points}:hover .points__icon {
           background-image: svg.img(#{$points}, '4f96f5');
+        }
+      }
+
+      @for $i from 1 through length($_points-list) {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i*150}ms;
         }
       }
     }
@@ -204,6 +305,18 @@
       font-size: 2.4rem;
       font-weight: var.$regular;
       pointer-events: none;
+    }
+  }
+
+  @keyframes showPoints {
+    0% {
+      opacity: 0;
+      transform: translateY(-2vmin);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

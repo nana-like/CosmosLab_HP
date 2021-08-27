@@ -5,8 +5,30 @@ var winH = $(window).height();
 // $('section').css('height', winH);
 
 
-// 💪 컨트롤러 추가
-var controller = new ScrollMagic.Controller();
+
+
+const showcaseTitle = document.querySelector(".showcase__title");
+const showcaseMain = document.querySelector(".showcase__main");
+const showcaseImgs = document.querySelectorAll(".showcase__img");
+const showcaseSpans = document.querySelectorAll(".sc-span");
+const showcasePaths = document.querySelectorAll(".sc-path");
+const showcaseDots = document.querySelectorAll(".sc-dot");
+const batteryPoints = document.querySelector(".points");
+
+const controller = new ScrollMagic.Controller(); // 컨트롤러 추가
+
+
+function pathPrepare(el) {
+  var lineLength = el.getTotalLength();
+  console.log(lineLength);
+  el.style.strokeDasharray = lineLength + 10;
+  el.style.strokeDashoffset = lineLength + 10;
+}
+
+showcasePaths.forEach(function (e) {
+  pathPrepare(e);
+});
+
 
 // 비주얼 - 텍스트
 const tween_visual_text = TweenMax
@@ -32,28 +54,6 @@ const tween_visual_video = TweenMax
 
 
 // 쇼케이스 - 타이틀
-
-const showcaseTitle = document.querySelector(".showcase__title");
-const showcaseMain = document.querySelector(".showcase__main");
-const showcaseImgs = document.querySelectorAll(".showcase__img");
-const showcaseSpans = document.querySelectorAll(".sc-span");
-const showcasePaths = document.querySelectorAll(".sc-path");
-
-
-
-function pathPrepare(el) {
-  var lineLength = el.getTotalLength();
-  console.log(lineLength);
-  el.style.strokeDasharray = lineLength + 10;
-  el.style.strokeDashoffset = lineLength + 10;
-}
-
-showcasePaths.forEach(function (e) {
-  pathPrepare(e);
-});
-
-
-
 const tween_showcase_title = TweenMax
 .from(
   showcaseTitle,
@@ -80,7 +80,7 @@ const tween_showcase_img_all = TweenMax
   showcaseImgs[0],
   .6,
   {
-    x: -210,
+    x: -208,
     delay: 1,
     ease: Linear.easeNone
   }
@@ -93,7 +93,7 @@ const tween_showcase_img_1 = TweenMax
   {
     alpha: 1,
     y: 50,
-    x: -60,
+    x: -54,
     delay: 1,
     ease: Linear.easeNone
   }
@@ -106,7 +106,7 @@ const tween_showcase_img_2 = TweenMax
   {
     alpha: 1,
     y: 50,
-    x: 42,
+    x: 54,
     delay: 1,
     ease: Linear.easeNone
   }
@@ -118,8 +118,8 @@ const tween_showcase_img_3 = TweenMax
   .6,
   {
     alpha: 1,
-    y: 100,
-    x: 110,
+    y: 106,
+    x: 112,
     delay: 1,
     ease: Linear.easeNone
   }
@@ -131,7 +131,7 @@ const tween_showcase_img_4 = TweenMax
   .6,
   {
     alpha: 1,
-    y: 120,
+    y: 128,
     x: 170,
     delay: 1,
     ease: Linear.easeNone
@@ -144,8 +144,8 @@ const tween_showcase_img_5 = TweenMax
   .6,
   {
     alpha: 1,
-    y: 140,
-    x: 220,
+    y: 146,
+    x: 230,
     delay: 1,
     ease: Linear.easeNone
   }
@@ -157,54 +157,157 @@ const tween_showcase_img_6 = TweenMax
   .6,
   {
     alpha: 1,
-    y: 160,
-    x: 280,
+    y: 164,
+    x: 292,
     delay: 1,
     ease: Linear.easeNone
   }
 );
 
 const tween_showcase_text_1 = new TimelineMax()
-// .to(
-//   showcasePaths[0],
-//   .6,
-//   {
-//     alpha: 1,
-//     strokeDashoffset: 0,
-//     delay: 1.6,
-//     ease: Linear.easeNone
-//   }
-// )
 .to(
-  showcaseSpans[0],
-  .6,
+  showcaseDots[0],
+  .2,
   {
     alpha: 1,
-    delay: 5,
+    delay: 1.6,
     ease: Linear.easeNone
   }
 )
+.to(
+  showcaseDots[1],
+  .2,
+  {
+    alpha: 1,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcaseDots[2],
+  .2,
+  {
+    alpha: 1,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcaseDots[3],
+  .2,
+  {
+    alpha: 1,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcasePaths[0],
+  .2,
+  {
+    alpha: 1,
+    strokeDashoffset: 0,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcasePaths[1],
+  .2,
+  {
+    alpha: 1,
+    strokeDashoffset: 0,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcasePaths[2],
+  .2,
+  {
+    alpha: 1,
+    strokeDashoffset: 0,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.to(
+  showcasePaths[3],
+  .2,
+  {
+    alpha: 1,
+    strokeDashoffset: 0,
+    delay: 1.6,
+    ease: Linear.easeNone
+  }, 0
+)
+.addLabel("showSpan")
+.to(
+  showcaseSpans[0],
+  .2,
+  {
+    alpha: 1,
+    delay: 0,
+    ease: Linear.easeNone
+  }, "showSpan-=0.1"
+)
+.to(
+  showcaseSpans[1],
+  .2,
+  {
+    alpha: 1,
+    delay: 0,
+    ease: Linear.easeNone
+  }, "showSpan-=0.1"
+)
+.to(
+  showcaseSpans[2],
+  .2,
+  {
+    alpha: 1,
+    delay: 0,
+    ease: Linear.easeNone
+  }, "showSpan-=0.1"
+)
+.to(
+  showcaseSpans[3],
+  .2,
+  {
+    alpha: 1,
+    delay: 0,
+    ease: Linear.easeNone
+  }, "showSpan-=0.1"
+)
+.eventCallback("onComplete", function() {
+  tween_points.play(1);
+})
+
+
+
+// .eventCallback("onRepeat", function() {
+//   $(".points").removeClass('on');
+// });
 
 const tween_points = new TimelineMax({paused:true})
 .staggerFromTo('.points__button', 0.4,
 {
-  scale: 0.85,
+  backgroundColor: "#000"
 },
 {
   backgroundColor: "#dc143c",
-  scale: 1.2,
   rotation: 360
 },
 0.3
 );
 
 
-tween_showcase_img_6.eventCallback("onComplete", function() {
-  $(".sc-path").addClass('on');
-});
-tween_showcase_text_1.eventCallback("onComplete", function() {
-  // tween_points.play(0);
-});
+// tween_showcase_text_1.eventCallback("onComplete", function() {
+//   $(".points").addClass('on');
+// });
+
+// tween_showcase_img_6.eventCallback("onComplete", function() {
+//   $(".sc-path").addClass('on');
+// });
 
 
 const tween_showcase_spacer = TweenMax
@@ -245,7 +348,7 @@ const scene_visual = new ScrollMagic.Scene({
 })
 
 // 2. 배터리 - 쇼케이스!
-const scene_battery = new ScrollMagic.Scene({
+const scene_showcase = new ScrollMagic.Scene({
   triggerElement: showcase,
   triggerHook: 0,
   duration: "300%"
@@ -269,7 +372,21 @@ const scene_battery = new ScrollMagic.Scene({
   name: "쇼케이스 씬 트리거"
 })
 
-// 3. 어플리케이션 - 멀리서 두둥!
+// 배터리 - 포인트!
+// const scene_points = new ScrollMagic.Scene({
+//   triggerElement: batteryPoints,
+//   triggerHook: "0.8",
+//   duration: "100%"
+// })
+// .setTween([
+//   tween_points
+// ])
+// .addTo(controller)
+// .addIndicators({
+//   name: "포인츠 씬 트리거"
+// })
+
+// . 어플리케이션 - 멀리서 두둥!
 
 // --------
 
