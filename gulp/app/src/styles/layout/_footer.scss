@@ -10,12 +10,13 @@
   color: #fff;
   background-color: #1d1f2d;
 
-  &__inner {
-    @include setLayout;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding-top: 6.2rem;
+  .inner {
+    // @include setLayout;
+    position: relative;
+  //   display: flex;
+  //   width: 100%;
+  //   height: 100%;
+  //   min-width: var.$inner-width; //TODO:
   }
 
   &__logo {
@@ -56,6 +57,20 @@
         background-color: rgba(255, 255, 255, .2);
       }
     }
+  }
+
+  &__top {
+    position: absolute;
+    top: 14.5rem;
+    right: 0;
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    background-image: url(#{var.$path-image}ic_top.png);
+    background-size: 4rem 4rem;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    cursor: pointer;
   }
 
   &__text-horizontal {

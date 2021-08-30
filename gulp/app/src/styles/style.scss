@@ -13,3 +13,37 @@
 @use "layout/app";
 @use "layout/contact";
 @use "layout/footer";
+
+// TODO:
+.is-fixed {
+
+  .articles {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+
+#tg1,
+#tg2 {
+  position: relative;
+  // z-index: -999;
+  width: 100%;
+  height: 100%;
+  background: red;
+}
+
+.article {
+  // transform: translateX(100%);
+  // transition: all 1s;
+}
+
+.on {
+    z-index: 999 !important;
+    transform: translateX(0);
+    // transition: all .3s;
+}
+
+// .test {
+//   height: 100vh;
+// }
