@@ -308,75 +308,77 @@ const tween_showcase_text_1 = new TimelineMax()
 //   }
 // );
 
-const tween_ess = new TimelineMax()
-.fromTo(
-  '.ess__img',
-  .7,
-  {
-    scale: 0.5,
-    alpha: 0,
-  },
-  {
-    scale: 1,
-    alpha: 1,
-    delay: .5,
-    ease: Linear.easeNone
-  }, 0
-)
-.from(
-  '.ess__title',
-  .4,
-  {
-    alpha: 0,
-    y: 40,
-    delay: 1,
-  }
-)
-.from(
-  '.ess__info',
-  .4,
-  {
-    alpha: 0,
-    y: 20,
-    delay: 0,
-  }
-)
-.to(
-  '.ess__img',
-  .6,
-  {
-    x: -40,
-    delay: 2,
-  }, 0
-)
-.from(
-  '.ess__img-shadow',
-  .6,
-  {
-    alpha: 0,
-    x: -40,
-    y: 10,
-    delay: 2,
-  }, 0
-)
-.to (
-  '.ess__spacer',
-  1,
-  {
-    alpha: 0,
-    ease: Linear.easeNone
-  }
-)
+// const tween_ess = new TimelineMax()
+// .fromTo(
+//   '.ess__img',
+//   .7,
+//   {
+//     scale: 0.5,
+//     alpha: 0,
+//   },
+//   {
+//     scale: 1,
+//     alpha: 1,
+//     delay: .5,
+//     ease: Linear.easeNone
+//   }, 0
+// )
+// .from(
+//   '.ess__title',
+//   .4,
+//   {
+//     alpha: 0,
+//     y: 40,
+//     delay: 1,
+//   }
+// )
+// .from(
+//   '.ess__info',
+//   .4,
+//   {
+//     alpha: 0,
+//     y: 20,
+//     delay: 0,
+//   }
+// )
+// .to(
+//   '.ess__img',
+//   .6,
+//   {
+//     x: -40,
+//     delay: 2,
+//   }, 0
+// )
+// .from(
+//   '.ess__img-shadow',
+//   .6,
+//   {
+//     alpha: 0,
+//     x: -40,
+//     y: 10,
+//     delay: 2,
+//   }, 0
+// )
+// .to (
+//   '.ess__spacer',
+//   1,
+//   {
+//     alpha: 0,
+//     ease: Linear.easeNone
+//   }
+// )
 
 
-const tween_parallax = TweenMax
-.to (
-  ess,
-  .6,
-  {
-    y: "-100%"
-  }
-)
+// const tween_parallax = TweenMax
+// .to (
+//   ess,
+//   .6,
+//   {
+//     y: "-100%"
+//   }
+// )
+
+
 
 
 
@@ -436,7 +438,7 @@ const scene_app_pallax = new ScrollMagic.Scene({
 })
 .setPin(ess, {pushFollowers: false}) // 비주얼 섹션 고정
 
-.addTo(controller)
+// .addTo(controller)
 .addIndicators({
   name: "패럴렉스 씬 트리거"
 })
@@ -450,9 +452,89 @@ const scene_app = new ScrollMagic.Scene({
 })
 .setTween([ // 트윈 지정
   // tween_app_title,
-  tween_ess,
+  // tween_ess,
 ])
-.addTo(controller)
+// .addTo(controller)
 .addIndicators({
   name: "APP 씬 트리거"
 })
+
+
+
+// *****************************
+
+var articlePos = [];
+$('.article').each(function(idx, el){
+  articlePos.push(el.offsetTop);
+})
+console.dir(articlePos);
+
+
+// controller.scrollTo(function (newpos) {
+//   TweenMax.to(window, 0.5, {scrollTo: {y: newpos}});
+// });
+
+var isAnimating = false;
+
+$('.slide').each(function(idx, element) {
+
+  new ScrollMagic.Scene({
+      triggerHook: 'onEnter',
+      triggerElement: this,
+      offset: 5
+  })
+  .addTo(controller)
+  .on('enter', function (event) {
+    console.log(idx + "번째 ENTER 이벤트 - " + event.scrollDirection);
+    if (idx >= 5 || isAnimating) {
+      return false;
+    }
+    isAnimating = true;
+    TweenMax.to(
+      window,
+      1, {
+        scrollTo: {y: "#slide" + (idx), autoKill:false
+      }, ease: Power4.easeOut
+      });
+    isAnimating = false;
+  });
+
+  new ScrollMagic.Scene({
+      triggerHook: 'onLeave',
+      triggerElement: this,
+      offset: -5
+  })
+  .addTo(controller)
+  .on('leave', function (event) {
+    console.log(idx + "번째 LEAVE 이벤트 - " + event.scrollDirection);
+    if (idx <= 0 || isAnimating) {
+      return false;
+    }
+    isAnimating = true;
+    TweenMax.to(
+      window,
+      1, {
+        scrollTo: {y: "#slide" + (idx-1), autoKill:false
+      }, ease: Power4.easeOut
+      });
+      isAnimating = false;
+  });
+
+
+
+//  new ScrollMagic.Scene({
+//       triggerElement: this,
+//       triggerHook: 'onEnter',
+//       offset:10 // small offset added to prevent overscrolling accidentally triggering
+//   })
+//     .addTo(controller)
+//     .on('enter', function (event) {
+//             console.log('triggered');
+//             console.log(index+1);
+//                 console.log(event.scrollDirection);
+//                 TweenLite.to(window, 1, {scrollTo:{y:".article" + (index+1),
+//                     autoKill:false},ease: Power4.easeOut});
+//      }); // scene end
+
+
+}); //hero each
