@@ -6,9 +6,14 @@
   width: 100%;
   height: 100vh;
   min-width: var.$inner-width; //TODO:
-  min-height: var.$inner-height;
+  // min-height: var.$inner-height;
+  max-height: 1080px; //TODO:
   box-sizing: border-box;
-  background-color: #726b53;
+  background-color: #f3f0e7;
+  background-image: url(#{var.$path-image}bg_contact.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  // background-size: cover;
 
   &__content {
     width: 62rem;

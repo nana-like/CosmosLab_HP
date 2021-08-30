@@ -9,6 +9,8 @@
   width: 100%;
   padding-bottom: 10rem;
   background-color: #1d1f2d;
+  min-width: var.$inner-width; //TODO:
+  min-height: var.$inner-height;
 
   &.is-hidden {
     z-index: -1;
@@ -51,7 +53,7 @@
     }
 
     &__img {
-      opacity: 0;
+      // opacity: 0;
       display: block;
       top: 10%;
       left: 50%;
@@ -109,7 +111,7 @@
       }
 
       .sc-path {
-        opacity: 0;
+        // opacity: 0;
 
         &.on {
           opacity: 1;
@@ -121,11 +123,11 @@
 
       .sc-span {
         display: block;
-        opacity: 0;
+        // opacity: 0;
       }
 
       .sc-dot {
-        opacity: 0;
+        // opacity: 0;
         position: absolute;
         display: block;
         width: 1.2rem;
@@ -252,7 +254,7 @@
     &__button {
       $_points-list: flame, eco, price;
 
-      opacity: 0;
+      // opacity: 0;
       display: block;
       color: #fff;
       background-color: transparent;

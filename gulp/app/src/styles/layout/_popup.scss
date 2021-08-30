@@ -19,14 +19,18 @@
   transition-property: opacity, visibility;
   transition-delay: 100ms;
 
-  display: none; //TODO:
-  // opacity: 0;
-  // visibility: hidden;
+  // display: none; //TODO:
+  opacity: 0;
+  visibility: hidden;
+
+  &.is-opened {
+    opacity: 1;
+    visibility: visible;
+  }
 
   @each $points in $_points-list {
     &.lp-#{$points} .lp__main {
-      background-color: rgb(random(100), random(100), random(100));
-      background-image: url(#{var.$path-image}bg_lp_#{$points}.png);
+      background-image: url(#{var.$path-image}bg_lp_#{$points}.jpg);
     }
     &.lp-#{$points} .lp__icon  {
       background-image: svg.img(#{$points});
