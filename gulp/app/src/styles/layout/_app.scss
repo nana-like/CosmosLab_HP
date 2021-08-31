@@ -18,7 +18,7 @@
     background-color: #dedede; //TODO: 이미지가 좀 흐린데... 재요청 필요할 듯
     background-image: url(#{var.$path-image}bg_app.png);
     background-position: 50% 50%;
-    background-size: 100%;
+    background-size: 110% 110%;
     background-repeat: no-repeat;
 
 
@@ -73,6 +73,7 @@
     &__img {
       position: relative;
       z-index: 1;
+      // perspective: 1400px;
     }
 
     &__img-shadow {

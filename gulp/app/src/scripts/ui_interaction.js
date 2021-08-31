@@ -352,7 +352,7 @@ ScrollTrigger.create({
 
 ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
 ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
-// ess_title.from(".ess__main", { y: 50},0)
+ess_title.from(".ess__main", { y: 50},0)
 // ess_title.from(".ess__main", { opacity: 0, y:50  },0)
 // ess_title.from(".ess__img", { opacity: 0, x: -100, delay: 1, duration:1 }, 0 )
 // ess_title.from(".ess__img-shadow", { opacity: 0, x: -100, delay: 1.5, duration:1.5 }, 0 )
@@ -370,15 +370,15 @@ ScrollTrigger.create({
 });
 
 // ess_animation.from(".ess__img", { x: 20},0)
-ess_img.from(".ess__img", { x: 50, duration: 1, ease:Sine.easeOut})
-ess_img.from(".ess__img-shadow", { opacity: 0, x: -200, y: 80, delay: 0, duration: 1},0)
+ess_img.from(".ess__img", { z:-100, x: 40, y:0, duration: 1.2, ease:Sine.easeOut})
+ess_img.from(".ess__img-shadow", { opacity: 0, x: -180, y: 50, delay: 0.4, ease:Sine.easeOut},0)
 
 ess_title.from(".ess", {
-  backgroundSize: "120%",
-  backgroundPosition: "50% 20%",
+  backgroundSize: "130% 130%",
+  backgroundPosition: "45% 15%",
   ease: Sine.easeOut,
   duration: 1.5,
-  delay: 1,
+  // delay: 1,
 },0)
 
 
