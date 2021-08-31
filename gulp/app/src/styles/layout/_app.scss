@@ -112,7 +112,8 @@
   min-width: var.$inner-width; //TODO:
   min-height: var.$inner-height;
   box-sizing: border-box;
-  background: darkseagreen; //TODO: 이미지 확장자가 왜 PNG로 추출되지;;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   @for $i from 1 through length($_article-list) {
     $list: nth($_article-list, $i);

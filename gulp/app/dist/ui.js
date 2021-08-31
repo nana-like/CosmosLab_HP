@@ -2,31 +2,36 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-08-30 21:56:52
+ * Last Modified: 2021-08-31 17:35:08
  * -----------------------------------------------
  */
 
-const controller = new ScrollMagic.Controller();
+
+gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+
+
+// const controller = new ScrollMagic.Controller();
 
 // ======================
 // 클릭 시 이동
-controller.scrollTo(function (newpos) {
-  TweenMax.to(window, 0.5, {
-    scrollTo: {
-      y: newpos
-    }
-  });
-});
+// controller.scrollTo(function (newpos) {
+//   TweenMax.to(window, 0.5, {
+//     scrollTo: {
+//       y: newpos
+//     }
+//   });
+// });
 
 $(".footer__top").on("click", function (e) {
   e.preventDefault();
-  controller.scrollTo(0);
+  // controller.scrollTo(0);
 });
 
 $(".header__menu-link").on("click", function (e) {
   e.preventDefault();
   var target = $(this).attr("href").split("#")[1];
-  controller.scrollTo(`#${target}`);
+  // controller.scrollTo(`#${target}`);
+  gsap.to(window, {scrollTo:`#${target}`});
 });
 
 
@@ -64,7 +69,6 @@ function preventScroll() {
     'right': 0,
     'padding-right': getScrollBarWidth() + 'px'
   });
-  // $('.wrap').css('padding-right',getScrollBarWidth());
 };
 
 function allowScroll() {
@@ -76,7 +80,6 @@ function allowScroll() {
     'right': '',
     'padding-right': ''
   });
-  // $('.wrap').css('padding-right', '');
   window.scrollTo(0, scrollPosition);
 };
 
@@ -109,11 +112,12 @@ function stopIntro(){
 }
 
 $(window).on("load", function(){
+  // window.scrollTo(0, 0);
   $("body").addClass("is-intro");
   preventScroll();
   setTimeout(function(){
     stopIntro();
-  }, 2000);
+  }, 0); //2000
 
   $(".intro").on("click", function(){
     stopIntro();

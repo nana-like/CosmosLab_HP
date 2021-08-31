@@ -23,6 +23,7 @@
     justify-content: center;
     perspective: 30rem;
     min-width: var.$inner-width; //TODO:
+    min-height: var.$inner-height;
   }
 
   &__text {
