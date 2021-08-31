@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-08-31 17:35:08
+ * Last Modified: 2021-08-31 20:15:58
  * -----------------------------------------------
  */
 
@@ -25,13 +25,6 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 $(".footer__top").on("click", function (e) {
   e.preventDefault();
   // controller.scrollTo(0);
-});
-
-$(".header__menu-link").on("click", function (e) {
-  e.preventDefault();
-  var target = $(this).attr("href").split("#")[1];
-  // controller.scrollTo(`#${target}`);
-  gsap.to(window, {scrollTo:`#${target}`});
 });
 
 

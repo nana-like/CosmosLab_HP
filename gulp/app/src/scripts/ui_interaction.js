@@ -44,92 +44,342 @@ var battery_animation = gsap.timeline({
     trigger: '.battery',
     scrub: 1,
     pin: true,
+    end: "bottom -=70%",
     // pinSpacing: false,
     // toggleClass: "is-visible",
   }
 })
 
 
-gsap.from(".showcase__title", {
-  scrollTrigger: {
-    // id: 'showcaseTitle',
-    // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
-    trigger: '.showcase__title',
-    scrub: 1,
-    start: "top 80%",
-    end: "bottom 60%",
-    ease: "back(2)"
-  },
-  opacity: 0,
-  y: "20%"
-});
-
-gsap.from(".sc-all", {
-  scrollTrigger: {
-    // id: 'showcaseIMG',
-    // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
-    trigger: '.showcase__main',
-    scrub: 1,
-    start: "top 70%",
-    end: "bottom 50%",
-    ease: "back(2)"
-  },
-  opacity: 0,
-  y: 50,
-  duration: .9,
-});
-
-
-// var showcase_animation = gsap.timeline({
+// gsap.from(".showcase__title", {
 //   scrollTrigger: {
-//     id: 'showcaseTitle',
-//     markers: {startColor: "#78a17a", endColor: "#bb4214", fontSize: "18px"},
+//     // id: 'showcaseTitle',
+//     // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+//     // animation: sc_title,
 //     trigger: '.showcase__title',
 //     scrub: 1,
 //     start: "top 80%",
-//     end: "bottom 60%"
-//   }
-// })
+//     end: "bottom 60%",
+//     ease: "back(2)"
+//   },
+//   opacity: 0,
+//   y: "20%"
+// });
 
-// showcase_animation
-//   .from(".showcase__title", {
-//     opacity: 0,
-//   })
+var sc_title = gsap.timeline();
+ScrollTrigger.create({
+      id: 'showcaseTitle',
+      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+  animation: sc_title,
+  trigger: '.showcase__title',
+  scrub: 1,
+  start: "top 80%",
+  end: "bottom 60%",
+  ease: "back(2)"
+});
+
+sc_title.from(".sc-title-1", { opacity: 0, y: 100 }, 0)
+sc_title.from(".sc-title-2", { opacity: 0, y: 100, delay: 0.2 }, 0)
+
+// gsap.from(".sc-all", {
+//   scrollTrigger: {
+//     // id: 'showcaseIMG',
+//     // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+//     trigger: '.showcase__main',
+//     scrub: 1,
+//     start: "top 90%",
+//     end: "bottom 70%",
+//     ease: "back(2)"
+//   },
+//   opacity: 0,
+//   y: 50,
+//   duration: .9,
+// });
+
+
+const showcaseImgs = document.querySelectorAll(".showcase__img");
+const showcaseSpans = document.querySelectorAll(".sc-span");
+const showcasePaths = document.querySelectorAll(".sc-path");
+const showcaseDots = document.querySelectorAll(".sc-dot");
+
+function pathPrepare(el) {
+  var lineLength = el.getTotalLength();
+  console.log(lineLength);
+  el.style.strokeDasharray = lineLength + 10;
+  el.style.strokeDashoffset = lineLength + 10;
+}
+
+showcasePaths.forEach(function (e) {
+  pathPrepare(e);
+});
+
+var showcaseImg_animation = gsap.timeline({
+    defaults: {
+      duration: 1,
+    },
+  scrollTrigger: {
+    id: 'showcase IMG',
+    markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+    trigger: '.showcase__main',
+    scrub: 1,
+    start: "top 90%",
+    end: "bottom -=10%",
+  }
+})
+
+showcaseImg_animation
+.addLabel("start")
+.from(
+  showcaseImgs[0],
+  {
+    opacity: 0,
+    y: 50,
+    duration: .9,
+  }
+)
+.fromTo(
+  showcaseImgs[0],
+  {
+    scale: 1.3
+  },
+  {
+    scale: 1,
+    x: -208,
+  }
+)
+.addLabel("show_0")
+.from(
+  showcaseDots[0],
+  {
+    opacity: 0,
+  }, "show_0+=0.2"
+)
+.to(
+  showcasePaths[0],
+  {
+    opacity: 1,
+    strokeDashoffset: 0,
+  }, "show_0+=0.2"
+)
+.from(
+  showcaseSpans[0],
+  {
+    opacity: 0,
+    x: 10,
+  }, "show_0+=0.5"
+)
+.addLabel("show_1")
+.from(
+  showcaseImgs[1],
+  {
+    opacity: 0,
+    y: 0,
+    x: -20,
+  },"show_0+=0.2"
+)
+.from(
+  showcaseDots[1],
+  {
+    opacity: 0,
+  }, "show_0+=0.4"
+)
+.to(
+  showcasePaths[1],
+  {
+    opacity: 1,
+    strokeDashoffset: 0,
+  }, "show_0+=0.4"
+)
+.from(
+  showcaseSpans[1],
+  {
+    opacity: 0,
+    x: -10,
+  }, "show_0+=0.7"
+)
+.addLabel("show_2")
+.from(
+  showcaseImgs[2],
+  {
+    opacity: 0,
+    y: 0,
+    x: -40,
+  },"show_0+=0.8"
+)
+.from(
+  showcaseDots[2],
+  {
+    opacity: 0,
+  }, "show_1+=0.4"
+)
+.to(
+  showcasePaths[2],
+  {
+    opacity: 1,
+    strokeDashoffset: 0,
+  }, "show_1+=0.4"
+)
+.from(
+  showcaseSpans[2],
+  {
+    opacity: 0,
+    x: -10,
+  }, "show_1+=0.7"
+)
+.addLabel("show_3")
+.from(
+  showcaseImgs[3],
+  {
+    opacity: 0,
+    y: 0,
+    x: -60,
+  },"show_2+=0.4"
+)
+.from(
+  showcaseDots[3],
+  {
+    opacity: 0,
+  }, "show_2+=0.8"
+)
+.to(
+  showcasePaths[3],
+  {
+    opacity: 1,
+    strokeDashoffset: 0,
+  }, "show_2+=0.8"
+)
+.from(
+  showcaseSpans[3],
+  {
+    opacity: 0,
+    x: 10,
+  }, "show_2+=1"
+)
+.addLabel("show_4")
+.from(
+  showcaseImgs[4],
+  {
+    opacity: 0,
+    y: 0,
+    x: -80,
+  },"show_2+=0.8"
+)
+.addLabel("show_5")
+.from(
+  showcaseImgs[5],
+  {
+    opacity: 0,
+    y: 0,
+    x: -100,
+  },"show_2+=1"
+)
+.addLabel("show_6")
+.from(
+  showcaseImgs[6],
+  {
+    opacity: 0,
+    y: 0,
+    x: -120,
+  },"show_2+=1.2"
+)
+.addLabel("points")
+.set( ".points__list", { className: "points__list on" } , "show_6")
+.addLabel("jump");
+
+
+$(".header__menu-link").on("click", function (e) {
+  e.preventDefault();
+  var target = $(this).attr("href").split("#")[1];
+  // controller.scrollTo(`#${target}`);
+  // gsap.to(window, {scrollTo:`#${target}`});
+
+  var percent = showcaseImg_animation.labels["jump"] / showcaseImg_animation.totalDuration();
+  var myST = battery_animation.scrollTrigger;
+  var scrollPos = myST.start + (myST.end - myST.start) * percent;
+
+  console.log('!', scrollPos);
+
+  if (target === "battery") {
+    gsap.to(window, {scrollTo: scrollPos});
+  }
+});
+
+
+// gsap.utils.toArray(".header__menu-link").forEach(function(a) {
+//   a.addEventListener("click", function(e) {
+//     const percent = tl.labels[e.target.getAttribute("data-jump")] / tl.totalDuration();
+//     const scrollPos = myST.start + (myST.end - myST.start) * percent;
+//     gsap.to(window, {duration: 1, scrollTo: scrollPos});
+//   });
+// });
+
+
+
+
+
+
 
 
 // var speed = 10;
-// var ess_animation = gsap.timeline({
-//   defaults: {
-//     duration: 1,
-//     opacity: 0,
-//   },
-//   scrollTrigger: {
-//     // id: ' ESS 애니메이션',
-//     // markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
-//     trigger: '.ess',
-//     scrub: 1,
-//     // pin: true,
-//     start:"0 0%",
-//     // end: "bottom 70%",
-//   }
-// });
-
-// ess_animation
-//   .from('.ess__title', {
-//     y: speed * 5,
-//     ease: 'back(2)'
-//   })
-//   .from('.ess__img', {
-//     y: 100,
-//     ease: 'back(2)'
-//   })
+var ess_animation = gsap.timeline({
+  defaults: {
+    // duration: 1,
+    // opacity: 0,
+  },
+  scrollTrigger: {
+    id: ' ESS 애니메이션',
+    // markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
+    trigger: '.ess',
+    scrub: 1,
+    pin: true,
+    start:"0 0%",
+    end: "bottom 20%",
+  }
+});
 
 
+var ess_title = gsap.timeline();
+ScrollTrigger.create({
+      id: 'essTitle',
+      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+  animation: ess_title,
+  trigger: '.ess__title',
+  scrub: 1,
+        // start: "top top",
+  end: "bottom 50%",
+  ease: "back(2)"
+});
 
+ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
+ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
+// ess_title.from(".ess__main", { y: 50},0)
+// ess_title.from(".ess__main", { opacity: 0, y:50  },0)
+// ess_title.from(".ess__img", { opacity: 0, x: -100, delay: 1, duration:1 }, 0 )
+// ess_title.from(".ess__img-shadow", { opacity: 0, x: -100, delay: 1.5, duration:1.5 }, 0 )
 
+var ess_img = gsap.timeline();
+ScrollTrigger.create({
+      id: 'essTitle',
+      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+  animation: ess_img,
+  trigger: '.ess__main',
+  scrub: 1,
+        start: "top 50%",
+  end: "bottom +=60%",
+  ease: "back(2)"
+});
 
+// ess_animation.from(".ess__img", { x: 20},0)
+ess_img.from(".ess__img", { x: 50, duration: 1, ease:Sine.easeOut})
+ess_img.from(".ess__img-shadow", { opacity: 0, x: -200, y: 80, delay: 0, duration: 1},0)
 
-
+ess_title.from(".ess", {
+  backgroundSize: "120%",
+  backgroundPosition: "50% 20%",
+  ease: Sine.easeOut,
+  duration: 1.5,
+  delay: 1,
+},0)
 
 
 

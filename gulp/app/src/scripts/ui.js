@@ -19,13 +19,6 @@ $(".footer__top").on("click", function (e) {
   // controller.scrollTo(0);
 });
 
-$(".header__menu-link").on("click", function (e) {
-  e.preventDefault();
-  var target = $(this).attr("href").split("#")[1];
-  // controller.scrollTo(`#${target}`);
-  gsap.to(window, {scrollTo:`#${target}`});
-});
-
 
 
 // ======================
