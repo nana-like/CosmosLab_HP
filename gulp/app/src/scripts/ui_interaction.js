@@ -41,7 +41,7 @@ var battery_animation = gsap.timeline({
   scrollTrigger: {
     id: ' battery 애니메이션',
     markers: {startColor: "#b0da77", endColor: "#0124b6", fontSize: "18px"},
-    trigger: '.battery',
+    trigger: '.showcase',
     scrub: 1,
     pin: true,
     end: "bottom -=70%",
@@ -282,9 +282,28 @@ showcaseImg_animation
     x: -120,
   },"show_2+=1.2"
 )
+.addLabel("jump")
 .addLabel("points")
 .set( ".points__list", { className: "points__list on" } , "show_6")
-.addLabel("jump");
+
+function getScrollPos(animation, trigger){
+
+  var percent = animation.labels["jump"] / animation.totalDuration();
+  var myST = trigger;
+  var scrollPos = myST.start + (myST.end - myST.start) * percent;
+  return scrollPos;
+}
+
+
+$(".header__logo-link").on("click", function (e) {
+  e.preventDefault();
+  gsap.to(window, 1, {scrollTo: 0});
+});
+
+$(".footer__top").on("click", function (e) {
+  e.preventDefault();
+  gsap.to(window, 1, {scrollTo: 0});
+});
 
 
 $(".header__menu-link").on("click", function (e) {
@@ -293,15 +312,19 @@ $(".header__menu-link").on("click", function (e) {
   // controller.scrollTo(`#${target}`);
   // gsap.to(window, {scrollTo:`#${target}`});
 
-  var percent = showcaseImg_animation.labels["jump"] / showcaseImg_animation.totalDuration();
-  var myST = battery_animation.scrollTrigger;
-  var scrollPos = myST.start + (myST.end - myST.start) * percent;
 
-  console.log('!', scrollPos);
+
+  // console.log('!', scrollPos);
 
   if (target === "battery") {
-    gsap.to(window, {scrollTo: scrollPos});
+    gsap.to(window, {scrollTo: getScrollPos(showcaseImg_animation, battery_animation.scrollTrigger)});
   }
+  if (target === "app") {
+    gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
+  }
+  // if (target === "contact") {
+  //   gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
+  // }
 });
 
 
@@ -372,6 +395,7 @@ ScrollTrigger.create({
 // ess_animation.from(".ess__img", { x: 20},0)
 ess_img.from(".ess__img", { z:-100, x: 40, y:0, duration: 1.2, ease:Sine.easeOut})
 ess_img.from(".ess__img-shadow", { opacity: 0, x: -180, y: 50, delay: 0.4, ease:Sine.easeOut},0)
+ess_img.addLabel("jump");
 
 ess_title.from(".ess", {
   backgroundSize: "130% 130%",
@@ -380,6 +404,162 @@ ess_title.from(".ess", {
   duration: 1.5,
   // delay: 1,
 },0)
+
+
+// 아티클스 인터렉션 시작
+
+var articles_animation = gsap.timeline();
+ScrollTrigger.create({
+  id: '아티클',
+  markers: {startColor: "#e87134", endColor: "#d6ab93", fontSize: "22px"},
+  trigger: '.article',
+  animation: articles_animation,
+  pin: true,
+  scrub: 1,
+  end: "bottom -=100%",
+  ease: "quart.inOut"
+});
+
+articles_animation.to("#at-bg1", { opacity: 1, x: 0, duration: 1.5 }, 'first')
+articles_animation.to("#at-main0", { opacity: 0, x: 0, duration: 0.4 }, 'first' )
+articles_animation.to("#at-main1", { opacity: 1, x: 0, duration: 0.4 },  'first+=0.4' )
+articles_animation.to("#at-bg2", { opacity: 1, x: 0,  duration: 1.5  }, 'second' )
+articles_animation.to("#at-main1", { opacity: 0, x: 0, duration: 0.4 }, 'second' )
+articles_animation.to("#at-main2", { opacity: 1, x: 0, duration: 0.4 },  'second+=0.4' )
+articles_animation.to("#at-bg3", { opacity: 1, x: 0,  duration: 1.5  }, 'third' )
+articles_animation.to("#at-main2", { opacity: 0, x: 0, duration: 0.4 }, 'third' )
+articles_animation.to("#at-main3", { opacity: 1, x: 0, duration: 0.4 },  'third+=0.4' )
+articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, '4' )
+articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.4 }, '4' )
+articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 0.4 },  '4+=0.4' )
+articles_animation.to("#at-bg5", { opacity: 1, x: 0,  duration: 1.5  }, '5' )
+// articles_animation.to("#at-main4", { opacity: 0, x: 0, duration: 0.4 }, '5' )
+// articles_animation.to("#at-main5", { opacity: 1, x: 0, duration: 0.4 },  '5+=0.4' )
+
+const sections = gsap.utils.toArray(".marker");
+// sections.forEach((section, i) => {
+//   const active = $(".header__nav a[href$='"+$(section).data('marker')+"']");
+//   const sectionTrigger = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: section,
+//       id: $(section).data('marker')+'!!!!!!!!',
+//       markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+//       start: "top top+=100px",
+//       end: "bottom bottom",
+//       toggleActions: "play reverse play reverse",
+//       onEnter: ({progress, direction, isActive}) => console.log("onEnter:", active, direction),
+//       onEnterBack: ({progress, direction, isActive}) => console.log("onEnterBack:",active, direction),
+//       onLeave: ({progress, direction, isActive}) => console.log("onLeave:",progress, direction, isActive),
+//       onLeaveBack: ({progress, direction, isActive}) => console.log("onLeaveBack:",progress, direction, isActive),
+//       onToggle: ({progress, direction, isActive}) => console.log("onToggle:",progress, direction, isActive)
+
+
+//       // onEnter: () => {
+//       //   console.dir(active)
+//       //   active.siblings().removeClass("is-active")
+//       //   active.addClass("is-active")
+//       // },
+//       // onEnterBack: () => {
+//       //   console.log("onEnterBack", active)
+//       //   active.removeClass("is-active")
+//       //   active.prev().addClass("is-active")
+//       // },
+//       // onLeaveBack: () => {
+//       //   console.log("onLeaveBack", active)
+//       //   active.removeClass("is-active")
+//       //   active.prev().addClass("is-active")
+//       // },
+//       // onLeaveBack: () => {
+//       //   console.dir(active)
+//       //   active.siblings().removeClass("is-active")
+//       //   active.addClass("is-active")
+//       // },
+//       // onLeave: () => {
+//       //   console.dir(active)
+//       //   // active.removeClass("ㅁ넝리ㅏㅁ어리ㅏㅁㄴㅇ")
+//       // },
+//       // toggleClass: {targets: active, className: "ㅁㅁㄴ어리망ㄴ러ㅏㅁㅇㄴ러"}
+//     }
+//   });
+//   sectionTrigger.fromTo(active, {
+//     color: '#828282',
+//   }, {
+//     color: 'black',
+//     ease: "sine.out",
+//     duration: 0.2,
+//   });
+// });
+
+var marker__battery = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.marker-battery',
+    id: 'BATTERY!',
+    // markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    start: "top top+=100px",
+    // endTrigger:"html",
+    end:"bottom top+=100px",
+    toggleActions: "play reverse play reverse",
+    toggleClass: {targets: ".header__nav a[href$='battery']", className: "is-active"}
+  }
+});
+
+
+var marker__app = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.marker-app',
+    id: 'APP!',
+    // markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    start: "top top+=100px",
+    // endTrigger:"html",
+    end:"bottom top+=100px",
+    toggleActions: "play reverse play reverse",
+    toggleClass: {targets: ".header__nav a[href$='app']", className: "is-active"}
+  }
+});
+
+
+var marker__contact = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.marker-contact',
+    id: 'CONTACT!',
+    markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    start: "top top+=100px",
+    // endTrigger:"html",
+    // end:"bottom bottom",
+    // toggleActions: "play reverse play reverse",
+    // toggleClass: {targets: ".header__nav a[href$='contact']", className: "is-active"},
+    toggleClass: {targets: ".header__nav a[href$='contact']", className: "is-active"}
+
+          // onEnter: () => {
+          //   console.log($(".header__nav a[href$='contact']"))
+          // },
+  }
+});
+
+
+
+
+var header = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.wrap',
+    id: 'HEADER!',
+    markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    // endTrigger:"html",
+    start: "top top",
+    end:"bottom top",
+    // toggleActions: "play reverse play reverse",
+    // toggleClass: {targets: ".header__nav a[href$='contact']", className: "is-active"},
+    toggleClass: {targets: ".header", className: "is-active"}
+
+          // onEnter: () => {
+          //   console.log($(".header__nav a[href$='contact']"))
+          // },
+  }
+});
+
+
+
+
 
 
 

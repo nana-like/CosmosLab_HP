@@ -1,14 +1,57 @@
 <header class="header">
   <div class="header__inner">
     <h1 class="logo">
-      <a href="/" aria-label="홈 화면으로"><span>COSMOS</span></a>
+      <a href="#" class="header__logo-link" aria-label="첫 화면으로"><span>COSMOS</span></a>
     </h1>
     <nav class="header__nav">
-      <ul class="header__menu">
-        <li class="header__menu-item"><a class="header__menu-link" href="#battery">Battery</a></li>
-        <li class="header__menu-item"><a class="header__menu-link" href="#app">Application</a></li>
-        <li class="header__menu-item"><a class="header__menu-link" href="#contact">Contact Us</a></li>
-      </ul>
+      <div class="header__menu">
+        <a href="#battery" class="header__menu-link">
+          <span class="header__menu-bound">
+            <span class="header__menu-text" data-text="Battery">Battery</span>
+          </span>
+          <span class="header__menu-line" aria-role="none"><em>Battery</em></span>
+        </a>
+        <a href="#app" class="header__menu-link">
+          <span class="header__menu-bound">
+            <span class="header__menu-text" data-text="Application">Application</span>
+          </span>
+          <span class="header__menu-line" aria-role="none"><em>Application</em></span>
+        </a>
+        <a href="#contact" class="header__menu-link">
+          <span class="header__menu-bound">
+            <span class="header__menu-text" data-text="Contact Us">Contact Us</span>
+          </span>
+          <span class="header__menu-line" aria-role="none"><em>Contact Us</em></span>
+        </a>
+      </div>
+
+
+      <!-- <ul class="header__menu">
+        <li class="header__menu-item is-active">
+          <a class="header__menu-link" href="#battery">
+            <div class="bound">
+              <span class="text" data-text="Battery">Battery</span>
+              <div class="line"></div>
+            </div>
+          </a>
+        </li>
+        <li class="header__menu-item">
+          <a class="header__menu-link" href="#app">
+            <div class="bound">
+              <span class="text" data-text="Application">Application</span>
+              <div class="line"></div>
+            </div>
+          </a>
+        </li>
+        <li class="header__menu-item">
+          <a class="header__menu-link" href="#contact">
+            <div class="bound">
+              <span class="text" data-text="Contact Us">Contact Us</span>
+              <div class="line"></div>
+            </div>
+          </a>
+        </li>
+      </ul> -->
       <ul class="header__lang">
         <li class="header__lang-item lang-ko is-active"><a aria-label="한문 페이지" href="">KOR</a></li>
         <li class="header__lang-item lang-en"><a aria-label="영문 페이지" href="">ENG</a></li>
