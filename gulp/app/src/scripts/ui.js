@@ -48,8 +48,8 @@ function preventScroll() {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
   $body.css({
     'overflow': 'hidden',
-    'position': 'fixed',
-    'top': '-' + scrollPosition + 'px',
+    // 'position': 'fixed',
+    // 'top': '-' + scrollPosition + 'px',
     'left': 0,
     'right': 0,
     'padding-right': getScrollBarWidth() + 'px'
@@ -72,12 +72,14 @@ function openPopup(e) {
   e.preventDefault();
   preventScroll();
   var target = $(this).data('popup');
+  $(this).addClass("is-active");
   $(".lp-" + target).addClass("is-opened");
 }
 
 function closePopup(e) {
   e.preventDefault();
   $(".lp.is-opened").removeClass("is-opened");
+  $(".points__button").removeClass("is-active");
   setTimeout(allowScroll, 300);
 }
 

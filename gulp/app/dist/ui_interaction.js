@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-01 18:10:37
+ * Last Modified: 2021-09-01 18:23:40
  * -----------------------------------------------
  */
 
@@ -330,9 +330,9 @@ $(".header__menu-link").on("click", function (e) {
   if (target === "app") {
     gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
   }
-  // if (target === "contact") {
-  //   gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
-  // }
+  if (target === "contact") {
+    gsap.to(window, {scrollTo: "#contact"});
+  }
 });
 
 

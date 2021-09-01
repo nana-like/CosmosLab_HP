@@ -322,9 +322,9 @@ $(".header__menu-link").on("click", function (e) {
   if (target === "app") {
     gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
   }
-  // if (target === "contact") {
-  //   gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
-  // }
+  if (target === "contact") {
+    gsap.to(window, {scrollTo: "#contact"});
+  }
 });
 
 
