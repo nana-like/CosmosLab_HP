@@ -43,8 +43,8 @@
       display: block;
     }
 
-    @include md.desktop {
-      font-size: 10rem;
+    @include md.mobile {
+      font-size: 3.6rem;
     }
   }
 

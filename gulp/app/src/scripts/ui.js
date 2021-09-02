@@ -110,3 +110,84 @@ $(window).on("load", function(){
     stopIntro();
   });
 });
+
+
+// 💪 반응형 체크
+var breakPoint = 1024;
+
+var isTabletSize = function () {
+  var winW = window.innerWidth;
+  if (winW < breakPoint) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// 💪 태블릿 사용하는 함수
+var tabletEvt = function () {
+  var winW = window.innerWidth;
+
+
+  if (winW < breakPoint) {
+    $("body").addClass("mq-mobile");
+  } else {
+    $('.header').removeClass("is-opened");
+    gsap.to(".header__nav", 0, {opacity: 1});
+    $("body").removeClass("mq-mobile");
+  }
+};
+
+
+var resizeHandler = function () {
+  tabletEvt();
+}
+var loadHandler = function () {
+  tabletEvt();
+
+}
+
+
+
+
+window.addEventListener("resize", resizeHandler);
+window.addEventListener("load", loadHandler);
+
+
+// 버거
+let headerMenuTween;
+let headerLnagTween;
+
+$(".burger").on("click", function () {
+  if ($("body").hasClass("mq-mobile") && $('.header').hasClass('is-opened')) {
+    console.log("MOBILE CLOSE")
+    // gsap.to(".header__nav", {opacity: 0, duration: 0.4});
+    headerMenuTween.progress(1);
+    headerLnagTween.progress(1);
+    gsap.killTweensOf(".header__menu-link");
+    gsap.killTweensOf(".header__lang");
+  }
+  $('.mq-mobile .header').toggleClass('is-opened');
+  if ($("body").hasClass("mq-mobile") && $('.header').hasClass('is-opened')) {
+    // alert("a-ha!");
+    gsap.to(".header__nav", {opacity: 1, duration: 0.5});
+    headerMenuTween = gsap.fromTo(".header__menu-link", {autoAlpha: 0, y: 20}, {autoAlpha: 1, delay: 0.3, y: 0, duration: 0.45, stagger: 0.25});
+    headerLnagTween = gsap.fromTo(".header__lang", {autoAlpha: 0, y: 20}, {autoAlpha: 1, y: 0, delay: 1, duration: 0.45});
+
+    // gsap.to('.header__nav', {
+    //   duration: 0.15,
+    //   opacity: 1,
+    // })
+    // gsap.to($('.header__menu-link'), 0.2, {
+    //   stagger: 0.2,
+    //   delay: 0.15,
+    //   y: 0,
+    //   opacity: 1,
+    // })
+    // gsap.to($('.header__lang'), 0.2, {
+    //   delay: 0.7,
+    //   opacity: 1,
+    //   y: 0,
+    // })
+  }
+});

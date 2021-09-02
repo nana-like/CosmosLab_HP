@@ -1,7 +1,8 @@
 // Break Point
 $desktop: 1920px;
-$laptop : 1460px;
-$tablet: 768px;
+// $laptop : 1460px;
+$tablet: 1024px;
+$mobile: 375px;
 
 // Desktop
 @mixin desktop {
@@ -20,6 +21,13 @@ $tablet: 768px;
 // Tablet
 @mixin tablet {
   @media screen and (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+// Tablet
+@mixin mobile {
+  @media screen and (max-width: #{$mobile}) {
     @content;
   }
 }

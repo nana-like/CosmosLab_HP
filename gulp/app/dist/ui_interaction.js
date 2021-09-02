@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-01 18:23:40
+ * Last Modified: 2021-09-02 16:10:14
  * -----------------------------------------------
  */
 
@@ -48,7 +48,7 @@ visual_animation
 var battery_animation = gsap.timeline({
   scrollTrigger: {
     id: ' battery 애니메이션',
-    markers: {startColor: "#b0da77", endColor: "#0124b6", fontSize: "18px"},
+    // markers: {startColor: "#b0da77", endColor: "#0124b6", fontSize: "18px"},
     trigger: '.showcase',
     scrub: 1,
     pin: true,
@@ -77,7 +77,7 @@ var battery_animation = gsap.timeline({
 var sc_title = gsap.timeline();
 ScrollTrigger.create({
       id: 'showcaseTitle',
-      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
   animation: sc_title,
   trigger: '.showcase__title',
   scrub: 1,
@@ -127,7 +127,7 @@ var showcaseImg_animation = gsap.timeline({
     },
   scrollTrigger: {
     id: 'showcase IMG',
-    markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+    // markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
     trigger: '.showcase__main',
     scrub: 1,
     start: "top 90%",
@@ -372,7 +372,7 @@ var ess_animation = gsap.timeline({
 var ess_title = gsap.timeline();
 ScrollTrigger.create({
       id: 'essTitle',
-      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
   animation: ess_title,
   trigger: '.ess__title',
   scrub: 1,
@@ -391,7 +391,7 @@ ess_title.from(".ess__main", { y: 50},0)
 var ess_img = gsap.timeline();
 ScrollTrigger.create({
       id: 'essTitle',
-      markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
   animation: ess_img,
   trigger: '.ess__main',
   scrub: 1,
@@ -419,7 +419,7 @@ ess_title.from(".ess", {
 var articles_animation = gsap.timeline();
 ScrollTrigger.create({
   id: '아티클',
-  markers: {startColor: "#e87134", endColor: "#d6ab93", fontSize: "22px"},
+  // markers: {startColor: "#e87134", endColor: "#d6ab93", fontSize: "22px"},
   trigger: '.article',
   animation: articles_animation,
   pin: true,
@@ -530,7 +530,7 @@ var marker__contact = gsap.timeline({
   scrollTrigger: {
     trigger: '.marker-contact',
     id: 'CONTACT!',
-    markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    // markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
     start: "top top+=100px",
     // endTrigger:"html",
     // end:"bottom bottom",
@@ -551,7 +551,7 @@ var header = gsap.timeline({
   scrollTrigger: {
     trigger: '.wrap',
     id: 'HEADER!',
-    markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+    // markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
     // endTrigger:"html",
     start: "top top",
     end:"bottom top",
