@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-03 15:34:25
+ * Last Modified: 2021-09-03 17:52:55
  * -----------------------------------------------
  */
 
@@ -68,7 +68,7 @@ visual_animation
 var battery_animation = gsap.timeline({
   scrollTrigger: {
     trigger: '.showcase',
-    markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+    // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
     scrub: 1,
     pin: true,
     start: () => "0 " + getheaderHeight(),
@@ -209,12 +209,11 @@ var ess_animation = gsap.timeline({
     // opacity: 0,
   },
   scrollTrigger: {
-    id: ' ESS 애니메이션',
-    // markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
+    markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
     trigger: '.ess',
     scrub: 1,
     pin: true,
-    start:"0 0%",
+    start: () => "0 " + getheaderHeight(),
     end: "bottom 20%",
   }
 });
@@ -234,7 +233,7 @@ ScrollTrigger.create({
 
 ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
 ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
-ess_title.from(".ess__main", { y: 50},0)
+// ess_title.from(".ess__main", { y: 50},0)
 // ess_title.from(".ess__main", { opacity: 0, y:50  },0)
 // ess_title.from(".ess__img", { opacity: 0, x: -100, delay: 1, duration:1 }, 0 )
 // ess_title.from(".ess__img-shadow", { opacity: 0, x: -100, delay: 1.5, duration:1.5 }, 0 )
@@ -252,8 +251,8 @@ ScrollTrigger.create({
 });
 
 // ess_animation.from(".ess__img", { x: 20},0)
-ess_img.from(".ess__img", { z:-100, x: 40, y:0, duration: 1.2, ease:Sine.easeOut})
-ess_img.from(".ess__img-shadow", { opacity: 0, x: -180, y: 50, delay: 0.4, ease:Sine.easeOut},0)
+ess_img.from(".ess__img", { z:-100, x: 40, y:20, duration: 1.2, ease:Linear.easeNone})
+ess_img.from(".ess__img-shadow", { opacity: 0, x: -100, y: 38, delay: 0.2, ease:Linear.easeNone},0)
 ess_img.addLabel("jump");
 
 ess_title.from(".ess", {

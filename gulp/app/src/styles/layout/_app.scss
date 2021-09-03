@@ -4,15 +4,16 @@
 
 .app {
   position: relative;
-  min-width: var.$inner-width; //TODO:
-  min-height: var.$inner-height;
+  // min-width: var.$inner-width; //TODO:
+  // min-height: var.$inner-height;
   // z-index: 10;
+  overflow: hidden;
 
   .ess {
     width: 100%;
     height: 100vh;
     // height: 200%;
-    min-width: var.$inner-width; //TODO:
+    // min-width: var.$inner-width; //TODO:
     min-height: var.$inner-height;
     box-sizing: border-box;
     background-color: #dedede; //TODO: 이미지가 좀 흐린데... 재요청 필요할 듯
@@ -22,16 +23,23 @@
     background-repeat: no-repeat;
 
 
+    @include md.tablet {
+      height: calc(100vh - 68px);
+      min-height: 90rem;
+    }
 
-    &__contents {
-      // height: 200vh;
+    @include md.mobile {
+      min-height: 70rem;
     }
 
     .inner {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      // height: 100vh;
+
+      @include md.mobile {
+        padding: 0 2.5rem;
+      }
     }
 
     &__title {
@@ -41,6 +49,15 @@
       color: #222;
       text-align: center;
       letter-spacing: -.2rem;
+
+      @include md.tablet {
+        font-size: 3.4rem;
+      }
+
+      @include md.mobile {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+      }
     }
 
     &__info {
@@ -51,6 +68,10 @@
       letter-spacing: -.1rem;
       color: #666;
 
+      @include md.tablet {
+        margin-bottom: 8rem;
+      }
+
       &:before {
         display: block;
         margin: 0 auto 2rem;
@@ -58,32 +79,69 @@
         height: .2rem;
         background-color: #4f96f5;
         content: '';
+
+        @include md.mobile {
+          width: 4rem;
+        }
+      }
+
+      @include md.tablet {
+        font-size: 2rem;
+      }
+
+      @include md.mobile {
+        font-size: 1.6rem;
       }
     }
 
     &__main {
       position: relative;
-      width: 56rem;
-      height: 45.6rem;
+      // width: 56rem;
+      width: 48rem;
       margin: 0 auto;
-      transform: translateX(6rem);
+      // transform: translateX(2rem);
       perspective: 600px;
+
+      @include md.tablet {
+        width: 40rem;
+      }
+
+      @include md.mobile {
+        width: 22rem;
+      }
     }
 
     &__img {
+      display: block;
       position: relative;
       z-index: 1;
-      // perspective: 1400px;
+      width: 100%;
+      // width: calc(100% - 7rem);
     }
 
     &__img-shadow {
       position: absolute;
-      top: 1.1em;
-      right: -5.8rem;
+      top: 1.8rem;
+      right: -20rem;
       display: block;
-      width: 23rem;
+      width: 100%;
       height: 45.6rem;
       background-image: url(#{var.$path-image}ess_img_shadow.png);
+      background-repeat: no-repeat;
+      background-position: 100% 100%;
+      background-size: contain;
+
+      @include md.tablet {
+        top: .3rem;
+        right: -16rem;
+        height: 40rem;
+      }
+
+      @include md.mobile {
+        top: -1.6rem;
+        right: -10.6rem;
+        height: 24rem;
+      }
     }
   }
 }
@@ -98,8 +156,18 @@
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  min-width: var.$inner-width; //TODO:
+  // min-width: var.$inner-width; //TODO:
   min-height: var.$inner-height;
+
+  @include md.tablet {
+    height: calc(100vh - 68px);
+    min-height: 90rem;
+  }
+
+  @include md.mobile {
+    min-height: 70rem;
+  }
+
 
   &__content {
     z-index: 9;
