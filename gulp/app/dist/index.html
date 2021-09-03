@@ -9,7 +9,7 @@
 
 </head>
 <body>
-  <div class="wrap ua-mobile"> <!--TODO: user-agent-->
+  <div class="wrap"> <!--TODO: user-agent-->
     <header class="header">
   <div class="header__inner">
     <h1 class="logo">
@@ -43,10 +43,10 @@
           <span class="header__menu-line" aria-role="none"><em>Contact Us</em></span>
         </a>
       </div>
-      <ul class="header__lang">
-        <li class="header__lang-item lang-ko is-active"><a aria-label="한문 페이지" href="">KOR</a></li>
-        <li class="header__lang-item lang-en"><a aria-label="영문 페이지" href="">ENG</a></li>
-      </ul>
+      <div class="header__lang">
+        <a class="header__lang-item lang-ko is-active" aria-label="한문 페이지" href="">KOR</a>
+        <a class="header__lang-item lang-en" aria-label="영문 페이지" href="">ENG</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -122,7 +122,12 @@
           </div>
         </div>
       </div>
-      <div class="showcase__spacer"></div>
+      <div class="showcase__guide-mobile">
+        <span class="sc-span-mo">수계 아연브롬 전해액</span>
+        <span class="sc-span-mo">액상 브롬의 고체화 및 Trapping</span>
+        <span class="sc-span-mo">스트랩 표면 코팅기술 개발</span>
+        <span class="sc-span-mo">바이오맥스를 활용한 친환경 탄소 전극</span>
+      </div>
       <div class="points">
         <div class="points__list">
           <button data-popup="flame" class="points__button points-flame">

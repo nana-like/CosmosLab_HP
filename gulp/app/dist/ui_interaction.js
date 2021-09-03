@@ -2,113 +2,32 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-02 16:10:14
+ * Last Modified: 2021-09-03 15:34:25
  * -----------------------------------------------
  */
 
+// VARIABLES
+let headerHeight;
+var showcaseImgs = document.querySelectorAll(".showcase__img");
+var showcaseSpans = document.querySelectorAll(".sc-span");
+var showcaseSpans_M = document.querySelectorAll(".sc-span-mo");
+var showcasePaths = document.querySelectorAll(".sc-path");
+var showcaseDots = document.querySelectorAll(".sc-dot");
 
-
-const visualPlayer = document.querySelector("#player");
-
-var visual_animation = gsap.timeline({
-  scrollTrigger: {
-    // id: ' VISUAL 애니메이션',
-    // markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
-    trigger: '.visual',
-    scrub: 1,
-    start: "0 0%",
-    // end: "100% 50%",
-    // pin: true,
-    // pinSpacing: false,
-    // toggleClass: "is-visible",
-    // onUpdate: slef => {
-    //   visualPlayer.style.transform = `translateZ(${(e.progress)*10}rem)`;
-    //  }
+function getheaderHeight() {
+  if(isTabletSize()) {
+    headerHeight = 68;
+  } else {
+    headerHeight = 100;
   }
+  console.log(headerHeight);
+  return headerHeight;
+}
+
+gsap.delayedCall( 1.0, function() {
+	ScrollTrigger.refresh();
 });
 
-visual_animation
-  .to(".visual__text", {
-    opacity: 0,
-    // delay: .2,
-    duration: .5,
-  })
-  .to(".visual__player",{
-    z: 80,
-    // delay: .4,
-    duration: 1,
-  }, 0)
-  .to(".visual__player",{
-    opacity: 0,
-    // delay: .6,
-    duration: .6,
-  }, 0);
-
-
-var battery_animation = gsap.timeline({
-  scrollTrigger: {
-    id: ' battery 애니메이션',
-    // markers: {startColor: "#b0da77", endColor: "#0124b6", fontSize: "18px"},
-    trigger: '.showcase',
-    scrub: 1,
-    pin: true,
-    end: "bottom -=70%",
-    // pinSpacing: false,
-    // toggleClass: "is-visible",
-  }
-})
-
-
-// gsap.from(".showcase__title", {
-//   scrollTrigger: {
-//     // id: 'showcaseTitle',
-//     // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
-//     // animation: sc_title,
-//     trigger: '.showcase__title',
-//     scrub: 1,
-//     start: "top 80%",
-//     end: "bottom 60%",
-//     ease: "back(2)"
-//   },
-//   opacity: 0,
-//   y: "20%"
-// });
-
-var sc_title = gsap.timeline();
-ScrollTrigger.create({
-      id: 'showcaseTitle',
-      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
-  animation: sc_title,
-  trigger: '.showcase__title',
-  scrub: 1,
-  start: "top 80%",
-  end: "bottom 60%",
-  ease: "back(2)"
-});
-
-sc_title.from(".sc-title-1", { opacity: 0, y: 100 }, 0)
-sc_title.from(".sc-title-2", { opacity: 0, y: 100, delay: 0.2 }, 0)
-
-// gsap.from(".sc-all", {
-//   scrollTrigger: {
-//     // id: 'showcaseIMG',
-//     // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
-//     trigger: '.showcase__main',
-//     scrub: 1,
-//     start: "top 90%",
-//     end: "bottom 70%",
-//     ease: "back(2)"
-//   },
-//   opacity: 0,
-//   y: 50,
-//   duration: .9,
-// });
-
-
-const showcaseImgs = document.querySelectorAll(".showcase__img");
-const showcaseSpans = document.querySelectorAll(".sc-span");
-const showcasePaths = document.querySelectorAll(".sc-path");
-const showcaseDots = document.querySelectorAll(".sc-dot");
 
 function pathPrepare(el) {
   var lineLength = el.getTotalLength();
@@ -121,186 +40,114 @@ showcasePaths.forEach(function (e) {
   pathPrepare(e);
 });
 
-var showcaseImg_animation = gsap.timeline({
-    defaults: {
-      duration: 1,
-    },
-  scrollTrigger: {
-    id: 'showcase IMG',
-    // markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
-    trigger: '.showcase__main',
-    scrub: 1,
-    start: "top 90%",
-    end: "bottom -=10%",
-  }
-})
-
-showcaseImg_animation
-.addLabel("start")
-.from(
-  showcaseImgs[0],
-  {
-    opacity: 0,
-    y: 50,
-    duration: .9,
-  }
-)
-.fromTo(
-  showcaseImgs[0],
-  {
-    scale: 1.3
-  },
-  {
-    scale: 1,
-    x: -208,
-  }
-)
-.addLabel("show_0")
-.from(
-  showcaseDots[0],
-  {
-    opacity: 0,
-  }, "show_0+=0.2"
-)
-.to(
-  showcasePaths[0],
-  {
-    opacity: 1,
-    strokeDashoffset: 0,
-  }, "show_0+=0.2"
-)
-.from(
-  showcaseSpans[0],
-  {
-    opacity: 0,
-    x: 10,
-  }, "show_0+=0.5"
-)
-.addLabel("show_1")
-.from(
-  showcaseImgs[1],
-  {
-    opacity: 0,
-    y: 0,
-    x: -20,
-  },"show_0+=0.2"
-)
-.from(
-  showcaseDots[1],
-  {
-    opacity: 0,
-  }, "show_0+=0.4"
-)
-.to(
-  showcasePaths[1],
-  {
-    opacity: 1,
-    strokeDashoffset: 0,
-  }, "show_0+=0.4"
-)
-.from(
-  showcaseSpans[1],
-  {
-    opacity: 0,
-    x: -10,
-  }, "show_0+=0.7"
-)
-.addLabel("show_2")
-.from(
-  showcaseImgs[2],
-  {
-    opacity: 0,
-    y: 0,
-    x: -40,
-  },"show_0+=0.8"
-)
-.from(
-  showcaseDots[2],
-  {
-    opacity: 0,
-  }, "show_1+=0.4"
-)
-.to(
-  showcasePaths[2],
-  {
-    opacity: 1,
-    strokeDashoffset: 0,
-  }, "show_1+=0.4"
-)
-.from(
-  showcaseSpans[2],
-  {
-    opacity: 0,
-    x: -10,
-  }, "show_1+=0.7"
-)
-.addLabel("show_3")
-.from(
-  showcaseImgs[3],
-  {
-    opacity: 0,
-    y: 0,
-    x: -60,
-  },"show_2+=0.4"
-)
-.from(
-  showcaseDots[3],
-  {
-    opacity: 0,
-  }, "show_2+=0.8"
-)
-.to(
-  showcasePaths[3],
-  {
-    opacity: 1,
-    strokeDashoffset: 0,
-  }, "show_2+=0.8"
-)
-.from(
-  showcaseSpans[3],
-  {
-    opacity: 0,
-    x: 10,
-  }, "show_2+=1"
-)
-.addLabel("show_4")
-.from(
-  showcaseImgs[4],
-  {
-    opacity: 0,
-    y: 0,
-    x: -80,
-  },"show_2+=0.8"
-)
-.addLabel("show_5")
-.from(
-  showcaseImgs[5],
-  {
-    opacity: 0,
-    y: 0,
-    x: -100,
-  },"show_2+=1"
-)
-.addLabel("show_6")
-.from(
-  showcaseImgs[6],
-  {
-    opacity: 0,
-    y: 0,
-    x: -120,
-  },"show_2+=1.2"
-)
-.addLabel("jump")
-.addLabel("points")
-.set( ".points__list", { className: "points__list on" } , "show_6")
-
 function getScrollPos(animation, trigger){
-
   var percent = animation.labels["jump"] / animation.totalDuration();
   var myST = trigger;
   var scrollPos = myST.start + (myST.end - myST.start) * percent;
   return scrollPos;
 }
+
+
+
+// VISUAL
+const visualPlayer = document.querySelector("#player");
+const visual_animation = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.visual',
+    scrub: 1,
+    start: "0 0"
+  }
+});
+visual_animation
+  .to(".visual__text", { opacity: 0, duration: .5 })
+  .to(".visual__player",{ z: 80, duration: 1 }, 0)
+  .to(".visual__player",{ opacity: 0, duration: .6 }, 0);
+
+
+// BATTERY
+var battery_animation = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.showcase',
+    markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
+    scrub: 1,
+    pin: true,
+    start: () => "0 " + getheaderHeight(),
+    end: "bottom -=70%",
+    invalidateOnRefresh: true,
+  }
+});
+
+const sc_title = gsap.timeline();
+ScrollTrigger.create({
+  id: 'showcaseTitle',
+  animation: sc_title,
+  trigger: '.showcase__title',
+  scrub: 1,
+  start: "top 80%",
+  end: "bottom 60%",
+  ease: "back(2)"
+});
+sc_title.from(".sc-title-1", { opacity: 0, y: 100 }, 0)
+sc_title.from(".sc-title-2", { opacity: 0, y: 100, delay: 0.2 }, 0)
+
+
+const showcaseImg_animation = gsap.timeline({
+  scrollTrigger: {
+    markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+    trigger: '.showcase__main',
+    scrub: 1,
+    start: "top 90%",
+    end: "bottom -=10%",
+  }
+});
+showcaseImg_animation
+.addLabel("start")
+.from( showcaseImgs[0], { opacity: 0, y: 50, duration: .9 })
+.fromTo( showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+.addLabel("show_0")
+.from( showcaseDots[0], { opacity: 0, }, "show_0+=0.2" )
+.to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "show_0+=0.2" )
+.from(showcaseSpans[0],{ opacity: 0, x: 10 }, "show_0+=0.5")
+.from(showcaseSpans_M[0],{ opacity: 0, x: -10 }, "show_0+=0.5")
+.addLabel("show_1")
+.from(showcaseImgs[1],{ opacity: 0, y: 0, x: -20 },"show_0+=0.2")
+.from(showcaseDots[1],{ opacity: 0 }, "show_0+=0.4")
+.to(showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "show_0+=0.4")
+.from(showcaseSpans[1],{ opacity: 0, x: -10 }, "show_0+=0.7")
+.from(showcaseSpans_M[1],{ opacity: 0, x: -10 }, "show_0+=0.7")
+.addLabel("show_2")
+.from(showcaseImgs[2],{ opacity: 0, y: 0, x: -40 },"show_0+=0.8")
+.from(showcaseDots[2],{ opacity: 0 }, "show_1+=0.4")
+.to(showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "show_1+=0.4")
+.from(showcaseSpans[2],{ opacity: 0, x: -10 }, "show_1+=0.7")
+.from(showcaseSpans_M[2],{ opacity: 0, x: -10 }, "show_1+=0.7")
+.addLabel("show_3")
+.from(showcaseImgs[3],{ opacity: 0, y: 0, x: -60 },"show_2+=0.4")
+.from(showcaseDots[3],{ opacity: 0 }, "show_2+=0.8")
+.to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "show_2+=0.8")
+.from(showcaseSpans[3],{ opacity: 0, x: 10 }, "show_2+=1")
+.from(showcaseSpans_M[3],{ opacity: 0, x: -10 }, "show_2+=1")
+.addLabel("show_4")
+.from(showcaseImgs[4],{ opacity: 0, y: 0, x: -80 },"show_2+=0.8")
+.addLabel("show_5")
+.from(showcaseImgs[5],{ opacity: 0, y: 0, x: -100 },"show_2+=1")
+.addLabel("show_6")
+.from(showcaseImgs[6],{ opacity: 0, y: 0, x: -120 },"show_2+=1.2")
+.addLabel("jump")
+.addLabel("points")
+.set(".points__list", { className: "points__list on" }, "show_6");
+
+
+
+ScrollTrigger.matchMedia({
+  "( min-width: 1024px )": function() {
+
+
+
+  },
+});
+
+
 
 
 $(".header__logo-link").on("click", function (e) {
@@ -332,6 +179,10 @@ $(".header__menu-link").on("click", function (e) {
   }
   if (target === "contact") {
     gsap.to(window, {scrollTo: "#contact"});
+  }
+
+  if ($(".header").hasClass('is-opened')) {
+    $('.header').removeClass('is-opened');
   }
 });
 

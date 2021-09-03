@@ -5,44 +5,64 @@
 
 .battery {
   position: relative;
-  // z-index: -1;
-  // visibility: hidden;
   width: 100%;
-  // padding-bottom: 10rem;
   background-color: #1d1f2d;
-  min-width: var.$inner-width; //TODO:
-  min-height: 960px; //TODO:
-
-  // &.is-visible {
-  //   z-index: 1;
-  //   visibility: visible;
-  // }
+  // min-width: var.$inner-width; //TODO:
+  // min-height: 1300px; //TODO:
 
   .showcase {
     position: relative;
     width: 100%;
-    height: 100vh;
-    min-width: var.$inner-width; //TODO:
-    min-height: 960px; //TODO:
+    height: calc(100vh - 100px);
+    // min-width: var.$inner-width; //TODO:
+    min-height: 98rem; //TODO:
     background-color: #1d1f2d;
     box-sizing: border-box;
+
+    @include md.tablet {
+      height: calc(100vh - 68px);
+      min-height: 90rem;
+    }
+
+    @include md.mobile {
+      min-height: 70rem;
+    }
 
     .inner {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      @include md.tablet {
+        min-height: 100%;
+        align-items: stretch;
+      }
+
+      @include md.mobile {
+        padding: 0 2.5rem;
+      }
     }
 
     &__title {
-      // margin-top: 10.5rem;
       margin-bottom: 6rem;
       color: #fff;
       font-size: 4.8rem;
       text-align: center;
       letter-spacing: -.2rem;
 
+      @include md.tablet {
+        font-size: 3.4rem;
+        margin-bottom: 2.7rem;
+      }
+
+      @include md.mobile {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+      }
+
       span {
         display: block;
+        word-break: keep-all;
       }
     }
 
@@ -51,11 +71,20 @@
       position: relative;
       width: 100%;
       height: 40rem;
-      // outline: 3px dashed #008bb1; //TODO:
+
+      @include md.tablet {
+        height: 28rem;
+        transform: scale(0.62);
+      }
+
+      @include md.mobile {
+        height: 20rem;
+        transform: scale(0.45);
+      }
+
     }
 
     &__img {
-      // opacity: 0;
       display: block;
       top: 12%;
       left: 50%;
@@ -67,7 +96,6 @@
       position: absolute;
       width: 24rem;
       height: 24.5rem;
-      // display: none;
       background-repeat: no-repeat;
       background-size: 100% 100%;
 
@@ -75,18 +103,14 @@
 
         &-all {
           top: 8%;
-          // 전체
-          // transform: scale(2);
           opacity: 1;
           width: 25rem;
           margin-left: -12rem;
-          // background-color: black;
           background-image: url(#{var.$path-image}sc_all.png);
         }
 
         @for $i from 1 through 7 {
           &-#{$i} {
-            // outline: 3px solid rgb(random(100), random(100), random(100));
             background-image: url(#{var.$path-image}sc_#{$i}.png);
           }
         }
@@ -94,35 +118,29 @@
         &-1 {
           margin-top: 3.7rem;
           margin-left: -17rem;
-          // outline: 3px solid #fff;
         }
 
         &-2 {
-          // outline: 3px solid red;
           margin-top: 4.2rem;
           margin-left: -6.5rem;
         }
 
         &-3 {
-          // outline: 3px solid orange;
           margin-top: 10rem;
           margin-left: -.9rem;
         }
 
         &-4 {
-          // outline: 3px solid yellow;
           margin-top: 12rem;
           margin-left: 5rem;
         }
 
         &-5 {
-          // outline: 3px solid green;
           margin-top: 14rem;
           margin-left: 11rem;
         }
 
         &-6 {
-          // outline: 3px solid blue;
           margin-top: 16rem;
           margin-left: 17rem;
         }
@@ -134,7 +152,48 @@
       width: 100%;
       height: 100%;
       color: #fff;
-      font-size: 30px;
+      font-size: 3rem;
+
+      @include md.tablet {
+        display: none;
+      }
+    }
+
+    &__guide-mobile {
+      display: none;
+      width: 100%;
+      padding: 0 1rem;
+      margin: calc(4rem + 2vh) 0 calc(4rem + 3vh);
+      color: #fff;
+      font-size: 1.8rem;
+      box-sizing: border-box;
+
+      .sc-span-mo {
+        display: block;
+        margin-bottom: .6rem;
+
+        &:before {
+          display: inline-block;
+          width: .6rem;
+          height: .6rem;
+          margin-right: 1.2rem;
+          background-color: #fff;
+          border-radius: 50%;
+          vertical-align: middle;
+          content: '';
+        }
+      }
+
+      @include md.tablet {
+        display: block;
+        max-width: 40rem;
+        font-size: 1.6rem;
+        color: rgb(255, 255, 255, .7);
+      }
+
+      @include md.mobile {
+        font-size: 1.4rem;
+      }
     }
 
     &__text {
@@ -162,11 +221,9 @@
 
       .sc-span {
         display: block;
-        // opacity: 0;
       }
 
       .sc-dot {
-        // opacity: 0;
         position: absolute;
         display: block;
         width: 1.2rem;
@@ -278,10 +335,9 @@
     background-color: #1d1f2d;
     box-sizing: border-box;
 
-    &.on {
-      .points__button {
-        // animation-name: showPoints;
-      }
+    @include md.tablet {
+      min-width: 100%;
+      padding: 0 1rem;
     }
 
     &__list {
@@ -292,6 +348,18 @@
       &.on .points__button {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      @include md.tablet {
+        width: 40rem;
+        justify-content: space-between;
+        margin: 0 auto;
+      }
+
+      @include md.mobile {
+        width: 100%;
+        justify-content: space-between;
+        margin: 0 auto;
       }
     }
 
@@ -309,8 +377,21 @@
       animation-duration: 700ms;
       animation-fill-mode: both;
 
+      @include md.tablet {
+        font-size: 1.9rem;
+      }
+
+      @include md.mobile {
+        font-size: 1.5rem;
+      }
+
       &:not(:first-child) {
         margin-left: 12rem;
+
+        @include md.tablet {
+          margin-left: 0;
+        }
+
       }
 
       &:hover,
@@ -350,11 +431,19 @@
       background-repeat: no-repeat;
       box-sizing: border-box;
       pointer-events: none;
+
+      @include md.tablet {
+        width: 10rem;
+        height: 10rem;
+      }
+      @include md.mobile {
+        width: 7.2rem;
+        height: 7.2rem;
+      }
     }
 
     &__text {
       display: block;
-      font-size: 2.4rem;
       font-weight: var.$regular;
       pointer-events: none;
     }
@@ -370,5 +459,14 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+
+
+// 🚩 [UA] MOBILE
+.ua-mobile .header__menu-link:hover {
+  .header__menu-text {
+    transform: none;
   }
 }
