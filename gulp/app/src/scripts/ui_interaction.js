@@ -37,7 +37,7 @@ showcasePaths.forEach(function (e) {
 function getScrollPos(animation, trigger){
   var percent = animation.labels["jump"] / animation.totalDuration();
   var myST = trigger;
-  var scrollPos = myST.start + (myST.end - myST.start) * percent;
+  var scrollPos = (myST.start + (myST.end - myST.start) * percent);
   return scrollPos;
 }
 
@@ -60,10 +60,11 @@ $(".header__menu-link").on("click", function (e) {
     gsap.to(window, {scrollTo: getScrollPos(showcaseImg_animation, battery_animation.scrollTrigger)});
   }
   if (target === "app") {
-    gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
+    // gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
+    gsap.to(window, {scrollTo: {y: "#app", offsetY: getheaderHeight()}});
   }
   if (target === "contact") {
-    gsap.to(window, {scrollTo: "#contact"});
+    gsap.to(window, {scrollTo: {y: "#contact", offsetY: getheaderHeight()}});
   }
 
   if ($(".header").hasClass('is-opened')) {

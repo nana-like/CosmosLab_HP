@@ -17,7 +17,7 @@
 
   @include md.tablet {
     height: auto;
-    max-height: calc(100vh - 20rem);
+    // max-height: calc(100vh - 20rem);
     overflow: hidden;
     padding-top: 7.3rem;
     background-image: none;
@@ -176,13 +176,13 @@
 
         @include md.tablet {
           display: block;
-          width: 5.2rem;
-          margin-right: 2.3rem;
+          width: 5.3rem;
+          margin-right: 2.2rem;
           font-size: 1.4rem;
         }
 
         @include md.mobile {
-          width: 4.5rem;
+          width: 4.6rem;
           font-size: calc(1.2rem + .1vmin);
         }
       }
