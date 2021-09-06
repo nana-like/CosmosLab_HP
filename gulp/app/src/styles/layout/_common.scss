@@ -19,8 +19,14 @@ body {
 }
 
 
+
+
 .br-mo {
   display: none;
+
+  @include md.tablet {
+    display: none;
+  }
 
   @include md.mobile {
     display: block;
@@ -33,8 +39,46 @@ body {
   @include md.tablet {
     display: none;
   }
+  @include md.mobile {
+    display: none;
+  }
+
+  &.br-tablet {
+    @include md.tablet {
+      display: block;
+    }
+    @include md.mobile {
+      display: none;
+    }
+  }
+
+  &.br-mobile {
+    @include md.tablet {
+      display: none;
+    }
+    @include md.mobile {
+      display: block;
+    }
+  }
 }
 
+.br-tablet {
+  display: none;
+
+  @include md.tablet {
+    display: block;
+  }
+
+  @include md.mobile {
+    display: none;
+  }
+
+  &.br-mo {
+    @include md.mobile {
+      display: block;
+    }
+  }
+}
 
 .wrap {
   @include md.mobile {
