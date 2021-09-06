@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-03 17:52:55
+ * Last Modified: 2021-09-06 13:17:27
  * -----------------------------------------------
  */
 
@@ -14,6 +14,7 @@ var showcaseSpans_M = document.querySelectorAll(".sc-span-mo");
 var showcasePaths = document.querySelectorAll(".sc-path");
 var showcaseDots = document.querySelectorAll(".sc-dot");
 
+// 반응형에 따른 헤더 높이 계산
 function getheaderHeight() {
   if(isTabletSize()) {
     headerHeight = 68;
@@ -28,7 +29,7 @@ gsap.delayedCall( 1.0, function() {
 	ScrollTrigger.refresh();
 });
 
-
+// SVG 길이 계산
 function pathPrepare(el) {
   var lineLength = el.getTotalLength();
   console.log(lineLength);
@@ -40,6 +41,7 @@ showcasePaths.forEach(function (e) {
   pathPrepare(e);
 });
 
+// 네비용 각 스크롤 위치 계산
 function getScrollPos(animation, trigger){
   var percent = animation.labels["jump"] / animation.totalDuration();
   var myST = trigger;
@@ -48,8 +50,38 @@ function getScrollPos(animation, trigger){
 }
 
 
+$(".header__logo-link").on("click", function (e) {
+  e.preventDefault();
+  gsap.to(window, 1, {scrollTo: 0});
+});
 
-// VISUAL
+$(".footer__top").on("click", function (e) {
+  e.preventDefault();
+  gsap.to(window, 1, {scrollTo: 0});
+});
+
+$(".header__menu-link").on("click", function (e) {
+  e.preventDefault();
+  var target = $(this).attr("href").split("#")[1];
+
+  if (target === "battery") {
+    gsap.to(window, {scrollTo: getScrollPos(showcaseImg_animation, battery_animation.scrollTrigger)});
+  }
+  if (target === "app") {
+    gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
+  }
+  if (target === "contact") {
+    gsap.to(window, {scrollTo: "#contact"});
+  }
+
+  if ($(".header").hasClass('is-opened')) {
+    $('.header').removeClass('is-opened');
+  }
+});
+
+
+
+// * ----- VISUAL
 const visualPlayer = document.querySelector("#player");
 const visual_animation = gsap.timeline({
   scrollTrigger: {
@@ -64,11 +96,12 @@ visual_animation
   .to(".visual__player",{ opacity: 0, duration: .6 }, 0);
 
 
-// BATTERY
+
+// * ----- BATTERY
+
 var battery_animation = gsap.timeline({
   scrollTrigger: {
     trigger: '.showcase',
-    // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
     scrub: 1,
     pin: true,
     start: () => "0 " + getheaderHeight(),
@@ -149,108 +182,39 @@ ScrollTrigger.matchMedia({
 
 
 
+// * ----- ESS
 
-$(".header__logo-link").on("click", function (e) {
-  e.preventDefault();
-  gsap.to(window, 1, {scrollTo: 0});
-});
-
-$(".footer__top").on("click", function (e) {
-  e.preventDefault();
-  gsap.to(window, 1, {scrollTo: 0});
-});
-
-
-$(".header__menu-link").on("click", function (e) {
-  e.preventDefault();
-  var target = $(this).attr("href").split("#")[1];
-  // controller.scrollTo(`#${target}`);
-  // gsap.to(window, {scrollTo:`#${target}`});
-
-
-
-  // console.log('!', scrollPos);
-
-  if (target === "battery") {
-    gsap.to(window, {scrollTo: getScrollPos(showcaseImg_animation, battery_animation.scrollTrigger)});
-  }
-  if (target === "app") {
-    gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
-  }
-  if (target === "contact") {
-    gsap.to(window, {scrollTo: "#contact"});
-  }
-
-  if ($(".header").hasClass('is-opened')) {
-    $('.header').removeClass('is-opened');
-  }
-});
-
-
-// gsap.utils.toArray(".header__menu-link").forEach(function(a) {
-//   a.addEventListener("click", function(e) {
-//     const percent = tl.labels[e.target.getAttribute("data-jump")] / tl.totalDuration();
-//     const scrollPos = myST.start + (myST.end - myST.start) * percent;
-//     gsap.to(window, {duration: 1, scrollTo: scrollPos});
-//   });
+// [TODO:] ess 영역 고정할지?
+// var ess_animation = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: '.ess',
+//     scrub: 1,
+//     pin: true,
+//     start: () => "0 " + getheaderHeight(),
+//     end: "bottom 20%",
+//   }
 // });
-
-
-
-
-
-
-
-
-// var speed = 10;
-var ess_animation = gsap.timeline({
-  defaults: {
-    // duration: 1,
-    // opacity: 0,
-  },
-  scrollTrigger: {
-    markers: {startColor: "#adff2f", endColor: "#008bb1", fontSize: "18px"},
-    trigger: '.ess',
-    scrub: 1,
-    pin: true,
-    start: () => "0 " + getheaderHeight(),
-    end: "bottom 20%",
-  }
-});
-
 
 var ess_title = gsap.timeline();
 ScrollTrigger.create({
-      id: 'essTitle',
-      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
   animation: ess_title,
   trigger: '.ess__title',
   scrub: 1,
-        // start: "top top",
   end: "bottom 50%",
   ease: "back(2)"
 });
-
 ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
 ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
-// ess_title.from(".ess__main", { y: 50},0)
-// ess_title.from(".ess__main", { opacity: 0, y:50  },0)
-// ess_title.from(".ess__img", { opacity: 0, x: -100, delay: 1, duration:1 }, 0 )
-// ess_title.from(".ess__img-shadow", { opacity: 0, x: -100, delay: 1.5, duration:1.5 }, 0 )
 
 var ess_img = gsap.timeline();
 ScrollTrigger.create({
-      id: 'essTitle',
-      // markers: {startColor: "#28d17a", endColor: "#bb4214", fontSize: "18px"},
   animation: ess_img,
   trigger: '.ess__main',
   scrub: 1,
-        start: "top 50%",
+  start: "top 50%",
   end: "bottom +=60%",
   ease: "back(2)"
 });
-
-// ess_animation.from(".ess__img", { x: 20},0)
 ess_img.from(".ess__img", { z:-100, x: 40, y:20, duration: 1.2, ease:Linear.easeNone})
 ess_img.from(".ess__img-shadow", { opacity: 0, x: -100, y: 38, delay: 0.2, ease:Linear.easeNone},0)
 ess_img.addLabel("jump");
@@ -260,20 +224,20 @@ ess_title.from(".ess", {
   backgroundPosition: "45% 15%",
   ease: Sine.easeOut,
   duration: 1.5,
-  // delay: 1,
 },0)
 
 
-// 아티클스 인터렉션 시작
+// * ----- ARTICLE
 
 var articles_animation = gsap.timeline();
 ScrollTrigger.create({
   id: '아티클',
-  // markers: {startColor: "#e87134", endColor: "#d6ab93", fontSize: "22px"},
+  markers: {startColor: "#e87134", endColor: "#d6ab93", fontSize: "22px"},
   trigger: '.article',
   animation: articles_animation,
   pin: true,
   scrub: 1,
+  start: () => "0 " + getheaderHeight(),
   end: "bottom -=100%",
   ease: "quart.inOut"
 });
@@ -291,62 +255,8 @@ articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, '4' )
 articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.4 }, '4' )
 articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 0.4 },  '4+=0.4' )
 articles_animation.to("#at-bg5", { opacity: 1, x: 0,  duration: 1.5  }, '5' )
-// articles_animation.to("#at-main4", { opacity: 0, x: 0, duration: 0.4 }, '5' )
-// articles_animation.to("#at-main5", { opacity: 1, x: 0, duration: 0.4 },  '5+=0.4' )
 
 const sections = gsap.utils.toArray(".marker");
-// sections.forEach((section, i) => {
-//   const active = $(".header__nav a[href$='"+$(section).data('marker')+"']");
-//   const sectionTrigger = gsap.timeline({
-//     scrollTrigger: {
-//       trigger: section,
-//       id: $(section).data('marker')+'!!!!!!!!',
-//       markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
-//       start: "top top+=100px",
-//       end: "bottom bottom",
-//       toggleActions: "play reverse play reverse",
-//       onEnter: ({progress, direction, isActive}) => console.log("onEnter:", active, direction),
-//       onEnterBack: ({progress, direction, isActive}) => console.log("onEnterBack:",active, direction),
-//       onLeave: ({progress, direction, isActive}) => console.log("onLeave:",progress, direction, isActive),
-//       onLeaveBack: ({progress, direction, isActive}) => console.log("onLeaveBack:",progress, direction, isActive),
-//       onToggle: ({progress, direction, isActive}) => console.log("onToggle:",progress, direction, isActive)
-
-
-//       // onEnter: () => {
-//       //   console.dir(active)
-//       //   active.siblings().removeClass("is-active")
-//       //   active.addClass("is-active")
-//       // },
-//       // onEnterBack: () => {
-//       //   console.log("onEnterBack", active)
-//       //   active.removeClass("is-active")
-//       //   active.prev().addClass("is-active")
-//       // },
-//       // onLeaveBack: () => {
-//       //   console.log("onLeaveBack", active)
-//       //   active.removeClass("is-active")
-//       //   active.prev().addClass("is-active")
-//       // },
-//       // onLeaveBack: () => {
-//       //   console.dir(active)
-//       //   active.siblings().removeClass("is-active")
-//       //   active.addClass("is-active")
-//       // },
-//       // onLeave: () => {
-//       //   console.dir(active)
-//       //   // active.removeClass("ㅁ넝리ㅏㅁ어리ㅏㅁㄴㅇ")
-//       // },
-//       // toggleClass: {targets: active, className: "ㅁㅁㄴ어리망ㄴ러ㅏㅁㅇㄴ러"}
-//     }
-//   });
-//   sectionTrigger.fromTo(active, {
-//     color: '#828282',
-//   }, {
-//     color: 'black',
-//     ease: "sine.out",
-//     duration: 0.2,
-//   });
-// });
 
 var marker__battery = gsap.timeline({
   scrollTrigger: {
@@ -505,3 +415,56 @@ var header = gsap.timeline({
 
 
 // scene1.from(".ess__title", { y: 2 * speed, x: 1 * speed, scale: 0.9, ease: "power1.in" }, 0)
+
+// sections.forEach((section, i) => {
+//   const active = $(".header__nav a[href$='"+$(section).data('marker')+"']");
+//   const sectionTrigger = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: section,
+//       id: $(section).data('marker')+'!!!!!!!!',
+//       markers: {startColor: "#13a4a0", endColor: "#bb4214", fontSize: "58px"},
+//       start: "top top+=100px",
+//       end: "bottom bottom",
+//       toggleActions: "play reverse play reverse",
+//       onEnter: ({progress, direction, isActive}) => console.log("onEnter:", active, direction),
+//       onEnterBack: ({progress, direction, isActive}) => console.log("onEnterBack:",active, direction),
+//       onLeave: ({progress, direction, isActive}) => console.log("onLeave:",progress, direction, isActive),
+//       onLeaveBack: ({progress, direction, isActive}) => console.log("onLeaveBack:",progress, direction, isActive),
+//       onToggle: ({progress, direction, isActive}) => console.log("onToggle:",progress, direction, isActive)
+
+
+//       // onEnter: () => {
+//       //   console.dir(active)
+//       //   active.siblings().removeClass("is-active")
+//       //   active.addClass("is-active")
+//       // },
+//       // onEnterBack: () => {
+//       //   console.log("onEnterBack", active)
+//       //   active.removeClass("is-active")
+//       //   active.prev().addClass("is-active")
+//       // },
+//       // onLeaveBack: () => {
+//       //   console.log("onLeaveBack", active)
+//       //   active.removeClass("is-active")
+//       //   active.prev().addClass("is-active")
+//       // },
+//       // onLeaveBack: () => {
+//       //   console.dir(active)
+//       //   active.siblings().removeClass("is-active")
+//       //   active.addClass("is-active")
+//       // },
+//       // onLeave: () => {
+//       //   console.dir(active)
+//       //   // active.removeClass("ㅁ넝리ㅏㅁ어리ㅏㅁㄴㅇ")
+//       // },
+//       // toggleClass: {targets: active, className: "ㅁㅁㄴ어리망ㄴ러ㅏㅁㅇㄴ러"}
+//     }
+//   });
+//   sectionTrigger.fromTo(active, {
+//     color: '#828282',
+//   }, {
+//     color: 'black',
+//     ease: "sine.out",
+//     duration: 0.2,
+//   });
+// });

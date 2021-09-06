@@ -156,7 +156,6 @@
   overflow: hidden;
   width: 100%;
   height: 100vh;
-  // min-width: var.$inner-width; //TODO:
   min-height: var.$inner-height;
 
   @include md.tablet {
@@ -168,6 +167,9 @@
     min-height: 70rem;
   }
 
+  .inner {
+    padding: 0 2rem;
+  }
 
   &__content {
     z-index: 9;
@@ -180,6 +182,15 @@
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, .5);
 
+    @include md.tablet {
+      position: relative;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      padding: 0;
+      background-color: transparent;
+    }
+
     [class^="article__main--"] {
       opacity: 0;
       position: absolute;
@@ -187,16 +198,32 @@
       &#at-main0 {
         opacity: 1;
       }
+
+      @include md.tablet {
+        width: 100%;
+      }
     }
+
   }
 
   &__title {
     display: block;
     margin-bottom: 9.8rem;
     font-size: 4.8rem;
-    font-weight: var.$medium;
+    font-weight: var.$regular;
     letter-spacing: -.2rem;
     line-height: 1.3;
+
+    @include md.tablet {
+      margin-top: calc(20% + 2vh);
+      font-size: 3.2rem;
+      letter-spacing: -.1rem;
+      margin-bottom: 10rem;
+    }
+
+    @include md.mobile {
+      font-size: 2.8rem;
+    }
   }
 
   &__point {
@@ -204,24 +231,44 @@
     font-size: 3.2rem;
     letter-spacing: -.1rem;
 
+    @include md.tablet {
+      font-size: 2.5rem;
+      letter-spacing: -.05rem;
+    }
+
     .eng {
       display: block;
       font-size: 1.8rem;
       line-height: 1.6;
       font-weight: var.$light;
       letter-spacing: -.05rem;
+
+      @include md.tablet {
+        font-size: 1.4rem;
+        letter-spacing: 0;
+        line-height: 1.7;
+      }
+
     }
   }
 
   &__text {
+    opacity: 0.7;
     position: relative;
     margin-top: 6.6rem;
     font-weight: var.$regular;
     font-size: 2rem;
     line-height: 1.55;
     letter-spacing: -.1rem;
-    color: rgba(255, 255, 255, .7);
+    color: #fff;
     word-break: keep-all;
+
+    @include md.tablet {
+      margin-top: 5.2rem;
+      font-size: 1.4rem;
+      letter-spacing: -.07rem;
+      line-height: 1.7;
+    }
 
     &:before,
     &:after {
@@ -231,6 +278,10 @@
       display: block;
       content: '';
       height: .2rem;
+
+      @include md.tablet {
+        top: -2.6rem;
+      }
     }
 
     &:before {
@@ -249,10 +300,19 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 100px);
+
+    @include md.tablet {
+      height: calc(100vh - 68px);
+      // min-height: 90rem;
+    }
+
+    @include md.mobile {
+      // min-height: 70rem;
+    }
 
     &:after {
-      z-index: 5;
+      z-index: 6;
       position: absolute;
       top: 0;
       left: 0;
@@ -260,7 +320,7 @@
       content: '';
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, .3);
+      background-color: rgba(0, 0, 0, .5);
     }
   }
 
@@ -273,7 +333,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0;
-      transform: translateX(-10rem);
+    transform: translateX(-10rem);
 
     @for $i from 1 through length($_article-list) {
       $list: nth($_article-list, $i);
@@ -286,8 +346,44 @@
 
     &.article__bg--camp {
       opacity: 1;
-          transform: translateX(0);
+      transform: translateX(0);
     }
+
+    @include md.tablet {
+
+      &.article__bg--camp {
+        background-position: 65% 100%;
+      }
+
+      &.article__bg--home {
+        background-position: 40% 100%;
+      }
+
+      &.article__bg--elec {
+        background-position: 58% 100%;
+      }
+
+      &.article__bg--indust {
+        background-position: 70% 100%;
+      }
+
+      &.article__bg--energy {
+        background-position: 50% 100%;
+
+        &:after {
+          z-index: 6;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          content: '';
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, .3);
+        }
+      }
+    }
+
   }
 }
 

@@ -26,3 +26,18 @@ body {
     display: block;
   }
 }
+
+.br-pc {
+  display: block;
+
+  @include md.tablet {
+    display: none;
+  }
+}
+
+
+.wrap {
+  @include md.mobile {
+    // overflow-x: hidden;
+  }
+}

@@ -20,7 +20,7 @@
   }
 
   @include md.mobile {
-    min-width: var.$mobile-min-width;
+    // min-width: var.$mobile-min-width; //TODO:
   }
 
   .inner {
