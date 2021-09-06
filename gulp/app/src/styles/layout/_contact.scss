@@ -14,10 +14,11 @@
   background-image: url(#{var.$path-image}bg_contact.png);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  // background-size: cover;
 
   @include md.tablet {
     height: auto;
+    max-height: calc(100vh - 20rem);
+    overflow: hidden;
     padding-top: 7.3rem;
     background-image: none;
     background-color: #fff;
@@ -25,7 +26,7 @@
 
 
   .inner {
-    @include md.tablet {
+    @include md.mobile {
       padding: 0 2rem;
     }
   }
@@ -38,6 +39,7 @@
     background-color: rgba(255, 255, 255, .8);
 
     @include md.tablet {
+      width: 100%;
       padding: 0;
       background-color: rgba(255, 255, 255, 1);
     }
@@ -51,8 +53,12 @@
     letter-spacing: -.29rem;
 
     @include md.tablet {
-      font-size: 2.8rem;
+      font-size: 3.8rem;
       letter-spacing: -.18rem;
+    }
+
+    @include md.mobile {
+      font-size: calc(2.7rem + .35vmin);
     }
   }
 
@@ -65,8 +71,12 @@
     letter-spacing: -.13rem;
 
     @include md.tablet {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       letter-spacing: -.1rem;
+    }
+
+    @include md.mobile {
+      font-size: calc(1.4rem + .1vmin);
     }
   }
 
@@ -102,7 +112,7 @@
       width: 6.4rem;
       background-color: #6097ee;
 
-      @include md.tablet {
+      @include md.mobile {
         width: 5.4rem;
       }
     }
@@ -114,8 +124,12 @@
     letter-spacing: -.07rem;
 
     @include md.tablet {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       margin-bottom: 2.8rem;
+    }
+
+    @include md.mobile {
+      font-size: calc(1.4rem + .1vmin);
     }
 
     strong {
@@ -125,7 +139,11 @@
       letter-spacing: -.08rem;
 
       @include md.tablet {
-        font-size: 1.9rem;
+        font-size: 2rem;
+      }
+
+      @include md.mobile {
+        font-size: calc(1.9rem + .1vmin);
       }
     }
   }
@@ -134,7 +152,11 @@
     font-size: 2rem;
 
     @include md.tablet {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+    }
+
+    @include md.mobile {
+      font-size: calc(1.4rem + .1vmin);
     }
 
     &-text {
@@ -154,9 +176,14 @@
 
         @include md.tablet {
           display: block;
-          width: 4.5rem;
+          width: 5.2rem;
           margin-right: 2.3rem;
-          font-size: 1.2rem;
+          font-size: 1.4rem;
+        }
+
+        @include md.mobile {
+          width: 4.5rem;
+          font-size: calc(1.2rem + .1vmin);
         }
       }
 
