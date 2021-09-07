@@ -1,5 +1,6 @@
 @use "helpers/svg" as svg;
 @use "helpers/variables" as var;
+@use "helpers/mediaQueries"as md;
 
 .intro {
   visibility: hidden;
@@ -19,10 +20,15 @@
 
   &__logo {
     width: 50rem;
-    height: 15rem;
+    height: 100%;
     background-image: svg.img(logo);
-    background-size: 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    @include md.laptop {
+      width: 45%;
+    }
   }
 }
 

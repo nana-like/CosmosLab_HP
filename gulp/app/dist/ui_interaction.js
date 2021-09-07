@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-06 15:48:28
+ * Last Modified: 2021-09-07 17:21:23
  * -----------------------------------------------
  */
 
@@ -13,6 +13,7 @@ var showcaseSpans = document.querySelectorAll(".sc-span");
 var showcaseSpans_M = document.querySelectorAll(".sc-span-mo");
 var showcasePaths = document.querySelectorAll(".sc-path");
 var showcaseDots = document.querySelectorAll(".sc-dot");
+var showcasePoints = document.querySelectorAll(".points__button");
 
 // 반응형에 따른 헤더 높이 계산
 function getheaderHeight() {
@@ -65,7 +66,7 @@ $(".header__menu-link").on("click", function (e) {
   var target = $(this).attr("href").split("#")[1];
 
   if (target === "battery") {
-    gsap.to(window, {scrollTo: getScrollPos(showcaseImg_animation, battery_animation.scrollTrigger)});
+    gsap.to(window, {scrollTo: getScrollPos(sc_img, battery_animation.scrollTrigger)});
   }
   if (target === "app") {
     // gsap.to(window, {scrollTo: getScrollPos(ess_img, ess_img.scrollTrigger)});
@@ -100,86 +101,278 @@ visual_animation
 
 // * ----- BATTERY
 
-var battery_animation = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.showcase',
-    scrub: 1,
-    pin: true,
-    start: () => "0 " + getheaderHeight(),
-    end: "bottom -=70%",
-    invalidateOnRefresh: true,
-  }
-});
-
 const sc_title = gsap.timeline();
-ScrollTrigger.create({
-  id: 'showcaseTitle',
-  animation: sc_title,
-  trigger: '.showcase__title',
-  scrub: 1,
-  start: "top 80%",
-  end: "bottom 60%",
-  ease: "back(2)"
-});
 sc_title.from(".sc-title-1", { opacity: 0, y: 100 }, 0)
 sc_title.from(".sc-title-2", { opacity: 0, y: 100, delay: 0.2 }, 0)
-
-
-const showcaseImg_animation = gsap.timeline({
-  scrollTrigger: {
-    markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
-    trigger: '.showcase__main',
-    scrub: 1,
-    start: "top 90%",
-    end: "bottom -=10%",
-  }
-});
-showcaseImg_animation
-.addLabel("start")
-.from( showcaseImgs[0], { opacity: 0, y: 50, duration: .9 })
-.fromTo( showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
-.addLabel("show_0")
-.from( showcaseDots[0], { opacity: 0, }, "show_0+=0.2" )
-.to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "show_0+=0.2" )
-.from(showcaseSpans[0],{ opacity: 0, x: 10 }, "show_0+=0.5")
-.from(showcaseSpans_M[0],{ opacity: 0, x: -10 }, "show_0+=0.5")
-.addLabel("show_1")
-.from(showcaseImgs[1],{ opacity: 0, y: 0, x: -20 },"show_0+=0.2")
-.from(showcaseDots[1],{ opacity: 0 }, "show_0+=0.4")
-.to(showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "show_0+=0.4")
-.from(showcaseSpans[1],{ opacity: 0, x: -10 }, "show_0+=0.7")
-.from(showcaseSpans_M[1],{ opacity: 0, x: -10 }, "show_0+=0.7")
-.addLabel("show_2")
-.from(showcaseImgs[2],{ opacity: 0, y: 0, x: -40 },"show_0+=0.8")
-.from(showcaseDots[2],{ opacity: 0 }, "show_1+=0.4")
-.to(showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "show_1+=0.4")
-.from(showcaseSpans[2],{ opacity: 0, x: -10 }, "show_1+=0.7")
-.from(showcaseSpans_M[2],{ opacity: 0, x: -10 }, "show_1+=0.7")
-.addLabel("show_3")
-.from(showcaseImgs[3],{ opacity: 0, y: 0, x: -60 },"show_2+=0.4")
-.from(showcaseDots[3],{ opacity: 0 }, "show_2+=0.8")
-.to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "show_2+=0.8")
-.from(showcaseSpans[3],{ opacity: 0, x: 10 }, "show_2+=1")
-.from(showcaseSpans_M[3],{ opacity: 0, x: -10 }, "show_2+=1")
-.addLabel("show_4")
-.from(showcaseImgs[4],{ opacity: 0, y: 0, x: -80 },"show_2+=0.8")
-.addLabel("show_5")
-.from(showcaseImgs[5],{ opacity: 0, y: 0, x: -100 },"show_2+=1")
-.addLabel("show_6")
-.from(showcaseImgs[6],{ opacity: 0, y: 0, x: -120 },"show_2+=1.2")
-.addLabel("jump")
-.addLabel("points")
-.set(".points__list", { className: "points__list on" }, "show_6");
 
 
 
 ScrollTrigger.matchMedia({
   "( min-width: 1024px )": function() {
 
+  const sc_img = gsap.timeline();
+  sc_img
+  .addLabel("start")
+  .from( showcaseImgs[0], { opacity: 0, y: 50, duration: .9 })
+  .addLabel("show_0")
+  .fromTo( showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+  .from( showcaseDots[0], { opacity: 0, } )
+  .to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "-=0.3")
+  .from( showcaseSpans[0], { opacity: 0, x: 10 }, "-=0.2" )
+  .addLabel("show_1")
+  .from( showcaseImgs[1], { opacity: 0, y: 0, x: -20 }, "-=0.6" )
+  .from( showcaseDots[1],{ opacity: 0 }, "-=0.3" )
+  .to( showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "-=0.3")
+  .from( showcaseSpans[1],{ opacity: 0, x: -10 }, "-=0.2" )
+  .addLabel("show_2")
+  .from( showcaseImgs[2],{ opacity: 0, y: 0, x: -40 }, "-=0.6" )
+  .from( showcaseDots[2],{ opacity: 0 }, "-=0.3" )
+  .to( showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+  .from( showcaseSpans[2],{ opacity: 0, x: -10 }, "-=0.2" )
+  .addLabel("show_3")
+  .from(showcaseDots[3],{ opacity: 0 }, "-=0.3" )
+  .to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+  .from(showcaseImgs[3],{ opacity: 0, y: 0, x: -60 }, "-=0.6" )
+  .from(showcaseSpans[3],{ opacity: 0, x: 10 }, "-=0.2" )
+  .addLabel("show_4")
+  .from(showcaseImgs[4],{ opacity: 0, y: 0, x: -80 }, "-=0.4")
+  .addLabel("show_5")
+  .from(showcaseImgs[5],{ opacity: 0, y: 0, x: -100 }, "-=0.4")
+  .addLabel("show_6")
+  .from(showcaseImgs[6],{ opacity: 0, y: 0, x: -120 }, "-=0.4")
+  .addLabel("jump")
+  .addLabel("points")
+  .set(".points__list", { className: "points__list on"}, "-=0.2" );
+
+    var battery_animation = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.showcase',
+        scrub: 1,
+        pin: true,
+        start: () => "0 " + getheaderHeight(),
+        end: "bottom -=40%",
+        invalidateOnRefresh: true,
+      }
+    });
+
+    ScrollTrigger.create({
+      animation: sc_title,
+      trigger: '.showcase__title',
+      scrub: 1,
+      start: "top 80%",
+      end: "bottom 60%",
+      ease: "back(2)"
+    });
+
+
+    ScrollTrigger.create({
+      animation: sc_img,
+      markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+      trigger: '.showcase__main',
+      scrub: 1,
+      start: "top 70%",
+      end: "bottom -=20%",
+    });
+
+
+    // const sc_img = gsap.timeline({
+    //   scrollTrigger: {
+    //     markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+    //     trigger: '.showcase__main',
+    //     scrub: 1,
+    //     start: "top 90%",
+    //     end: "bottom -=10%",
+    //   }
+    // });
+
+
+
+
+
 
 
   },
+  "( max-width: 1024px )": function() {
+
+  const sc_img_m = gsap.timeline();
+  sc_img_m
+  .addLabel("start")
+  .from( showcaseImgs[0], { opacity: 0, y: 50, duration: .9 })
+  .addLabel("show_0")
+  .fromTo( showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+  .from( showcaseImgs[1], { opacity: 0, y: 0, x: -20, duration: 0.4}, )
+  .from( showcaseImgs[2],{ opacity: 0, y: 0, x: -40, duration: 0.4}, "-=0.35" )
+  .from( showcaseImgs[3],{ opacity: 0, y: 0, x: -60, duration: 0.4}, "-=0.35" )
+  .from(showcaseImgs[4],{ opacity: 0, y: 0, x: -80, duration: 0.4}, "-=0.35")
+  .from(showcaseImgs[5],{ opacity: 0, y: 0, x: -100, duration: 0.4}, "-=0.35")
+  .from(showcaseImgs[6],{ opacity: 0, y: 0, x: -120, duration: 0.4}, "-=0.35")
+  .from( showcaseSpans_M[0], { opacity: 0, x: 10, duration: 0.6 }, "-=0.3" )
+  .from( showcaseSpans_M[1], { opacity: 0, x: 10, duration: 0.6  }, "-=0.35" )
+  .from( showcaseSpans_M[2], { opacity: 0, x: 10, duration: 0.6  }, "-=0.35" )
+  .from( showcaseSpans_M[3], { opacity: 0, x: 10, duration: 0.6  }, "-=0.35" );
+
+  const sc_span_m = gsap.timeline();
+  // sc_span_m
+  // .from( showcaseSpans_M[0], { opacity: 0, x: 10,  }, "-=0.3" )
+  // .from( showcaseSpans_M[1], { opacity: 0, x: 10,  }, "-=0.35" )
+  // .from( showcaseSpans_M[2], { opacity: 0, x: 10,  }, "-=0.35" )
+  // .from( showcaseSpans_M[3], { opacity: 0, x: 10,  }, "-=0.35" );
+
+  // const sc_points_m = gsap.timeline();
+  // sc_points_m
+  // .from( showcasePoints[0], {autoAlpha: 0, y: -100} )
+  // .addLabel("jump")
+  // .addLabel("points")
+  // .set(".points__list", { className: "points__list on"}, "-=0.2" );
+
+
+    ScrollTrigger.create({
+      animation: sc_title,
+      markers: true,
+      trigger: ".showcase",
+      start: "top 50%",
+      end: "bottom 60%",
+      ease: "back(2)",
+      // toggleActions: 'play none play none',
+      // once: true,
+      toggleActions: 'play reverse play reverse',
+    });
+
+
+    ScrollTrigger.create({
+      animation: sc_img_m,
+      markers: {startColor: "gold", endColor: "gold", fontSize: "18px"},
+      trigger: ".showcase__main",
+      start: "top 60%",
+      end: "-=240%",
+      ease: "back(2)",
+      // toggleActions: 'play none play none',
+      once: true,
+      onEnter: () => {
+        sc_img_m.timeScale(1.1).play();
+        console.log('enter')
+      },
+      // toggleActions: 'play reverse play reverse',
+    });
+    ScrollTrigger.create({
+      animation: sc_img_m,
+      markers: {startColor: "purple", endColor: "purple", fontSize: "18px"},
+      trigger: ".showcase",
+      start: "top 50%",
+      ease: "back(2)",
+      onEnter: () => {
+        sc_img_m.timeScale(1.1);
+        console.log('enter')
+      },
+      onLeaveBack: () => {
+        sc_img_m.timeScale(5.0).reverse();
+        console.log('Leave back')
+      },
+      // toggleActions: 'play none play none',
+      // once: true,
+      toggleActions: 'none reverse none reverse',
+    });
+
+    // ScrollTrigger.create({
+    //   markers: true,
+    //   animation: sc_span_m,
+    //   trigger: ".showcase__guide-mobile",
+    //   start: "top 70%",
+    //   // end: "bottom -=100%",
+    //   ease: "back(2)",
+    //   // toggleActions: 'play none play none',
+    //   once: true,
+    //   onEnter: () => {
+    //     sc_span_m.timeScale(1.0).play();
+    //     console.log('enter')
+    //   },
+    //   // toggleActions: 'play reverse play reverse',
+    //   // onEnter: () => sc_span_m.play(0)
+    // });
+
+    // ScrollTrigger.create({
+    //   animation: sc_span_m,
+    //   trigger: ".showcase",
+    //   start: "top 50%",
+    //   end: 'bottom -=100%',
+    //   onEnter: () => {
+    //     sc_span_m.timeScale(1.0);
+    //     console.log('enter')
+    //   },
+    //   onLeaveBack: () => {
+    //     sc_span_m.timeScale(5.0).reverse();
+    //     console.log('Leave back')
+    //   },
+    //   toggleActions: 'none reverse none reverse',
+    // });
+
+
+    ScrollTrigger.create({
+      markers: true,
+      trigger: ".points",
+      start: "top 80%",
+      end: 'bottom -=100%',
+      onEnter: () => $(".points__list").addClass("on")
+      // toggleClass: 'on',
+      // once: true,
+    });
+
+    ScrollTrigger.create({
+      trigger: ".showcase",
+      start: "top 50%",
+      onLeaveBack: () => $(".points__list").removeClass("on")
+      // toggleClass: 'on',
+      // once: true,
+    });
+
+
+    // const buttons = gsap.utils.toArray('.points__button');
+    // buttons.forEach((btn) => {
+    //   gsap.from(btn, {
+    //     scrollTrigger: {
+    //       start: 'top bottom',
+    //       end: 'bottom top',
+    //       trigger: btn,
+    //       toggleClass: 'on'
+    //     }
+    //   });
+    // });
+
+    // gsap.set(".points__button", {opacity: 0});
+    // ScrollTrigger.batch(".points__button", {
+    //   start: "top 100%",
+    //   ease: "back(2)",
+    //   onEnter: batch => gsap.to(batch, {autoAlpha: 1, y: 0, stagger: 0.15, }),
+    //   onLeaveBack:batch => gsap.to(batch, {autoAlpha: 0, y: 100, stagger: 0.1})
+    // });
+
+    // ScrollTrigger.batch(".points__button", {
+    //   interval: 0.1, // time window (in seconds) for batching to occur. The first callback that occurs (of its type) will start the timer, and when it elapses, any other similar callbacks for other targets will be batched into an array and fed to the callback. Default is 0.1
+    //   batchMax: 3,   // maximum batch size (targets)
+    //   onEnter: batch => gsap.to(batch, {autoAlpha: 1, stagger: 0.15, overwrite: true}),
+    //   onLeave: batch => gsap.set(batch, {autoAlpha: 0, overwrite: true}),
+    //   onEnterBack: batch => gsap.to(batch, {autoAlpha: 1, stagger: 0.15, overwrite: true}),
+    //   onLeaveBack: batch => gsap.set(batch, {autoAlpha: 0, overwrite: true})
+    //   // you can also define things like start, end, etc.
+    // });
+
+
+    // ScrollTrigger.create({
+    //   animation: sc_points_m,
+    //   markers: {startColor: "hotpink", endColor: "hotpink", fontSize: "18px"},
+    //   trigger: ".points",
+    //   start: "top 70%",
+    //   end: "bottom -=100%",
+    //   ease: "back(2)",
+    //   // toggleActions: 'play none play none',
+    //   once: true,
+    //   // toggleActions: 'play reverse play reverse',
+    // });
+
+  }
 });
+
+
 
 
 
@@ -196,14 +389,26 @@ ScrollTrigger.matchMedia({
 //   }
 // });
 
-var ess_title = gsap.timeline();
-ScrollTrigger.create({
-  animation: ess_title,
-  trigger: '.ess__title',
-  scrub: 1,
-  end: "bottom 50%",
-  ease: "back(2)"
+ScrollTrigger.matchMedia({
+  "( min-width: 1024px )": function() {
+    ScrollTrigger.create({
+      animation: ess_title,
+      trigger: '.ess__title',
+      scrub: 1,
+      end: "bottom 50%",
+      ease: "back(2)"
+    });
+  },
+  "( max-width: 1024px )": function() {
+    ScrollTrigger.create({
+      animation: ess_title,
+      trigger: '.ess__title',
+      ease: "back(2)"
+    });
+  }
 });
+
+var ess_title = gsap.timeline();
 ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
 ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
 

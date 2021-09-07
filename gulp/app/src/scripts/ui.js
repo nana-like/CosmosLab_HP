@@ -90,6 +90,18 @@ $(".lp__dim").on("click", closePopup)
 
 
 // ======================
+// 모바일 분기
+
+if(navigator.maxTouchPoints > 1 ) {
+  // alert("모바일 접속!");
+  $('body').addClass('is-mobile');
+}
+
+
+
+
+
+// ======================
 // 인트로
 
 function stopIntro(){
@@ -98,8 +110,12 @@ function stopIntro(){
   setTimeout(allowScroll, 1000);
 }
 
+$(window).on('beforeunload', function() {
+  // $(window).scrollTop(0); //TODO: 활성화!!
+});
+
 $(window).on("load", function(){
-  // window.scrollTo(0, 0);
+  // gsap.to(window, 1, {scrollTo: 0});//TODO: 활성화!!
   $("body").addClass("is-intro");
   preventScroll();
   setTimeout(function(){
