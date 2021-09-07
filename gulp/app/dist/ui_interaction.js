@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-07 17:21:23
+ * Last Modified: 2021-09-07 17:40:48
  * -----------------------------------------------
  */
 
@@ -167,7 +167,6 @@ ScrollTrigger.matchMedia({
 
     ScrollTrigger.create({
       animation: sc_img,
-      markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
       trigger: '.showcase__main',
       scrub: 1,
       start: "top 70%",
@@ -228,49 +227,49 @@ ScrollTrigger.matchMedia({
 
     ScrollTrigger.create({
       animation: sc_title,
-      markers: true,
+      // markers: true,
       trigger: ".showcase",
       start: "top 50%",
       end: "bottom 60%",
       ease: "back(2)",
-      // toggleActions: 'play none play none',
-      // once: true,
-      toggleActions: 'play reverse play reverse',
+      toggleActions: 'play none play none',
+      once: true,
+      // toggleActions: 'play reverse play reverse',
     });
 
 
     ScrollTrigger.create({
       animation: sc_img_m,
-      markers: {startColor: "gold", endColor: "gold", fontSize: "18px"},
+      // markers: {startColor: "gold", endColor: "gold", fontSize: "18px"},
       trigger: ".showcase__main",
       start: "top 60%",
       end: "-=240%",
       ease: "back(2)",
-      // toggleActions: 'play none play none',
+      toggleActions: 'play none play none',
       once: true,
-      onEnter: () => {
-        sc_img_m.timeScale(1.1).play();
-        console.log('enter')
-      },
+      // onEnter: () => {
+      //   sc_img_m.timeScale(1.1).play();
+      //   console.log('enter')
+      // },
       // toggleActions: 'play reverse play reverse',
     });
     ScrollTrigger.create({
       animation: sc_img_m,
-      markers: {startColor: "purple", endColor: "purple", fontSize: "18px"},
+      // markers: {startColor: "purple", endColor: "purple", fontSize: "18px"},
       trigger: ".showcase",
       start: "top 50%",
       ease: "back(2)",
-      onEnter: () => {
-        sc_img_m.timeScale(1.1);
-        console.log('enter')
-      },
-      onLeaveBack: () => {
-        sc_img_m.timeScale(5.0).reverse();
-        console.log('Leave back')
-      },
-      // toggleActions: 'play none play none',
-      // once: true,
-      toggleActions: 'none reverse none reverse',
+      // onEnter: () => {
+      //   sc_img_m.timeScale(1.1);
+      //   console.log('enter')
+      // },
+      // onLeaveBack: () => {
+      //   sc_img_m.timeScale(5.0).reverse();
+      //   console.log('Leave back')
+      // },
+      toggleActions: 'play none play none',
+      once: true,
+      // toggleActions: 'none reverse none reverse',
     });
 
     // ScrollTrigger.create({
@@ -308,66 +307,22 @@ ScrollTrigger.matchMedia({
 
 
     ScrollTrigger.create({
-      markers: true,
       trigger: ".points",
       start: "top 80%",
       end: 'bottom -=100%',
-      onEnter: () => $(".points__list").addClass("on")
-      // toggleClass: 'on',
-      // once: true,
+      onEnter: () => $(".points__list").addClass("on"),
+      once: true,
     });
-
-    ScrollTrigger.create({
-      trigger: ".showcase",
-      start: "top 50%",
-      onLeaveBack: () => $(".points__list").removeClass("on")
-      // toggleClass: 'on',
-      // once: true,
-    });
-
-
-    // const buttons = gsap.utils.toArray('.points__button');
-    // buttons.forEach((btn) => {
-    //   gsap.from(btn, {
-    //     scrollTrigger: {
-    //       start: 'top bottom',
-    //       end: 'bottom top',
-    //       trigger: btn,
-    //       toggleClass: 'on'
-    //     }
-    //   });
-    // });
-
-    // gsap.set(".points__button", {opacity: 0});
-    // ScrollTrigger.batch(".points__button", {
-    //   start: "top 100%",
-    //   ease: "back(2)",
-    //   onEnter: batch => gsap.to(batch, {autoAlpha: 1, y: 0, stagger: 0.15, }),
-    //   onLeaveBack:batch => gsap.to(batch, {autoAlpha: 0, y: 100, stagger: 0.1})
-    // });
-
-    // ScrollTrigger.batch(".points__button", {
-    //   interval: 0.1, // time window (in seconds) for batching to occur. The first callback that occurs (of its type) will start the timer, and when it elapses, any other similar callbacks for other targets will be batched into an array and fed to the callback. Default is 0.1
-    //   batchMax: 3,   // maximum batch size (targets)
-    //   onEnter: batch => gsap.to(batch, {autoAlpha: 1, stagger: 0.15, overwrite: true}),
-    //   onLeave: batch => gsap.set(batch, {autoAlpha: 0, overwrite: true}),
-    //   onEnterBack: batch => gsap.to(batch, {autoAlpha: 1, stagger: 0.15, overwrite: true}),
-    //   onLeaveBack: batch => gsap.set(batch, {autoAlpha: 0, overwrite: true})
-    //   // you can also define things like start, end, etc.
-    // });
-
 
     // ScrollTrigger.create({
-    //   animation: sc_points_m,
-    //   markers: {startColor: "hotpink", endColor: "hotpink", fontSize: "18px"},
-    //   trigger: ".points",
-    //   start: "top 70%",
-    //   end: "bottom -=100%",
-    //   ease: "back(2)",
-    //   // toggleActions: 'play none play none',
-    //   once: true,
-    //   // toggleActions: 'play reverse play reverse',
+    //   trigger: ".showcase",
+    //   start: "top 50%",
+    //   onLeaveBack: () => $(".points__list").removeClass("on")
+    //   // toggleClass: 'on',
+    //   // once: true,
     // });
+
+
 
   }
 });
@@ -389,6 +344,10 @@ ScrollTrigger.matchMedia({
 //   }
 // });
 
+var ess_title = gsap.timeline();
+ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
+ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
+
 ScrollTrigger.matchMedia({
   "( min-width: 1024px )": function() {
     ScrollTrigger.create({
@@ -396,34 +355,49 @@ ScrollTrigger.matchMedia({
       trigger: '.ess__title',
       scrub: 1,
       end: "bottom 50%",
-      ease: "back(2)"
+      ease: "back(2)",
     });
   },
   "( max-width: 1024px )": function() {
+
     ScrollTrigger.create({
       animation: ess_title,
-      trigger: '.ess__title',
-      ease: "back(2)"
+      // markers: true,
+      trigger: ".ess",
+      start: "top 60%",
+      ease: "back(2)",
+      // toggleActions: 'play none play none',
+      // once: true,
+      toggleActions: 'play reverse play reverse',
     });
+
   }
 });
 
-var ess_title = gsap.timeline();
-ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
-ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
 
 var ess_img = gsap.timeline();
+ess_img.from(".ess__img", { z:-100, x: 40, y:20, duration: 1.2, ease: "power1.inOut"})
+ess_img.from(".ess__img-shadow", { opacity: 0, x: -90, y: 28, delay: 0.2,duration: 1,  ease:Linear.easeNone},0)
+ess_img.addLabel("jump");
 ScrollTrigger.create({
+  markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
   animation: ess_img,
   trigger: '.ess__main',
-  scrub: 1,
+  // scrub: 1,
+  start: "top 70%",
+  end: "bottom +=60%",
+  toggleActions: 'play none play none',
+});
+ScrollTrigger.create({
+  markers: {startColor: "#a3017a", endColor: "#d9ba00", fontSize: "18px"},
+  animation: ess_img,
+  trigger: '.ess',
+  // scrub: 1,
   start: "top 50%",
   end: "bottom +=60%",
-  ease: "back(2)"
+  // once: true,
+  toggleActions: 'play none none reverse',
 });
-ess_img.from(".ess__img", { z:-100, x: 40, y:20, duration: 1.2, ease:Linear.easeNone})
-ess_img.from(".ess__img-shadow", { opacity: 0, x: -100, y: 38, delay: 0.2, ease:Linear.easeNone},0)
-ess_img.addLabel("jump");
 
 ess_title.from(".ess", {
   backgroundSize: "130% 130%",
