@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-07 17:40:48
+ * Last Modified: 2021-09-08 14:35:09
  * -----------------------------------------------
  */
 
@@ -103,6 +103,11 @@ $(".lp__dim").on("click", closePopup)
 if(navigator.maxTouchPoints > 1 ) {
   // alert("모바일 접속!");
   $('body').addClass('is-mobile');
+
+  // 모바일 대응
+  ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" // notice "resize" isn't in the list
+  });
 }
 
 

@@ -3,6 +3,7 @@
 @use "helpers/mixins" as *;
 
 .contact {
+  position: relative;
   width: 100%;
   height: 100vh;
   // min-width: var.$inner-width; //TODO:
@@ -26,6 +27,7 @@
 
 
   .inner {
+
     @include md.mobile {
       padding: 0 2rem;
     }
@@ -208,6 +210,25 @@
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: cover;
+    }
+  }
+
+  &__marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    max-width: 192rem;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%);
+
+    .icon {
+      position: absolute;
+      top: 54rem;
+      left: 50%;
+      margin-left: 26.6rem;
+      width: 5.2rem;
+      height: 6.8rem;
     }
   }
 

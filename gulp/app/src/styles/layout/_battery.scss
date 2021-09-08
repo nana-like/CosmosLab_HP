@@ -7,20 +7,17 @@
   position: relative;
   width: 100%;
   background-color: #1d1f2d;
-  // min-width: var.$inner-width; //TODO:
-  // min-height: 1300px; //TODO:
 
   .showcase {
     position: relative;
     width: 100%;
-    height: calc(100vh - 100px);
-    // min-width: var.$inner-width; //TODO:
-    min-height: 98rem; //TODO:
+    height: calc(100vh - #{var.$header-height});
+    min-height: 98rem;
     background-color: #1d1f2d;
     box-sizing: border-box;
 
     @include md.tablet {
-      height: calc(100vh - 68px);
+      height: calc(100vh - #{var.$mobile-header-height});
       min-height: 90rem;
     }
 
@@ -100,7 +97,6 @@
       background-size: 100% 100%;
 
       &.sc {
-
         &-all {
           top: 8%;
           opacity: 1;
@@ -315,22 +311,11 @@
           left: -1.1rem;
         }
       }
-
-    }
-  }
-
-  @keyframes drawLine {
-    0% {
-        stroke-dashoffset: 1214;
-      }
-    100% {
-        stroke-dashoffset: 0;
     }
   }
 
   .points {
     width: 100%;
-    min-width: var.$inner-width; //TODO:
     padding-top: 7.6rem;
     background-color: #1d1f2d;
     box-sizing: border-box;
@@ -398,6 +383,10 @@
       &.is-active {
         color: #4f96f5;
         font-weight: var.$medium;
+
+        .points__icon {
+          transform: translateY(-4px);
+        }
       }
 
       @each $points in $_points-list {
@@ -431,6 +420,7 @@
       background-repeat: no-repeat;
       box-sizing: border-box;
       pointer-events: none;
+      transition: transform 350ms ease-out 40ms, background 200ms ease-in-out 10ms;
 
       @include md.tablet {
         width: 10rem;
@@ -446,6 +436,7 @@
       display: block;
       font-weight: var.$regular;
       pointer-events: none;
+      transition: color 200ms ease-in-out 10ms;
     }
   }
 

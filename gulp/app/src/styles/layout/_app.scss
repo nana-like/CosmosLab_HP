@@ -150,6 +150,7 @@
 
 
 .article {
+  // display: none !important;
   $_article-list: camp, home, elec, indust, energy;
 
   position: relative;
@@ -326,17 +327,17 @@
       // min-height: 70rem;
     }
 
-    &:after {
-      z-index: 6;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: block;
-      content: '';
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, .5);
-    }
+    // &:after {
+    //   z-index: 6;
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   display: block;
+    //   content: '';
+    //   width: 100%;
+    //   height: 100%;
+    //   background-color: rgba(0, 0, 0, .5);
+    // }
   }
 
   [class^="article__bg--"] {

@@ -49,6 +49,9 @@ body {
   }
 
   &.br-tablet {
+    @include md.desktop {
+      display: block;
+    }
     @include md.tablet {
       display: block;
     }

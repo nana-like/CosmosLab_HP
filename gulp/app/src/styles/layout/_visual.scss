@@ -37,12 +37,23 @@
     font-size: 10rem;
     font-weight: var.$light;
     letter-spacing: -.45rem;
-    line-height: 1.3;
+    line-height: 1.2;
     color: #fff;
 
     span {
       display: block;
+      overflow: hidden;
+      line-height: 1.3;
+
+      & + span {
+        margin-top: 1rem;
+      }
     }
+
+    em {
+      display: block;
+    }
+
 
     @include md.laptop {
       font-size: calc(6.5rem + 2vmin);

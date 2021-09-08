@@ -95,6 +95,11 @@ $(".lp__dim").on("click", closePopup)
 if(navigator.maxTouchPoints > 1 ) {
   // alert("모바일 접속!");
   $('body').addClass('is-mobile');
+
+  // 모바일 대응
+  ScrollTrigger.config({
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" // notice "resize" isn't in the list
+  });
 }
 
 
