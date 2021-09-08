@@ -291,16 +291,6 @@ ScrollTrigger.create({
 
 // * ----- ARTICLE
 var articles_animation = gsap.timeline();
-ScrollTrigger.create({
-  trigger: '.article',
-  animation: articles_animation,
-  pin: true,
-  scrub: 1,
-  start: () => "0 " + getheaderHeight(),
-  end: "bottom -=100%",
-  ease: "quart.inOut"
-});
-
 articles_animation.to(".article__title", { opacity: 1, duration: 0.5} )
 articles_animation.to("#at-bg1", { opacity: 1, x: 0, duration: 1.5} )
 articles_animation.to("#at-main0", { opacity: 0, x: 0, duration: 0.8 }, "0.5")
@@ -315,6 +305,43 @@ articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, "+=1.2" 
 articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4" )
 articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
 articles_animation.to(".article__title", { opacity: 1,  duration: 0.5  },)
+
+ScrollTrigger.matchMedia({
+
+  // PC
+  "( min-width: 1024px )": function() {
+    ScrollTrigger.create({
+      trigger: '.article',
+      animation: articles_animation,
+      pin: true,
+      scrub: 1,
+      start: () => "0 " + getheaderHeight(),
+      end: "bottom -=100%",
+      ease: "quart.inOut",
+      markers: true,
+      invalidateOnRefresh: true
+    });
+
+  },
+
+  // MOBILE
+  "( max-width: 1024px )": function() {
+    ScrollTrigger.create({
+      trigger: '.article',
+      animation: articles_animation,
+      pin: true,
+      scrub: 1,
+      start: () => "0 " + getheaderHeight(),
+      end: "bottom -=100%",
+      ease: "quart.inOut",
+      markers: true,
+      invalidateOnRefresh: false
+    });
+  }
+});
+
+
+
 
 
 // * ----- CONTACT
