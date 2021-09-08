@@ -279,10 +279,6 @@
         transition: none;
       }
 
-      &.is-active {
-        opacity: 1;
-      }
-
       &:first-child {
         margin-left: 0;
 
@@ -291,7 +287,6 @@
         }
       }
     }
-
 
     @include md.tablet {
       width: 100%;
@@ -384,7 +379,6 @@
     opacity: 1;
     visibility: visible;
     pointer-events: auto !important;
-    // transition: opacity 100ms, visibility 200ms;
   }
 
   .burger {
@@ -420,5 +414,23 @@
 .is-mobile .header__menu-link:hover {
   .header__menu-text {
     transform: none;
+  }
+}
+
+.lang-en {
+  .toKo {
+    opacity: .6;
+  }
+  .toEn {
+    opacity: 1;
+  }
+}
+
+.lang-ko {
+  .toKo {
+    opacity: 1;
+  }
+  .toEn {
+    opacity: .6;
   }
 }

@@ -10,6 +10,7 @@ const headerComment = require('gulp-header-comment');
 const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const minify = require('gulp-minify');
+const argv = require('yargs').argv;
 
 const paths = project.paths;
 const files = {
@@ -21,7 +22,8 @@ const files = {
 const comment = require('./config/headerComment');
 let isBuildMode = false;
 
-const includeVariables = {};
+let langType = 'ko';
+
 const html = () => {
   return gulp
     .src([files.html, '!views/**/_*.*'], {
@@ -30,7 +32,9 @@ const html = () => {
     .pipe(fileinclude({
       prefix: "@@",
       basepath: "@file",
-      context: includeVariables
+      context: {
+        lang: langType
+      }
     }))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
     .pipe(browserSync.stream());
@@ -122,12 +126,17 @@ const tasks = gulp.series(
 );
 
 gulp.task('default', async function () {
+  langType = argv.lang;
   tasks();
-  console.log("🔫🤠 얍");
+  console.log("🔫 🤠 💥");
+  console.log(`🌻 Lang = ${langType}`);
 });
 
 gulp.task('build', async function () {
+  //TODO: 언어별로 다른 폴더에 dist
+  langType = argv.lang;
   isBuildMode = true;
   tasks();
-  console.log("🛠 Build Mode");
+  console.log(`🛠 Build Mode`);
+  console.log(`🌻 Lang = ${langType}`);
 })
