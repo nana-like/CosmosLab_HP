@@ -314,18 +314,6 @@
       height: calc(100vh - 68px);
       max-height: calc( -webkit-fill-available - 68px);
     }
-
-    // &:after { //TODO:
-    //   z-index: 6;
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   display: block;
-    //   content: '';
-    //   width: 100%;
-    //   height: 100%;
-    //   background-color: rgba(0, 0, 0, .5);
-    // }
   }
 
   [class^="article__bg--"] {
@@ -373,18 +361,18 @@
 
       &.article__bg--energy {
         background-position: 50% 100%;
+      }
 
-        &:after {
-          z-index: 6;
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          content: '';
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, .3);
-        }
+      &:after {
+        z-index: 6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .3);
       }
     }
   }

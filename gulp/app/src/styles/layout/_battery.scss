@@ -18,8 +18,8 @@
 
     @include md.tablet {
       height: calc(100vh - #{var.$mobile-header-height});
-      min-height: 100%;
-      max-height: -webkit-fill-available;
+      max-height: calc(-webkit-fill-available - #{var.$mobile-header-height});
+      min-height: 68rem;
     }
 
     .inner {
