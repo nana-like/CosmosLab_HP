@@ -4,19 +4,14 @@
 
 .app {
   position: relative;
-  // min-width: var.$inner-width; //TODO:
-  // min-height: var.$inner-height;
-  // z-index: 10;
   overflow: hidden;
 
   .ess {
     width: 100%;
     height: 100vh;
-    // height: 200%;
-    // min-width: var.$inner-width; //TODO:
     min-height: var.$inner-height;
     box-sizing: border-box;
-    background-color: #dedede; //TODO: 이미지가 좀 흐린데... 재요청 필요할 듯
+    background-color: #dedede;
     background-image: url(#{var.$path-image}bg_app.png);
     background-position: 50% 50%;
     background-size: 110% 110%;
@@ -26,6 +21,7 @@
     @include md.tablet {
       height: calc(100vh - 68px);
       min-height: 90rem;
+      max-height: -webkit-fill-available;
     }
 
     @include md.mobile {
@@ -150,7 +146,6 @@
 
 
 .article {
-  // display: none !important;
   $_article-list: camp, home, elec, indust, energy;
 
   position: relative;
@@ -161,11 +156,8 @@
 
   @include md.tablet {
     height: calc(100vh - 68px);
-    min-height: 90rem;
-  }
-
-  @include md.mobile {
-    min-height: 70rem;
+    min-height: 100%;
+    max-height: -webkit-fill-available;
   }
 
   .inner {
@@ -320,11 +312,7 @@
 
     @include md.tablet {
       height: calc(100vh - 68px);
-      // min-height: 90rem;
-    }
-
-    @include md.mobile {
-      // min-height: 70rem;
+      max-height: -webkit-fill-available;
     }
 
     // &:after {

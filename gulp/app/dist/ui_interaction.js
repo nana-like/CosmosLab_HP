@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-08 14:35:09
+ * Last Modified: 2021-09-08 15:58:08
  * -----------------------------------------------
  */
 
@@ -42,6 +42,16 @@ function pathPrepare(el) {
 showcasePaths.forEach(function (e) {
   pathPrepare(e);
 });
+
+
+// 비디오 재생 및 정지
+var videoElem = document.getElementById("video");
+function playVideo() {
+  videoElem.play();
+}
+function pauseVideo() {
+  videoElem.pause();
+}
 
 
 // * ----- INTRO
@@ -206,6 +216,8 @@ ScrollTrigger.matchMedia({
       trigger: ".showcase__main",
       start: "top 60%",
       ease: "power1.out",
+      // onEnter: () => pauseVideo(),
+      // onLeaveBack: () => playVideo()
     });
 
     ScrollTrigger.create({
@@ -315,6 +327,7 @@ articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, "+=1.2" 
 articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4" )
 articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
 articles_animation.to("#at-bg5", { opacity: 1, x: 0,  duration: 1.5  },)
+articles_animation.to(".article__title", { opacity: 1,  duration: 0.5  },)
 
 
 // * ----- CONTACT
@@ -328,10 +341,10 @@ ScrollTrigger.create({
   trigger: '.contact',
   markers: true,
   animation: contact_animation,
-  start: "top 60%",
+  start: "top 85%",
   end: "bottom +=80%",
   ease: "quart.inOut",
-  toggleActions: 'play none none reverse',
+  toggleActions: 'play none none reset',
 });
 
 
@@ -405,6 +418,7 @@ $(".header__menu-link").on("click", function (e) {
     gsap.to(window, {scrollTo: {y: "#contact", offsetY: getheaderHeight()}});
   }
   if ($(".header").hasClass('is-opened')) {
+    allowScroll();
     $('.header').removeClass('is-opened');
   }
 });

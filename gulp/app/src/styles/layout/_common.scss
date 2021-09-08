@@ -2,6 +2,10 @@
 @use "helpers/mediaQueries" as md;
 @use "helpers/mixins" as *;
 
+:root {
+  --app-height: 100%;
+}
+
 body {
   // width: 100%;
   // height: 100%;

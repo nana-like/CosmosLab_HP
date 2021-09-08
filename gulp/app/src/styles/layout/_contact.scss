@@ -5,11 +5,7 @@
 .contact {
   position: relative;
   width: 100%;
-  height: 100vh;
-  // min-width: var.$inner-width; //TODO:
-  // min-height: var.$inner-height;
-  // height: 100vh;
-  height: 1080px; //TODO:
+  height: 10.8rem;
   box-sizing: border-box;
   background-color: #f3f0e7;
   background-image: url(#{var.$path-image}bg_contact.png);
@@ -18,21 +14,17 @@
 
   @include md.tablet {
     height: auto;
-    // max-height: calc(100vh - 20rem);
     overflow: hidden;
     padding-top: 7.3rem;
     background-image: none;
     background-color: #fff;
   }
 
-
   .inner {
-
     @include md.mobile {
       padding: 0 2rem;
     }
   }
-
 
   &__content {
     width: 62rem;
