@@ -20,8 +20,6 @@ function getScrollBarWidth() {
 };
 
 function preventScroll() {
-
-  console.log(getScrollBarWidth());
   if ($(document).height() <= $(window).height()) {
     return false;
   };

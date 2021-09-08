@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-08 15:58:08
+ * Last Modified: 2021-09-08 16:49:36
  * -----------------------------------------------
  */
 
@@ -23,7 +23,6 @@ function getheaderHeight() {
   } else {
     headerHeight = 100;
   }
-  console.log(headerHeight);
   return headerHeight;
 }
 
@@ -34,7 +33,6 @@ gsap.delayedCall( 1.0, function() {
 // SVG 길이 계산
 function pathPrepare(el) {
   var lineLength = el.getTotalLength();
-  console.log(lineLength);
   el.style.strokeDasharray = lineLength + 10;
   el.style.strokeDashoffset = lineLength + 10;
 }
@@ -212,7 +210,6 @@ ScrollTrigger.matchMedia({
 
     ScrollTrigger.create({
       animation: sc_img_m,
-      markers: {startColor: "gold", endColor: "gold", fontSize: "18px"},
       trigger: ".showcase__main",
       start: "top 60%",
       ease: "power1.out",
@@ -222,10 +219,9 @@ ScrollTrigger.matchMedia({
 
     ScrollTrigger.create({
       animation: sc_img_m,
-      markers: {startColor: "purple", endColor: "purple", fontSize: "18px"},
       trigger: ".showcase__title",
       start: "top 60%",
-      toggleActions: 'play none resume reverse',
+      toggleActions: 'play none resume reset',
     });
 
     ScrollTrigger.create({
@@ -326,20 +322,18 @@ articles_animation.to("#at-main3", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
 articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, "+=1.2" )
 articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4" )
 articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
-articles_animation.to("#at-bg5", { opacity: 1, x: 0,  duration: 1.5  },)
 articles_animation.to(".article__title", { opacity: 1,  duration: 0.5  },)
 
 
 // * ----- CONTACT
 var contact_animation = gsap.timeline();
-contact_animation.from(".contact__content", { opacity: 0, duration: 0.8, ease: "power1.inOut" })
-contact_animation.from(".contact__title", { opacity: 0, y: 40, duration: 0.5 , ease: "power1.inOut"}, "-=0.3")
-contact_animation.from(".contact__text", { opacity: 0, y: 40, duration: 0.5 , ease: "power1.inOut"}, "-=0.2")
-contact_animation.from(".contact__bottom", { opacity: 0, y: 40, duration: 0.5 , ease: "power1.inOut"}, "-=0.2")
+contact_animation.from(".contact__content", { opacity: 0, duration: 0.7, ease: "power1.inOut" })
+contact_animation.from(".contact__title", { opacity: 0, y: 40, duration: 0.45 , ease: "power1.inOut"}, "-=0.4")
+contact_animation.from(".contact__text", { opacity: 0, y: 40, duration: 0.45 , ease: "power1.inOut"}, "-=0.3")
+contact_animation.from(".contact__bottom", { opacity: 0, y: 40, duration: 0.45 , ease: "power1.inOut"}, "-=0.3")
 
 ScrollTrigger.create({
   trigger: '.contact',
-  markers: true,
   animation: contact_animation,
   start: "top 85%",
   end: "bottom +=80%",
@@ -363,7 +357,6 @@ var marker__battery = gsap.timeline({
 
 var marker__app = gsap.timeline({
   scrollTrigger: {
-    markers: true,
     trigger: '.marker-app',
     start: "top top+=101px",
     end:"bottom top+=100px",
@@ -409,7 +402,11 @@ $(".header__menu-link").on("click", function (e) {
   var target = $(this).attr("href").split("#")[1];
 
   if (target === "battery") {
-    gsap.to(window, {scrollTo: getScrollPos(sc_img, battery_animation.scrollTrigger)});
+    if (isTabletSize) {
+      gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
+    } else {
+      gsap.to(window, {scrollTo: getScrollPos(sc_img, battery_animation.scrollTrigger)});
+    }
   }
   if (target === "app") {
     gsap.to(window, {scrollTo: {y: "#app", offsetY: getheaderHeight()}});

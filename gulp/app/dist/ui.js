@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-08 15:58:08
+ * Last Modified: 2021-09-08 16:49:36
  * -----------------------------------------------
  */
 
@@ -28,8 +28,6 @@ function getScrollBarWidth() {
 };
 
 function preventScroll() {
-
-  console.log(getScrollBarWidth());
   if ($(document).height() <= $(window).height()) {
     return false;
   };

@@ -312,10 +312,10 @@
 
     @include md.tablet {
       height: calc(100vh - 68px);
-      max-height: -webkit-fill-available;
+      max-height: calc( -webkit-fill-available - 68px);
     }
 
-    // &:after {
+    // &:after { //TODO:
     //   z-index: 6;
     //   position: absolute;
     //   top: 0;
@@ -387,135 +387,5 @@
         }
       }
     }
-
   }
 }
-
-// .article {
-//   $_article-list : camp, home, elec, indust, energy;
-
-//   z-index: 1;
-//   position: relative;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100vh;
-//   min-width: var.$inner-width; //TODO:
-//   min-height: var.$inner-height;
-//   box-sizing: border-box;
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   // visibility: hidden;
-//   transform: translateX(-10rem);
-
-//   @for $i from 1 through length($_article-list) {
-//     $list: nth($_article-list, $i);
-//     &.article__#{$list} {
-//       opacity: 0;
-//       z-index: $i*1;
-//       background-image: url(#{var.$path-image}bg_article_#{$list}.jpg);
-//     }
-//   }
-
-//   &#article0 {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-
-//   &:after {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     display: block;
-//     content: '';
-//     width: 100%;
-//     height: 100%;
-//     background-color: rgba(0, 0, 0, .3);
-//   }
-
-//   &__content {
-//     position: relative;
-//     z-index: 1;
-//     flex-shrink: 0;
-//     width: 62rem;
-//     min-height: 76rem;
-//     padding: 6.4rem;
-//     color: #fff;
-//     box-sizing: border-box;
-//     background-color: rgba(0, 0, 0, .5);
-//   }
-
-//   &__title {
-//     display: block;
-//     margin-bottom: 9.8rem;
-//     font-size: 4.8rem;
-//     font-weight: var.$medium;
-//     letter-spacing: -.2rem;
-//     line-height: 1.3;
-//   }
-
-//   &__point {
-//     display: block;
-//     font-size: 3.2rem;
-//     letter-spacing: -.1rem;
-
-//     .eng {
-//       display: block;
-//       font-size: 1.8rem;
-//       line-height: 1.6;
-//       font-weight: var.$light;
-//       letter-spacing: -.05rem;
-//     }
-//   }
-
-//   &__text {
-//     position: relative;
-//     margin-top: 6.6rem;
-//     font-weight: var.$regular;
-//     font-size: 2rem;
-//     line-height: 1.55;
-//     letter-spacing: -.1rem;
-//     color: rgba(255, 255, 255, .7);
-//     word-break: keep-all;
-
-//     &:before,
-//     &:after {
-//       position: absolute;
-//       top: -3.3rem;
-//       left: 0;
-//       display: block;
-//       content: '';
-//       height: .2rem;
-//     }
-
-//     &:before {
-//       width: 100%;
-//       background-color: rgba(255, 255, 255, .15);
-//     }
-
-//     &:after {
-//       width: 6.5rem;
-//       background-color: #4f96f5;
-//     }
-//   }
-// }
-
-
-// .article__content {
-//   display: none;
-// }
-// .fix {
-//   position: absolute;
-//   z-index: 999;
-//   .fix-elem {
-//     opacity: 0;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 300px;
-//     height: 300px;
-//     background: red;
-//     font-size: 3vmin;
-//   }
-// }
