@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-09 18:46:17
+ * Last Modified: 2021-09-09 19:41:16
  * -----------------------------------------------
  */
 
@@ -62,17 +62,19 @@ gsap.set('.visual__link', {
   opacity: 0
 })
 
-intro.to('.visual__title em', {
-  ease: "power4",
-  y: 0,
-  opacity: 1,
-  duration: 2.2,
-  stagger: 0.3,
-  delay: 0.2,
-})
-.to('.visual__link', {
-  opacity: 1
-}, '-=1')
+function showIntro() {
+  intro.to('.visual__title em', {
+    ease: "power4",
+    y: 0,
+    opacity: 1,
+    duration: 2.2,
+    stagger: 0.3,
+    delay: 0.2,
+  })
+  .to('.visual__link', {
+    opacity: 1
+  }, '-=1')
+}
 
 
 
@@ -322,20 +324,6 @@ articles_animation.to('#at-main3', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4' 
 articles_animation.to('#at-main4', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
 articles_animation.to('.article__title', { opacity: 1,  duration: 0.5  },)
 
-var article_content = gsap.timeline();
-// gsap.set('.visual__title em', {
-//   opacity: 0,
-//   y: "100%",
-// });
-article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
-article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
-article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
-article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
-article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
-article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
-article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
-article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
-
 ScrollTrigger.matchMedia({
 
   // PC
@@ -352,13 +340,22 @@ ScrollTrigger.matchMedia({
     });
 
 
+
+    var article_content = gsap.timeline();
+    article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
+    article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
+    article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
+    article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
+    article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
+    article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
+    article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
+    article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
     ScrollTrigger.create({
       trigger: '.article',
       animation: article_content,
       scrub: 1,
       start: 'top 70%',
       end: 'top 100+=10%',
-      markers: true,
     });
 
 
@@ -460,7 +457,6 @@ $(".header__menu-link").on("click", function (e) {
   var target = $(this).attr("href").split("#")[1];
 
   if (target === "battery") {
-    console.log(sc_img_trigger.end);
     if (isTabletSize()) {
       gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
     } else {
@@ -477,4 +473,32 @@ $(".header__menu-link").on("click", function (e) {
     allowScroll();
     $('.header').removeClass('is-opened');
   }
+});
+
+
+// * 인트로
+function stopIntro(){
+  $('body').removeClass('is-intro');
+  $('body').addClass('is-loaded');
+  setTimeout(showIntro, 500);
+  setTimeout(allowScroll, 1000);
+}
+
+$(window).on('beforeunload', function() {
+  $(window).scrollTop(0);
+});
+
+$(window).on('load', function(){
+  gsap.to(window, 1, {scrollTo: 0});
+  $('body').addClass('is-intro');
+  preventScroll();
+  setTimeout(function(){
+    stopIntro();
+  }, 2000);
+
+  $('.intro').on('click', function(){
+    stopIntro();
+  });
+
+  $("#video").css('opacity', 1);
 });

@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-09 18:46:17
+ * Last Modified: 2021-09-09 19:41:16
  * -----------------------------------------------
  */
 
@@ -81,30 +81,6 @@ if(navigator.maxTouchPoints > 1 ) {
 }
 
 
-// * 인트로
-
-function stopIntro(){
-  $('body').removeClass('is-intro');
-  $('body').addClass('is-loaded');
-  setTimeout(allowScroll, 1000);
-}
-
-$(window).on('beforeunload', function() {
-  // $(window).scrollTop(0); //TODO: 활성화!!
-});
-
-$(window).on('load', function(){
-  // gsap.to(window, 1, {scrollTo: 0});//TODO: 활성화!!
-  $('body').addClass('is-intro');
-  // preventScroll();
-  setTimeout(function(){
-    stopIntro();
-  }, 0); //2000 TODO:
-
-  $('.intro').on('click', function(){
-    stopIntro();
-  });
-});
 
 // * 반응형 체크
 

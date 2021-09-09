@@ -55,9 +55,21 @@
   opacity: 0;
 }
 
+.is-intro {
+  .intro {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 400ms;
+  }
+}
+
 .is-loaded {
   .header {
     opacity: 1;
     visibility: visible;
+  }
+  .intro {
+    opacity: 0;
+    visibility: hidden;
   }
 }
