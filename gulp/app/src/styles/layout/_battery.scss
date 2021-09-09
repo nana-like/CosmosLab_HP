@@ -12,14 +12,13 @@
     position: relative;
     width: 100%;
     height: calc(100vh - #{var.$header-height});
-    min-height: 98rem;
+    min-height: 108rem;
     background-color: #1d1f2d;
     box-sizing: border-box;
 
     @include md.tablet {
       height: calc(100vh - #{var.$mobile-header-height});
-      max-height: calc(-webkit-fill-available - #{var.$mobile-header-height});
-      min-height: 68rem;
+      min-height: 88rem;
     }
 
     .inner {
@@ -214,6 +213,7 @@
 
       .sc-span {
         display: block;
+        text-align: right;
       }
 
       .sc-dot {
@@ -224,24 +224,44 @@
         background-color: #4f96f5;
         border-radius: 50%;
 
+        &.is-active:after {
+          animation: dotPoint 1.2s infinite both;
+        }
+
         &:after {
           position: absolute;
+          display: block;
           top: -.1rem;
           left: -.1rem;
-          display: block;
           width: 100%;
           height: 100%;
-          transform: scale(1.4);
+          transform: scale(1.35);
           border: 1px solid #fff;
           border-radius: 50%;
           content: '';
         }
       }
 
+      @keyframes dotPoint {
+        0% {
+          opacity: 1;
+        }
+        40% {
+          transform: scale(1.8);
+        }
+        70% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
       &.sc-text-1 {
+        width: 26.5rem;
         top: 2rem;
         left: 50%;
-        margin-left: -55rem;
+        margin-left: -67rem;
 
         .sc-line {
           top: 1.2rem;
@@ -274,9 +294,10 @@
         }
       }
       &.sc-text-3 {
+        width: 38.4rem;
         bottom: 4.1rem;
         left: 50%;
-        margin-left: -32rem;
+        margin-left: -52rem;
 
         .sc-line {
           bottom: 1.2rem;
@@ -412,7 +433,7 @@
       display: block;
       width: 12.8rem;
       height: 12.8rem;
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem;
       background-size: 100%;
       background-repeat: no-repeat;
       box-sizing: border-box;
@@ -447,5 +468,15 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+// 🍄 English
+.lang-en {
+  .showcase__title {
+    letter-spacing: -.1rem;
+  }
+  .showcase__text {
+    letter-spacing: -.06rem;
   }
 }

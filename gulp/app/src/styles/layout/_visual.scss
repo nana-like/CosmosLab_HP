@@ -38,15 +38,17 @@
     font-weight: var.$light;
     letter-spacing: -.45rem;
     line-height: 1.2;
+    padding: 0 2rem;
+    box-sizing: border-box;
     color: #fff;
 
     span {
       display: block;
       overflow: hidden;
-      line-height: 1.3;
+      line-height: 1.2;
 
       & + span {
-        margin-top: 1rem;
+        margin-top: 1.1rem;
       }
     }
 
@@ -54,10 +56,22 @@
       display: block;
     }
 
+    .text-tablet {
+      display: none;
+    }
+
 
     @include md.laptop {
-      font-size: calc(6.5rem + 2vmin);
+      font-size: calc(7rem + 2vmin);
       margin-bottom: 5rem;
+
+      .text-pc {
+        display: none;
+      }
+
+      .text-tablet {
+        display: block;
+      }
     }
 
     @include md.tablet {
@@ -118,5 +132,23 @@
       background-color: rgba(0, 0, 0, .3);
     }
 
+  }
+}
+
+// 🍄 English
+.lang-en .visual__title {
+  font-size: 9rem;
+
+  @include md.laptop {
+    font-size: calc(4rem + 2vmin);
+  }
+
+  @include md.tablet {
+    font-size: calc(3rem + 1.6vmin);
+    letter-spacing: -.1rem;
+  }
+
+  @include md.mobile {
+    font-size: calc(1rem + 4vw);
   }
 }

@@ -2,18 +2,27 @@
   <div class="ess">
       <div class="inner">
         <h2 class="ess__title">
+          @@if(context.lang === 'ko'){
           <span>가장 완벽한 ESS용 배터리</span>
+          }
+          @@if(context.lang === 'en'){
+          <span>The Most Complete&nbsp;<br class='br-tablet'>Battery for ESS</span>
+          }
         </h2>
-        <p class="ess__info">친환경적이고 안전하며 낮은 가격으로<br /> 최대의 효율을 낼 수 있는&nbsp;<br class="br-mo">차세대 아연 금속 Staionary 배터리</p>
+        @@if(context.lang === 'ko'){
+        <p class="ess__info">친환경적이고 안전하며 낮은 가격으로<br>최대의 효율을 낼 수 있는&nbsp;<br class="br-mo">차세대 아연 금속 Staionary 배터리</p>
+        }
+        @@if(context.lang === 'en'){
+        <p class="ess__info">Next generation Zinc metal stationary battery<br>that is eco-friendly, safe and affordable for&nbsp;<br class="br-mo">maximum efficiency</p>
+        }
         <div class="ess__main">
           <img class="ess__img" src="./images/ess_img.png" alt="ESS Battery">
           <i class="ess__img-shadow"></i>
         </div>
-      </div>
+    </div>
   </div>
   <div class="ess__spacer"></div>
   <div class="article">
-    <div class="dim"></div>
     <div class="article__bg">
       <div id="at-bg0" class="article__bg--camp"></div>
       <div id="at-bg1" class="article__bg--home"></div>
@@ -23,45 +32,95 @@
     </div>
     <div class="inner">
       <div class="article__content">
+        @@if(context.lang === 'ko'){
         <h3 class="article__title">안전한 배터리가<br>필요한 곳이라면 어디든</h3>
-
+        }
+        @@if(context.lang === 'en'){
+          <h3 class="article__title">Whenever You Need a<br>Safe Battery</h3>
+        }
+        @@if(context.lang === 'ko'){
+          @@loop('_app_article.html', [
+          {
+            "idx": 0,
+            "class": "camp",
+            "point": "캠핑용 배터리",
+            "eng": "Camping Battery",
+            "text": "항상 사용자의 가까운 곳에 있는 만큼,<br>캠핑용 배터리의 안전성은 타협할 수 없습니다.<br>아연 브롬 배터리의 사용으로 당신의 안전을&nbsp;<br class='br-mo'>보장받으세요."
+          },
+          {
+            "idx": 1,
+            "class": "home",
+            "point": "가정용 ESS",
+            "eng": "Home Battery",
+            "text": "그 어디보다 가족의 안전이 보장되어야 하는 곳,<br>바로 우리 집입니다.<br>안전한 아연 금속 배터리를 사용한 ESS로&nbsp;<br class='br-mo'>전기료 절감과 동시에&nbsp;<br class='br-pc'>가족들에게 행복을 선물하세요."
+          },
+          {
+            "idx": 2,
+            "class": "elec",
+            "point": "전기차 충전소",
+            "eng": "Electric Vehicle Charging Station",
+            "text": "전기차 충전소용 ESS를 설치하면&nbsp<br class='br-mo'>언제나 안정적으로 전기차를&nbsp;<br class='br-pc'>충전할 수 있습니다.<br>게다가 안전한 아연 금속 배터리를 ESS에 사용한다면,<br>폭발의 걱정 없이 도심 속에도&nbsp;<br class='br-mo'>전기차 충전소를 마련할 수 있습니다."
+          },
+          {
+            "idx": 3,
+            "class": "indust",
+            "point": "산업용 ESS",
+            "eng": "Industrial ESS Battery",
+            "text": "적은 비용으로 가능한 안정적인 전기 공급,&nbsp;<br class='br-mo'>산업에서 포기할 수&nbsp;<br class='br-pc'>없는 가치입니다.<br>이제는 안정적일 뿐만 아니라 안전하게 아연 금속&nbsp;<br class='br-mo'>배터리로&nbsp;<br class='br-pc'>당신의 일터에 안전을 더할 수 있습니다."
+          },
+          {
+            "idx": 4,
+            "class": "energy",
+            "point": "신재생 연계용 ESS",
+            "eng": "Renewable Energy Application ESS Battery",
+            "text": "신재생 에너지의 유일한 단점.<br>불안정성을 ESS가 해결해줄 수 있습니다.<br>대규모 ESS에 적합한 아연 금속 배터리의 사용으로&nbsp;<br class='br-mo'>신재생 에너지의 안정성을 더한&nbsp;<br class='br-mo'>완벽한 에너지원을 경험하세요."
+          }
+        ])
+      }
+      @@if(context.lang === 'en'){
         @@loop('_app_article.html', [
         {
           "idx": 0,
           "class": "camp",
-          "point": "캠핑용 배터리",
-          "eng": "Camping Battery",
-          "text": "항상 사용자의 가까운 곳에 있는 만큼,<br>캠핑용 배터리의 안전성은 타협할 수 없습니다.<br>아연 브롬 배터리의 사용으로 당신의 안전을&nbsp;<br class='br-mo'>보장받으세요."
+          "point": "Camping Battery",
+          "eng": "",
+          "text": "The safety of camping batteries cannot be<br>compromised, as they are always closer to the user.<br>Ensure your safety with the use of the next<br>generation Zinc metal batteies."
         },
         {
           "idx": 1,
           "class": "home",
-          "point": "가정용 ESS",
-          "eng": "Home Battery",
-          "text": "그 어디보다 가족의 안전이 보장되어야 하는 곳,<br>바로 우리 집입니다.<br>안전한 아연 금속 배터리를 사용한 ESS로&nbsp;<br class='br-mo'>전기료 절감과 동시에&nbsp;<br class='br-pc'>가족들에게 행복을 선물하세요."
+          "point": "Home ESS",
+          "eng": "",
+          "text": "Home, where family safety should be guaranteed<br>more than anywhere else.<br>Save electricity bills and give happiness to your<br>family with an ESS that uses a safe Zinc metal battery."
         },
         {
           "idx": 2,
           "class": "elec",
-          "point": "전기차 충전소",
-          "eng": "Electric Vehicle Charging Station",
-          "text": "전기차 충전소용 ESS를 설치하면&nbsp<br class='br-mo'>언제나 안정적으로 전기차를&nbsp;<br class='br-pc'>충전할 수 있습니다.<br>게다가 안전한 아연 금속 배터리를 ESS에 사용한다면,<br>폭발의 걱정 없이 도심 속에도&nbsp;<br class='br-mo'>전기차 충전소를 마련할 수 있습니다."
+          "point": "Electric Vehicle Charging Station",
+          "eng": "",
+          "text": "Installing an ESS for an electric vehicle charging<br>station ensures a stable charging of the electric vehicle<br>at all times. An electric vehicle charging station<br>can be set up in the city center without worrying about<br>explosion, if a safe Zinc metal battery is used in ESS."
         },
         {
           "idx": 3,
           "class": "indust",
-          "point": "산업용 ESS",
-          "eng": "Industrial ESS Battery",
-          "text": "적은 비용으로 가능한 안정적인 전기 공급,&nbsp;<br class='br-mo'>산업에서 포기할 수&nbsp;<br class='br-pc'>없는 가치입니다.<br>이제는 안정적일 뿐만 아니라 안전하게 아연 금속&nbsp;<br class='br-mo'>배터리로&nbsp;<br class='br-pc'>당신의 일터에 안전을 더할 수 있습니다."
+          "point": "Industrial ESS",
+          "eng": "",
+          "text": "Reliable electricity supply at a low cost is an<br>unquenchable value in the industry.<br>Not only is it stable but also safe,<br>Zinc metal batteries can add safety to your workplace."
         },
         {
           "idx": 4,
           "class": "energy",
-          "point": "신재생 연계용 ESS",
-          "eng": "Renewable Energy Application ESS Battery",
-          "text": "신재생 에너지의 유일한 단점.<br>불안정성을 ESS가 해결해줄 수 있습니다.<br>대규모 ESS에 적합한 아연 금속 배터리의 사용으로&nbsp;<br class='br-mo'>신재생 에너지의 안정성을 더한&nbsp;<br class='br-mo'>완벽한 에너지원을 경험하세요."
+          "point": "ESS for New and<br>Renewable Energy",
+          "eng": "",
+          "text": "ESS can address the only drawback of renewable energy, instability. Experience a complete source of energy with renewable energy, with the use of Zinc metal batteries suitable for large-scale ESS."
         }
       ])
+    }
+        <div class="article__content-bg"></div>
+        <div class="article__content-line at-line1"></div>
+        <div class="article__content-line at-line2"></div>
+        <div class="article__content-line at-line3"></div>
+        <div class="article__content-line at-line4"></div>
       </div>
     </div>
   </div>

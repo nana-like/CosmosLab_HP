@@ -126,7 +126,7 @@ const tasks = gulp.series(
 );
 
 gulp.task('default', async function () {
-  langType = argv.lang;
+  langType = argv.lang || langType;
   tasks();
   console.log("🔫 🤠 💥");
   console.log(`🌻 Lang = ${langType}`);

@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-08 16:49:36
+ * Last Modified: 2021-09-09 18:46:17
  * -----------------------------------------------
  */
 
@@ -97,7 +97,7 @@ var sc_title = gsap.timeline();
 sc_title.from(".sc-title-1", { opacity: 0, y: 80 }, 0)
 sc_title.from(".sc-title-2", { opacity: 0, y: 80, delay: 0.2 }, 0)
 
-gsap.set(showcaseImgs[0], { opacity: 0, y: 50 });
+gsap.set(showcaseImgs[0], { scale:1.3, opacity: 0, y: 50 });
 gsap.set(showcaseImgs[1], { opacity: 0, x: -20 });
 gsap.set(showcaseImgs[2], { opacity: 0, x: -40 });
 gsap.set(showcaseImgs[3], { opacity: 0, x: -60 });
@@ -116,6 +116,7 @@ gsap.set(showcaseDots[3], { opacity: 0 });
 var sc_img = gsap.timeline();
 var sc_img_m = gsap.timeline();
 var battery_animation;
+var sc_img_trigger;
 
 ScrollTrigger.matchMedia({
   //PC
@@ -124,34 +125,42 @@ ScrollTrigger.matchMedia({
     .addLabel("start")
     .to( showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
     .addLabel("show_0")
-    .fromTo( showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+    .to( showcaseImgs[0], { scale: 1, x: -208 })
     .to( showcaseDots[0], { opacity: 1, } )
+    .set( showcaseDots[0], { className: "sc-dot is-active"}, "-=0.3")
     .to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "-=0.3")
     .to( showcaseSpans[0], { opacity: 1, x: 0 }, "-=0.2" )
+    .set( showcaseDots[0], { className: "sc-dot"})
     .addLabel("show_1")
     .to( showcaseImgs[1], { opacity: 1, y: 0, x: 0 }, "-=0.6" )
     .to( showcaseDots[1],{ opacity: 1 }, "-=0.3" )
+    .set( showcaseDots[1], { className: "sc-dot is-active"}, "-=0.3")
     .to( showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "-=0.3")
     .to( showcaseSpans[1],{ opacity: 1, x: 0 }, "-=0.2" )
+    .set( showcaseDots[1], { className: "sc-dot"})
     .addLabel("show_2")
     .to( showcaseImgs[2],{ opacity: 1, x: -0 }, "-=0.6" )
     .to( showcaseDots[2],{ opacity: 1 }, "-=0.3" )
     .to( showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+    .set( showcaseDots[2], { className: "sc-dot is-active"}, "-=0.3")
     .to( showcaseSpans[2],{ opacity: 1, x: 0 }, "-=0.2" )
+    .set( showcaseDots[2], { className: "sc-dot"})
     .addLabel("show_3")
     .to(showcaseDots[3],{ opacity: 1 }, "-=0.3" )
     .to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+    .set( showcaseDots[3], { className: "sc-dot is-active"}, "-=0.3")
     .to(showcaseImgs[3],{ opacity: 1, x: 0 }, "-=0.6" )
     .to(showcaseSpans[3],{ opacity: 1, x: 0 }, "-=0.2" )
+    .set( showcaseDots[3], { className: "sc-dot"})
     .addLabel("show_4")
     .to(showcaseImgs[4],{ opacity: 1, x: 0 }, "-=0.4")
     .addLabel("show_5")
     .to(showcaseImgs[5],{ opacity: 1, x: 0 }, "-=0.4")
     .addLabel("show_6")
     .to(showcaseImgs[6],{ opacity: 1, x: 0 }, "-=0.4")
-    .addLabel("jump")
     .addLabel("points")
-    .set(".points__list", { className: "points__list on"}, "-=0.2" );
+    .set(".points__list", { className: "points__list on"}, "-=0.2" )
+    .addLabel("jump");
 
     battery_animation = gsap.timeline({
       scrollTrigger: {
@@ -159,7 +168,7 @@ ScrollTrigger.matchMedia({
         scrub: 1,
         pin: true,
         start: () => "0 " + getheaderHeight(),
-        end: "bottom -=40%",
+        end: "bottom -=20%",
       }
     });
 
@@ -172,7 +181,7 @@ ScrollTrigger.matchMedia({
       ease: "back(2)"
     });
 
-    ScrollTrigger.create({
+    sc_img_trigger = ScrollTrigger.create({
       animation: sc_img,
       trigger: '.showcase__main',
       scrub: 1,
@@ -245,6 +254,12 @@ ScrollTrigger.matchMedia({
 var ess_title = gsap.timeline();
 ess_title.from(".ess__title", { opacity: 0, y: 100, duration: 0.5 })
 ess_title.from(".ess__info", { opacity: 0, y: 100, delay: 0.2},0 )
+ess_title.from(".ess", {
+  backgroundSize: "140% 140%",
+  backgroundPosition: "45% 15%",
+  ease: Sine.easeOut,
+  duration: 1.5,
+},"-=0.5")
 
 ScrollTrigger.matchMedia({
 
@@ -257,12 +272,6 @@ ScrollTrigger.matchMedia({
       end: "bottom 50%",
       ease: "power1.out",
     });
-    ess_title.from(".ess", {
-      backgroundSize: "130% 130%",
-      backgroundPosition: "45% 15%",
-      ease: Sine.easeOut,
-      duration: 1.5,
-    },0)
   },
 
   // MOBILE
@@ -296,33 +305,82 @@ ScrollTrigger.create({
 });
 
 
-
 // * ----- ARTICLE
 var articles_animation = gsap.timeline();
-ScrollTrigger.create({
-  trigger: '.article',
-  animation: articles_animation,
-  pin: true,
-  scrub: 1,
-  start: () => "0 " + getheaderHeight(),
-  end: "bottom -=100%",
-  ease: "quart.inOut"
+articles_animation.to('.article__title', { opacity: 1, duration: 0.5} )
+articles_animation.to('#at-bg1', { opacity: 1, x: 0, duration: 1.5} )
+articles_animation.to('#at-main0', { opacity: 0, x: 0, duration: 0.8 }, '0.5')
+articles_animation.to('#at-main1', { opacity: 1, x: 0, duration: 1.2 },  '1.2' )
+articles_animation.to('#at-bg2', { opacity: 1, x: 0,  duration: 1.5}, '+=1.2')
+articles_animation.to('#at-main1', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4')
+articles_animation.to('#at-main2', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
+articles_animation.to('#at-bg3', { opacity: 1, x: 0,  duration: 1.5  }, '+=1.2' )
+articles_animation.to('#at-main2', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4' )
+articles_animation.to('#at-main3', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
+articles_animation.to('#at-bg4', { opacity: 1, x: 0,  duration: 1.5  }, '+=1.2' )
+articles_animation.to('#at-main3', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4' )
+articles_animation.to('#at-main4', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
+articles_animation.to('.article__title', { opacity: 1,  duration: 0.5  },)
+
+var article_content = gsap.timeline();
+// gsap.set('.visual__title em', {
+//   opacity: 0,
+//   y: "100%",
+// });
+article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
+article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
+article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
+article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
+article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
+article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
+article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
+article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
+
+ScrollTrigger.matchMedia({
+
+  // PC
+  "( min-width: 1024px )": function() {
+    ScrollTrigger.create({
+      trigger: '.article',
+      animation: articles_animation,
+      pin: true,
+      scrub: 1,
+      start: () => '0 ' + getheaderHeight(),
+      end: 'bottom -=100%',
+      ease: 'quart.inOut',
+      invalidateOnRefresh: true
+    });
+
+
+    ScrollTrigger.create({
+      trigger: '.article',
+      animation: article_content,
+      scrub: 1,
+      start: 'top 70%',
+      end: 'top 100+=10%',
+      markers: true,
+    });
+
+
+  },
+
+  // MOBILE
+  "( max-width: 1024px )": function() {
+    ScrollTrigger.create({
+      trigger: '.article',
+      animation: articles_animation,
+      pin: true,
+      scrub: 1,
+      start: () => "0 " + getheaderHeight(),
+      end: "bottom -=100%",
+      ease: "quart.inOut",
+      invalidateOnRefresh: false
+    });
+  }
 });
 
-articles_animation.to(".article__title", { opacity: 1, duration: 0.5} )
-articles_animation.to("#at-bg1", { opacity: 1, x: 0, duration: 1.5} )
-articles_animation.to("#at-main0", { opacity: 0, x: 0, duration: 0.8 }, "0.5")
-articles_animation.to("#at-main1", { opacity: 1, x: 0, duration: 1.2 },  "1.2" )
-articles_animation.to("#at-bg2", { opacity: 1, x: 0,  duration: 1.5}, "+=1.2")
-articles_animation.to("#at-main1", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4")
-articles_animation.to("#at-main2", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
-articles_animation.to("#at-bg3", { opacity: 1, x: 0,  duration: 1.5  }, "+=1.2" )
-articles_animation.to("#at-main2", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4" )
-articles_animation.to("#at-main3", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
-articles_animation.to("#at-bg4", { opacity: 1, x: 0,  duration: 1.5  }, "+=1.2" )
-articles_animation.to("#at-main3", { opacity: 0, x: 0, duration: 0.8 }, "-=1.4" )
-articles_animation.to("#at-main4", { opacity: 1, x: 0, duration: 1.2 },  "-=1" )
-articles_animation.to(".article__title", { opacity: 1,  duration: 0.5  },)
+
+
 
 
 // * ----- CONTACT
@@ -402,10 +460,11 @@ $(".header__menu-link").on("click", function (e) {
   var target = $(this).attr("href").split("#")[1];
 
   if (target === "battery") {
-    if (isTabletSize) {
+    console.log(sc_img_trigger.end);
+    if (isTabletSize()) {
       gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
     } else {
-      gsap.to(window, {scrollTo: getScrollPos(sc_img, battery_animation.scrollTrigger)});
+      gsap.to(window, {scrollTo: {y: battery_animation.scrollTrigger.end}});
     }
   }
   if (target === "app") {

@@ -2,7 +2,7 @@
  * -----------------------------------------------
  * Project: COSMOS LAB HOMEPAGE
  * Author: Nana <nykim@nykim.net>
- * Last Modified: 2021-09-08 16:49:36
+ * Last Modified: 2021-09-09 18:46:17
  * -----------------------------------------------
  */
 
@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 var $body = $('body');
 var scrollPosition;
+var scrollBarWidth = getScrollBarWidth();
 
 function getScrollBarWidth() {
   $body.css('overflow', 'hidden');
@@ -34,23 +35,17 @@ function preventScroll() {
   scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
   $body.css({
     'overflow': 'hidden',
-    // 'position': 'fixed',
-    // 'top': '-' + scrollPosition + 'px',
-    'left': 0,
-    'right': 0,
-    'padding-right': getScrollBarWidth() + 'px'
+    'padding-right': scrollBarWidth + 'px'
   });
+  $('.header__inner').css('margin-right', 0+scrollBarWidth+'px');
 };
 
 function allowScroll() {
   $body.css({
     'overflow': '',
-    'position': '',
-    'top': '',
-    'left': '',
-    'right': '',
     'padding-right': ''
   });
+  $('.header__inner').css('margin-right', '');
   window.scrollTo(0, scrollPosition);
 };
 
@@ -101,7 +96,7 @@ $(window).on('beforeunload', function() {
 $(window).on('load', function(){
   // gsap.to(window, 1, {scrollTo: 0});//TODO: 활성화!!
   $('body').addClass('is-intro');
-  preventScroll();
+  // preventScroll();
   setTimeout(function(){
     stopIntro();
   }, 0); //2000 TODO:

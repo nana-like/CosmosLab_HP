@@ -4,8 +4,14 @@
   <div id="showcase" class="showcase">
     <div class="inner">
       <h2 class="showcase__title">
-        <span class="sc-title-1">ESS의 혁신</span>
-        <span class="sc-title-2">차세대 아연 금속 전지와 함께</span>
+        @@if(context.lang === 'ko'){
+          <span class="sc-title-1">ESS의 혁신</span>
+          <span class="sc-title-2">차세대 아연 금속 전지와 함께</span>
+        }
+        @@if(context.lang === 'en'){
+          <span class="sc-title-1">INNOVATION of ESS,</span>
+          <span class="sc-title-2">with the Next Generation Zinc Metal Battery</span>
+        }
       </h2>
       <div class="showcase__main">
         <div class="showcase__img sc-all"></div>
@@ -22,50 +28,93 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 189.8 104.6"><path class="sc-path" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10"  d="M188.8 103.6L87.3 1.6H.4"/></svg>
               <i class="sc-dot"></i>
             </div>
-            <span class="sc-span">수계 아연브롬 전해액</span>
+            @@if(context.lang === 'ko'){
+              <span class="sc-span">수계 아연브롬 전해액</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="sc-span">Aqueous Zinc Bromine Electrolyte</span>
+            }
           </div>
           <div class="showcase__text sc-text-2">
             <div class="sc-line">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304.7 186.6"><path class="sc-path" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-miterlimit="10" d="M2.4 183.6l181-182h120"/></svg>
               <i class="sc-dot"></i>
             </div>
-            <span class="sc-span">액상 브롬의 고체화 및 Trapping</span>
+            @@if(context.lang === 'ko'){
+              <span class="sc-span">액상 브롬의 고체화 및 Trapping</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="sc-span">Solidification and Trapping of Liquid Bromine</span>
+            }
           </div>
           <div class="showcase__text sc-text-3">
             <div class="sc-line">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 253.7 84.2"><path class="sc-path" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-miterlimit="10" d="M252.7 1.1S171.8 82.6 171.5 83c-.3.3-170.7 0-170.7 0"/></svg>
               <i class="sc-dot"></i>
             </div>
-            <span class="sc-span">스트랩 표면 코팅기술 개발</span>
+            @@if(context.lang === 'ko'){
+              <span class="sc-span">스트랩 표면 코팅기술 개발</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="sc-span">Development of Strap Surface Coating Technolog</span>
+            }
           </div>
           <div class="showcase__text sc-text-4">
             <div class="sc-line">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 388 186.6"><path class="sc-path" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-miterlimit="10" d="M4.8 93.2S97.6 1.5 98 1.2s289.2 0 289.2 0"/></svg>
               <i class="sc-dot"></i>
             </div>
-            <span class="sc-span">바이오맥스를 활용한 친환경 탄소 전극</span>
+            @@if(context.lang === 'ko'){
+              <span class="sc-span">바이오맥스를 활용한 친환경 탄소 전극</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="sc-span">Eco-friendly Carbon Electrodes using Biomass</span>
+            }
           </div>
         </div>
       </div>
       <div class="showcase__guide-mobile">
+        @@if(context.lang === 'ko'){
         <span class="sc-span-mo">수계 아연브롬 전해액</span>
         <span class="sc-span-mo">액상 브롬의 고체화 및 Trapping</span>
         <span class="sc-span-mo">스트랩 표면 코팅기술 개발</span>
         <span class="sc-span-mo">바이오맥스를 활용한 친환경 탄소 전극</span>
+        }
+        @@if(context.lang === 'en'){
+        <span class="sc-span">Aqueous Zinc Bromine Electrolyte</span>
+        <span class="sc-span">Solidification and Trapping of Liquid Bromine</span>
+        <span class="sc-span">Development of Strap Surface Coating Technolog</span>
+        <span class="sc-span">Eco-friendly Carbon Electrodes using Biomass</span>
+        }
       </div>
       <div class="points">
         <div class="points__list">
           <button data-popup="flame" class="points__button points-flame">
             <em class="points__icon"></em>
+            @@if(context.lang === 'ko'){
             <span class="points__text">비발화</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="points__text">Non-flammable</span>
+            }
           </button>
           <button data-popup="eco" class="points__button points-eco">
             <em class="points__icon"></em>
+            @@if(context.lang === 'ko'){
             <span class="points__text">친환경</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="points__text">Eco-friendly</span>
+            }
           </button>
           <button data-popup="price" class="points__button points-price">
             <em class="points__icon"></em>
+            @@if(context.lang === 'ko'){
             <span class="points__text">저가격</span>
+            }
+            @@if(context.lang === 'en'){
+              <span class="points__text">Low Price</span>
+            }
           </button>
         </div>
       </div>
@@ -74,23 +123,48 @@
 </section>
 
 
-@@loop('_popup.html', [
-  {
-    "class": "flame",
-    "title": "비발화&nbsp;<br class='br-tablet br-mo'>Non-flammable",
-    "point": "발화하지 않는 배터리의 안전성.<br>우리는 그 당연한 가치를 수계 배터리로 이룹니다.",
-    "text": "안전한 ESS, 아직까지 잊고 계셨나요?<br>COSMOS LAB의 배터리와 함께한다면, 당연한 가치를 당연하게 받아들일 수 있습니다.&nbsp;<br class='br-pc'>발화성이 전혀 없는 물을 사용한 배터리로 그 당연한 가치를 누리세요."
-  },
-  {
-    "class": "eco",
-    "title": "친환경&nbsp;<br class='br-tablet br-mo'>Eco-friendly",
-    "point": "지속 가능한 ESS를 위한 첫 번째 발걸음,<br>친환경적인 배터리로 시작할 수 있습니다.",
-    "text": "바이오매스를 활용한 탄소 전극을 사용하여&nbsp;<br class='br-pc br-tablet'>지속 가능한,&nbsp;<br class='br-mo'>친환경적인 ESS를 향해 누구보다 정직하게 나아갑니다."
-  },
-  {
-    "class": "price",
-    "title": "저가격&nbsp;<br class='br-tablet br-mo'>Low - Price",
-    "point": "기존 배터리에서 막대한 비용을 유발하던&nbsp;<br class='br-pc br-tablet'>회토류를&nbsp;<br class='br-mo'>사용하지 않았습니다.&nbsp;<br class='br-pc br-tablet'>바이오매스 폐기물을&nbsp;<br class='br-mo'>사용했으며, 분리막을 제거했습니다.",
-    "text": "불필요한 비용은 없애고, 필요한 기능은 강화했습니다.<br>이제는 가격 걱정 없이 멋진 ESS를 경험하세요."
-  }
-])
+@@if(context.lang === 'ko'){
+  @@loop('_popup.html', [
+    {
+      "class": "flame",
+      "title": "비발화&nbsp;<br class='br-tablet br-mo'>Non-flammable",
+      "point": "발화하지 않는 배터리의 안전성.<br>우리는 그 당연한 가치를 수계 배터리로 이룹니다.",
+      "text": "안전한 ESS, 아직까지 잊고 계셨나요?<br>COSMOS LAB의 배터리와 함께한다면, 당연한 가치를 당연하게 받아들일 수 있습니다.&nbsp;<br class='br-pc'>발화성이 전혀 없는 물을 사용한 배터리로 그 당연한 가치를 누리세요."
+    },
+    {
+      "class": "eco",
+      "title": "친환경&nbsp;<br class='br-tablet br-mo'>Eco-friendly",
+      "point": "지속 가능한 ESS를 위한 첫 번째 발걸음,<br>친환경적인 배터리로 시작할 수 있습니다.",
+      "text": "바이오매스를 활용한 탄소 전극을 사용하여&nbsp;<br class='br-pc br-tablet'>지속 가능한,&nbsp;<br class='br-mo'>친환경적인 ESS를 향해 누구보다 정직하게 나아갑니다."
+    },
+    {
+      "class": "price",
+      "title": "저가격&nbsp;<br class='br-tablet br-mo'>Low - Price",
+      "point": "기존 배터리에서 막대한 비용을 유발하던&nbsp;<br class='br-pc br-tablet'>회토류를&nbsp;<br class='br-mo'>사용하지 않았습니다.&nbsp;<br class=''>바이오매스 폐기물을&nbsp;<br class='br-mo'>사용했으며, 분리막을 제거했습니다.",
+      "text": "불필요한 비용은 없애고, 필요한 기능은 강화했습니다.<br>이제는 가격 걱정 없이 멋진 ESS를 경험하세요."
+    }
+  ])
+}
+
+@@if(context.lang === 'en'){
+  @@loop('_popup.html', [
+    {
+      "class": "flame",
+      "title": "Non-flammable",
+      "point": "The stability of the battery that does not ignite.<br>We achieve that natural value with our aqueous battery.",
+      "text": "With the battery of COSMOS LAB, you can take it for granted.<br>Enjoy the natural value with our battery using water,&nbsp;<br class='br-pc'>which is completely non-flammable."
+    },
+    {
+      "class": "eco",
+      "title": "Eco-friendly",
+      "point": "The first step towards sustainable ESS,<br>We can start with an eco-friendly battery.",
+      "text": "We move more honestly than anyone else towards sustainable, eco-friendly ESS, Using biomass carbon electrodes.<br>"
+    },
+    {
+      "class": "price",
+      "title": "Low-Price",
+      "point": "We didn’t use rare earths that cost a lot of money&nbsp;<br class='br-pc br-laptop br-tablet'>in our existing batteries.&nbsp;<br class=''>Biomass waste is used,&nbsp;<br class='br-mo'>and the separator is also removed.",
+      "text": "We’ve eliminated unnecessary costs and&nbsp;<br class='br-tablet'>enhanced the capabilities we need.<br>Now experience the great ESS without worries about price."
+    }
+  ])
+}

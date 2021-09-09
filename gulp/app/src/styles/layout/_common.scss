@@ -27,6 +27,12 @@ body {
   background: blue !important;
 }
 
+.br-laptop {
+  display: none;
+  @include md.laptop {
+    display: block;
+  }
+}
 
 
 

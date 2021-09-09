@@ -3,12 +3,25 @@
     <div class="footer__logo"></div>
     <div class="footer__info">
       <div class="footer__text footer__text-horizontal">
-        <p>업자등록번호 000-00-00000</p>
-        <p>대표이사 가나다</p>
-        <p>전화번호 040-0123-4567</p>
+        @@if(context.lang === 'ko'){
+        <p>사업자등록번호 000-00-00000</p>
+        <p>대표이사 조인성, 이주혁</p>
+        <p>전화번호 042-719-2130</p>
+        }
+        @@if(context.lang === 'en'){
+        <p>Corporate Registration Number 000-00-00000</p>
+        <p>CEO 조인성, 이주혁</p>
+        <p>Tel. 042-719-2130</p>
+        }
       </div>
       <div class="footer__text">
+        @@if(context.lang === 'ko'){
         <p>대전광역시 유성구 전민동 유성대로 1646</p>
+        }
+
+        @@if(context.lang === 'en'){
+        <p>1646, Yuseong-daero, Yuseong-gu, Daejeon, Republic of Korea</p>
+        }
       </div>
       <div class="footer__text">
         <p>Copyright ⓒ Cosmos lab. All right reserved.</p>

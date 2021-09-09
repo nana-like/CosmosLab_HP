@@ -1,16 +1,34 @@
 <section id="contact" class="section contact">
   <div class="inner">
     <div class="contact__content">
-      <h3 class="contact__title">코스모스랩 오시는 길</h3>
-      <p class="contact__text">안전한 ESS를 위한 최적의 솔루션을 제공합니다.<br>코스모스랩의 제품 및 서비스에 대해&nbsp;<br class="br-mo">문의 주시면 빠른 시일 내에 답변 드리겠습니다.</p>
+      @@if(context.lang === 'ko'){
+        <h3 class="contact__title">코스모스랩 오시는 길</h3>
+      }
+      @@if(context.lang === 'en'){
+        <h3 class="contact__title">Contact Us</h3>
+      }
+      @@if(context.lang === 'ko'){
+        <p class="contact__text">안전한 ESS를 위한 최적의 솔루션을 제공합니다.<br>코스모스랩의 제품 및 서비스에 대해&nbsp;<br class="br-mo">문의 주시면 빠른 시일 내에 답변 드리겠습니다.</p>
+      }
       <div class="contact__bottom">
         <div class="contact__addr">
+          @@if(context.lang === 'ko'){
           <strong>COSMOS LAB 코스모스랩</strong>
           <p>대전광역시 유성구 전민동 유성대로 1646</p>
+          }
+          @@if(context.lang === 'en'){
+          <strong>COSMOS LAB</strong>
+          <p>1646, Yuseong-daero, Yuseong-gu, Daejeon, Republic of Korea</p>
+          }
         </div>
         <div class="contact__info">
           <div class="contact__info-text">
+            @@if(context.lang === 'ko'){
             <strong>전화번호</strong>
+            }
+            @@if(context.lang === 'en'){
+            <strong>Tel.</strong>
+            }
             <p>042-719-2130</p>
           </div>
           <div class="contact__info-text">

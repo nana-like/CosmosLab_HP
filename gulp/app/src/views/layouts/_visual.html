@@ -2,8 +2,16 @@
   <div class="visual__inner">
     <div class="visual__text">
       <h2 class="visual__title">
-        <span><em>폭발 없는 배터리</em></span>
-        <span><em>그 꿈을 이루다</em></span>
+        @@if(context.lang === 'ko'){
+          <span><em>폭발 없는 배터리</em></span>
+          <span><em>그 꿈을 이루다</em></span>
+        }
+        @@if(context.lang === 'en'){
+          <span><em>ESS WITHOUT EXPLOSION,</em></span>
+          <span class="text-pc"><em>COSMOS BATTERY IS THE SOLUTION</em></span>
+          <span class="text-tablet" aria-role="none"><em>COSMOS BATTERY IS</em></span>
+          <span class="text-tablet" aria-role="none"><em>THE SOLUTION</em></span>
+        }
       </h2>
       <a href="//youtube.com" target="_blank" rel="noopener" class="visual__link">Learn more</a>
     </div>
