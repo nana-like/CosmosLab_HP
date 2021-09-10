@@ -9,21 +9,25 @@ const fileinclude = require("gulp-file-include");
 const headerComment = require('gulp-header-comment');
 const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
-const minify = require('gulp-minify');
+const imagemin = require('gulp-imagemin');
+const concat = require('gulp-concat');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
 const argv = require('yargs').argv;
 
 const paths = project.paths;
 const files = {
   html: 'views/**/*.html',
   css: 'styles/**/*.scss',
-  js: 'scripts/**/*.js'
+  js: 'scripts/**/*.js',
+  image: paths.src + '/images/**/*'
 };
 
 const comment = require('./config/headerComment');
 let isBuildMode = false;
-
 let langType = 'ko';
 
+// HTML 처리
 const html = () => {
   return gulp
     .src([files.html, '!views/**/_*.*'], {
@@ -40,7 +44,8 @@ const html = () => {
     .pipe(browserSync.stream());
 };
 
-var styleSheet = () => {
+// CSS 처리
+const styleSheet = () => {
   const opts = {
     header: comment(project),
     sass: {
@@ -72,22 +77,31 @@ var styleSheet = () => {
   return stream;
 };
 
-
-var scripts = () => {
-  var opts = {
+// 스크립트 처리
+const scripts = () => {
+  const opts = {
     header: comment(project)
   };
   return gulp
     .src(files.js, {
       cwd: path.resolve(__dirname, paths.src),
-      // since: gulp.lastRun(scripts)
     })
-    .pipe(minify())
+    .pipe(uglify())
+    .pipe(concat('ui.js'))
+    .pipe(rename("ui.min.js"))
     .pipe(headerComment(opts.header))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
     .pipe(browserSync.stream());
 }
 
+// 이미지 처리
+const image = () => {
+  return gulp.src(files.image)
+  .pipe(imagemin())
+  .pipe(gulp.dest(path.resolve(__dirname, paths.dist + '/images')))
+}
+
+// 브라우저 동기화
 const sync = () => {
   browserSync.init({
     port: project.port,
@@ -97,25 +111,34 @@ const sync = () => {
   });
 };
 
+// 감시
 const watch = () => {
   gulp.watch(path.resolve(__dirname, paths.src, files.html), html);
   gulp.watch(path.resolve(__dirname, paths.src, files.css), styleSheet);
   gulp.watch(path.resolve(__dirname, paths.src, files.js), scripts);
 }
 
+// 파일 삭제
 const clean = () => {
   const opts = {
     force: true
   };
 
-  return new Promise((resolve, reject) => {
-    del(paths.dist, opts);
-    resolve();
-  });
+  if (isBuildMode) {
+    console.log('🧹 Cleaning Time!')
+    return new Promise((resolve, reject) => {
+      del(paths.dist+'/*', opts);
+      resolve();
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
+  }
 }
 
 const tasks = gulp.series(
-  // clean,
+  clean,
   gulp.parallel(
     sync,
     html,
@@ -124,6 +147,17 @@ const tasks = gulp.series(
     watch
   )
 );
+
+const saveImage = gulp.series(
+  gulp.parallel(
+    image
+  )
+);
+
+
+gulp.task('image', async function () {
+  saveImage();
+});
 
 gulp.task('default', async function () {
   langType = argv.lang || langType;
@@ -134,7 +168,7 @@ gulp.task('default', async function () {
 
 gulp.task('build', async function () {
   //TODO: 언어별로 다른 폴더에 dist
-  langType = argv.lang;
+  langType = argv.lang || langType;
   isBuildMode = true;
   tasks();
   console.log(`🛠 Build Mode`);
