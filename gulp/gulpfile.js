@@ -34,9 +34,15 @@ const html = () => {
     .src([files.html, '!views/**/_*.*'], {
       cwd: path.resolve(__dirname, paths.src)
     })
-    .pipe(fileinclude({
-      prefix: "@@",
-      basepath: "@file",
+    if (isBuildMode && langType === 'en') {
+      stream = stream.pipe(rename({
+        suffix: '_en',
+        extname: '.html'
+      }))
+    }
+    stream.pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file',
       context: {
         lang: langType
       }
@@ -45,7 +51,7 @@ const html = () => {
     stream.pipe(htmlmin({ collapseWhitespace: true }))
   }
   stream = stream.pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
-    .pipe(browserSync.stream());
+  stream.pipe(browserSync.stream());
   return stream;
 };
 
@@ -93,7 +99,7 @@ const scripts = () => {
     })
     .pipe(uglify())
     .pipe(concat('ui.js'))
-    .pipe(rename("ui.min.js"))
+    .pipe(rename('ui.min.js'))
     .pipe(headerComment(opts.header))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
     .pipe(browserSync.stream());
@@ -128,30 +134,30 @@ const clean = () => {
   const opts = {
     force: true
   };
-
-  if (isBuildMode) {
-    console.log('🧹 Cleaning Time!')
-    return new Promise((resolve, reject) => {
-      del(paths.dist+'/*', opts);
-      resolve();
-    });
-  } else {
-    return new Promise((resolve, reject) => {
-      resolve();
-    });
-  }
+  return new Promise((resolve, reject) => {
+    del(paths.dist+'/*', opts);
+    resolve();
+  });
 }
 
-const tasks = gulp.series(
-  // clean,
-  gulp.parallel(
-    sync,
-    html,
-    styleSheet,
-    scripts,
-    watch
+const tasks = {
+  dev: gulp.series(
+    gulp.parallel(
+      sync,
+      html,
+      styleSheet,
+      scripts,
+      watch
+    )
+  ),
+  build: gulp.series(
+    gulp.parallel(
+      html,
+      styleSheet,
+      scripts
+    )
   )
-);
+}
 
 const saveImage = gulp.series(
   gulp.parallel(
@@ -159,23 +165,31 @@ const saveImage = gulp.series(
   )
 );
 
+const cleanAll = gulp.series(
+  gulp.parallel(
+    clean
+  )
+);
 
 gulp.task('image', async function () {
   saveImage();
 });
 
+gulp.task('clean', async function () {
+  cleanAll();
+});
+
 gulp.task('default', async function () {
   langType = argv.lang || langType;
-  tasks();
+  tasks.dev();
   console.log("🔫 🤠 💥");
   console.log(`🌻 Lang = ${langType}`);
 });
 
 gulp.task('build', async function () {
-  //TODO: 언어별로 다른 폴더에 dist
   langType = argv.lang || langType;
   isBuildMode = true;
-  tasks();
+  tasks.build();
   console.log(`🛠 Build Mode`);
   console.log(`🌻 Lang = ${langType}`);
 })
