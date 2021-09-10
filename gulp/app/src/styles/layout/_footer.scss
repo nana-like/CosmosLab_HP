@@ -111,13 +111,13 @@
   }
 
   &__top {
+    @include bgi("ic_top");
     position: absolute;
     top: 14.5rem;
     right: 2rem;
     display: block;
     width: 5rem;
     height: 5rem;
-    background-image: url(#{var.$path-image}ic_top.png);
     background-size: 4rem 4rem;
     background-position: top .2rem left 50%;
     background-repeat: no-repeat;

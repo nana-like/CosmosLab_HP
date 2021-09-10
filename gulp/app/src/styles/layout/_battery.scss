@@ -94,16 +94,16 @@
 
       &.sc {
         &-all {
+          @include bgi("sc_all");
           top: 8%;
           opacity: 1;
           width: 25rem;
           margin-left: -12rem;
-          background-image: url(#{var.$path-image}sc_all.png);
         }
 
         @for $i from 1 through 6 {
           &-#{$i} {
-            background-image: url(#{var.$path-image}sc_#{$i}.png);
+            @include bgi("sc_#{$i}");
           }
         }
 

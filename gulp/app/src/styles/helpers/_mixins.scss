@@ -37,3 +37,8 @@
     -webkit-box-orient: vertical;
   }
 }
+
+
+@mixin bgi($name, $type: "PNG") {
+  background-image: url(#{var.$path-image}#{$name}.#{$type});
+}

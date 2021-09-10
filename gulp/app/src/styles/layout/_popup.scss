@@ -36,7 +36,7 @@
 
   @each $points in $_points-list {
     &.lp-#{$points} .lp__main {
-      background-image: url(#{var.$path-image}bg_lp_#{$points}.jpg);
+      @include bgi("bg_lp_#{$points}", "JPG");
     }
     &.lp-#{$points} .lp__icon  {
       background-image: svg.img(#{$points});
