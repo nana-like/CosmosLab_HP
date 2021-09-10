@@ -6,7 +6,10 @@
   "dependencies": {
     "gulp": "^4.0.2",
     "imagemin-mozjpeg": "^9.0.0",
-    "yargs": "^17.1.1"
+    "yargs": "^17.1.1",
+    "axios": ">=0.21.2",
+    "trim-newlines": ">=3.0.1",
+    "glob-parent": ">=5.1.2"
   },
   "devDependencies": {
     "@types/node": "^16.9.1",
