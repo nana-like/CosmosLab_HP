@@ -13,6 +13,7 @@ const imagemin = require('gulp-imagemin');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
+const htmlmin = require('gulp-htmlmin');
 const argv = require('yargs').argv;
 
 const paths = project.paths;
@@ -29,7 +30,7 @@ let langType = 'ko';
 
 // HTML 처리
 const html = () => {
-  return gulp
+  let stream = gulp
     .src([files.html, '!views/**/_*.*'], {
       cwd: path.resolve(__dirname, paths.src)
     })
@@ -40,8 +41,12 @@ const html = () => {
         lang: langType
       }
     }))
-    .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
+  if (isBuildMode) {
+    stream.pipe(htmlmin({ collapseWhitespace: true }))
+  }
+  stream = stream.pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
     .pipe(browserSync.stream());
+  return stream;
 };
 
 // CSS 처리
@@ -138,7 +143,7 @@ const clean = () => {
 }
 
 const tasks = gulp.series(
-  clean,
+  // clean,
   gulp.parallel(
     sync,
     html,
