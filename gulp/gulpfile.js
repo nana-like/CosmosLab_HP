@@ -37,7 +37,7 @@ const html = () => {
     .src([files.html, '!views/**/_*.*'], {
       cwd: path.resolve(__dirname, paths.src)
     })
-    if (isBuildMode || isDistMode && langType === 'en') {
+    if (isBuildMode && langType === 'en' || isDistMode && langType === 'en') {
       stream = stream.pipe(rename({
         suffix: '_en',
         extname: '.html'
@@ -50,7 +50,7 @@ const html = () => {
         lang: langType
       }
     }))
-  if (isBuildMode) {
+  if (isBuildMode || isDistMode) {
     stream.pipe(htmlmin({ collapseWhitespace: true }))
   }
   stream = stream.pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
@@ -70,7 +70,7 @@ const styleSheet = () => {
     }
   };
 
-  if (isBuildMode) {
+  if (isBuildMode || isDistMode) {
     opts.sass.outputStyle = 'compressed';
   }
 
@@ -224,6 +224,7 @@ gulp.task('build', async function () {
 gulp.task('distribute', async function () {
   langType = argv.lang || langType;
   isDistMode = true;
+  isBuildMode = true;
   tasks.build();
   console.log(`Distribute Mode`);
 })

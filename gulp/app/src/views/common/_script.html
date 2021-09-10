@@ -1,23 +1,5 @@
-<!-- TODO: CDN vs. 로컬 -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script> -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/ScrollToPlugin.min.js"></script>
-<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="ui.js"></script> -->
-
-<script>
-  !function(f){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=f();else if("function"==typeof define&&define.amd)define([],f);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).iosInnerHeight=f()}}(function(){return function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){return o(e[i][1][r]||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}({1:[function(require,module,exports){"use strict";module.exports=function(){if("undefined"==typeof window||"undefined"==typeof navigator)return function(){return 0};if(!navigator.userAgent.match(/iphone|ipod|ipad/i))return function(){return window.innerHeight};var ruler,axis=Math.abs(window.orientation),dims={w:0,h:0};return(ruler=document.createElement("div")).style.position="fixed",ruler.style.height="100vh",ruler.style.width=0,ruler.style.top=0,document.documentElement.appendChild(ruler),dims.w=90===axis?ruler.offsetHeight:window.innerWidth,dims.h=90===axis?window.innerWidth:ruler.offsetHeight,document.documentElement.removeChild(ruler),ruler=null,function(){return 90!==Math.abs(window.orientation)?dims.h:dims.w}}()},{}]},{},[1])(1)});
-</script>
-
 <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollToPlugin.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="ui.min.js"></script>
