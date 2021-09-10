@@ -34,7 +34,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
-    "build": "gulp clean && gulp build --lang en && gulp build --lang ko && gulp image"
+    "build": "gulp clean && gulp build --lang en && gulp build --lang ko"
   },
   "paths": {
     "src": "app/src",

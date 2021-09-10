@@ -17,6 +17,7 @@ const htmlmin = require('gulp-htmlmin');
 const argv = require('yargs').argv;
 
 const paths = project.paths;
+const root = './../';
 const files = {
   html: 'views/**/*.html',
   css: 'styles/**/*.scss',
@@ -51,6 +52,9 @@ const html = () => {
     stream.pipe(htmlmin({ collapseWhitespace: true }))
   }
   stream = stream.pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
+  if (isBuildMode) {
+    stream = stream.pipe(gulp.dest(path.resolve(__dirname, root)))
+  }
   stream.pipe(browserSync.stream());
   return stream;
 };
@@ -83,7 +87,10 @@ const styleSheet = () => {
 
   stream = stream.pipe(headerComment(opts.header))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
-    .pipe(browserSync.stream());
+  if (isBuildMode) {
+    stream = stream.pipe(gulp.dest(path.resolve(__dirname, root)))
+  }
+  stream = stream.pipe(browserSync.stream());
 
   return stream;
 };
@@ -93,7 +100,7 @@ const scripts = () => {
   const opts = {
     header: comment(project)
   };
-  return gulp
+  let stream = gulp
     .src(files.js, {
       cwd: path.resolve(__dirname, paths.src),
     })
@@ -102,14 +109,22 @@ const scripts = () => {
     .pipe(rename('ui.min.js'))
     .pipe(headerComment(opts.header))
     .pipe(gulp.dest(path.resolve(__dirname, paths.dist)))
-    .pipe(browserSync.stream());
+    if (isBuildMode) {
+      stream = stream.pipe(gulp.dest(path.resolve(__dirname, root)))
+    }
+    stream = stream.pipe(browserSync.stream());
+    return stream;
 }
 
 // 이미지 처리
 const image = () => {
-  return gulp.src(files.image)
+  let stream = gulp.src(files.image)
   .pipe(imagemin())
   .pipe(gulp.dest(path.resolve(__dirname, paths.dist + '/images')))
+  if (isBuildMode) {
+    stream = stream.pipe(gulp.dest(path.resolve(__dirname, root + '/images')))
+  }
+  return stream;
 }
 
 // 브라우저 동기화
@@ -154,7 +169,8 @@ const tasks = {
     gulp.parallel(
       html,
       styleSheet,
-      scripts
+      scripts,
+      image
     )
   ),
   sync: gulp.series(
