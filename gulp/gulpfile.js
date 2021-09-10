@@ -156,6 +156,11 @@ const tasks = {
       styleSheet,
       scripts
     )
+  ),
+  sync: gulp.series(
+    gulp.parallel(
+      sync
+    )
   )
 }
 
@@ -181,9 +186,14 @@ gulp.task('clean', async function () {
 
 gulp.task('default', async function () {
   langType = argv.lang || langType;
+  tasks.sync();
+  console.log("Sync Mode");
+});
+
+gulp.task('dev', async function () {
+  langType = argv.lang || langType;
   tasks.dev();
-  console.log("🔫 🤠 💥");
-  console.log(`🌻 Lang = ${langType}`);
+  console.log("🔫 🤠 💥 Dev Mode ");
 });
 
 gulp.task('build', async function () {
@@ -191,5 +201,4 @@ gulp.task('build', async function () {
   isBuildMode = true;
   tasks.build();
   console.log(`🛠 Build Mode`);
-  console.log(`🌻 Lang = ${langType}`);
 })
