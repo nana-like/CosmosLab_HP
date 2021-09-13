@@ -392,32 +392,37 @@ ScrollTrigger.create({
 
 // * ----- NAVIGATION
 
-var sections = gsap.utils.toArray(".marker");
-var marker__battery = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.battery',
-    start: "top top+=101px",
-    end:"bottom top+=100px",
-    toggleActions: "play reverse play reverse",
-    toggleClass: {targets: ".header__nav a[href$='battery']", className: "is-active"}
-  }
-});
+ScrollTrigger.matchMedia({
 
-var marker__app = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.app',
-    start: "top top+=101px",
-    end:"bottom top+=100px",
-    toggleActions: "play reverse play reverse",
-    toggleClass: {targets: ".header__nav a[href$='app']", className: "is-active"}
-  }
-});
+  // PC
+  "( min-width: 1024px )": function() {
+    var marker__battery = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.battery',
+        start: "top top+=101px",
+        end:"bottom top+=100px",
+        toggleActions: "play reverse play reverse",
+        toggleClass: {targets: ".header__nav a[href$='battery']", className: "is-active"},
+      }
+    });
 
-var marker__contact = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.marker-contact',
-    start: "top top+=101px",
-    toggleClass: {targets: ".header__nav a[href$='contact']", className: "is-active"}
+    var marker__app = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.app',
+        start: "top top+=101px",
+        end:"bottom top+=100px",
+        toggleActions: "play reverse play reverse",
+        toggleClass: {targets: ".header__nav a[href$='app']", className: "is-active"},
+      }
+    });
+
+    var marker__contact = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.marker-contact',
+        start: "top top+=101px",
+        toggleClass: {targets: ".header__nav a[href$='contact']", className: "is-active"},
+      }
+    });
   }
 });
 
