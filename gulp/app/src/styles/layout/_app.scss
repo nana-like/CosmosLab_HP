@@ -347,7 +347,7 @@
 
       &[class$=#{$list}] {
         z-index: ($i*1)+1;
-        @include bgi("bg_article_#{$list}", "JPG");
+        @include bgi("bg_article_#{$list}", "jpg");
       }
     }
 

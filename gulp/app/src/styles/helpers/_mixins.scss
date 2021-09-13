@@ -39,6 +39,6 @@
 }
 
 
-@mixin bgi($name, $type: "PNG") {
+@mixin bgi($name, $type: "png") {
   background-image: url(#{var.$path-image}#{$name}.#{$type});
 }
