@@ -467,7 +467,6 @@ $(".header__menu-link").on("click", function (e) {
   }
 });
 
-
 // * 인트로
 function stopIntro(){
   $('body').removeClass('is-intro');
