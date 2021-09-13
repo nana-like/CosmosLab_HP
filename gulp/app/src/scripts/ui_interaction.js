@@ -316,6 +316,17 @@ articles_animation.to('#at-main3', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4' 
 articles_animation.to('#at-main4', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
 articles_animation.to('.article__title', { opacity: 1,  duration: 0.5  },)
 
+
+var article_content = gsap.timeline();
+article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
+article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
+article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
+article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
+article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
+article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
+article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
+article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
+
 ScrollTrigger.matchMedia({
 
   // PC
@@ -332,16 +343,6 @@ ScrollTrigger.matchMedia({
     });
 
 
-
-    var article_content = gsap.timeline();
-    article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
-    article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
-    article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
-    article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
-    article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
-    article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
-    article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
-    article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
     ScrollTrigger.create({
       trigger: '.article',
       animation: article_content,
@@ -363,7 +364,7 @@ ScrollTrigger.matchMedia({
       start: () => "0 " + getheaderHeight(),
       end: "bottom -=100%",
       ease: "quart.inOut",
-      invalidateOnRefresh: false
+      // invalidateOnRefresh: false
     });
   }
 });
@@ -394,7 +395,7 @@ ScrollTrigger.create({
 var sections = gsap.utils.toArray(".marker");
 var marker__battery = gsap.timeline({
   scrollTrigger: {
-    trigger: '.marker-battery',
+    trigger: '.battery',
     start: "top top+=101px",
     end:"bottom top+=100px",
     toggleActions: "play reverse play reverse",
@@ -404,7 +405,7 @@ var marker__battery = gsap.timeline({
 
 var marker__app = gsap.timeline({
   scrollTrigger: {
-    trigger: '.marker-app',
+    trigger: '.app',
     start: "top top+=101px",
     end:"bottom top+=100px",
     toggleActions: "play reverse play reverse",
@@ -424,7 +425,7 @@ var header = gsap.timeline({
   scrollTrigger: {
     trigger: '.wrap',
     start: "top top",
-    end:"bottom -=100%",
+    end:"bottom -=500%",
     toggleClass: {targets: ".header", className: "is-active"}
   }
 });

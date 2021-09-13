@@ -366,6 +366,7 @@
 
       @include md.mobile {
         width: 100%;
+        max-width: 30rem;
         justify-content: space-between;
         margin: 0 auto;
       }
