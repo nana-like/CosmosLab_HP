@@ -18,7 +18,7 @@
 
     @include md.tablet {
       height: calc(100vh - #{var.$mobile-header-height});
-      min-height: 88rem;
+      min-height: 94rem;
     }
 
     .inner {
@@ -344,6 +344,10 @@
       padding: 0 1rem;
     }
 
+    @include md.mobile {
+      padding: 0;
+    }
+
     &__list {
       display: flex;
       align-items: center;
@@ -404,7 +408,7 @@
         font-weight: var.$medium;
 
         .points__icon {
-          transform: translateY(-4px);
+          transform: scale(1) translateY(-4px) translateZ(0);
         }
       }
 
@@ -439,7 +443,9 @@
       background-repeat: no-repeat;
       box-sizing: border-box;
       pointer-events: none;
-      transition: transform 350ms ease-out 40ms, background 200ms ease-in-out 10ms;
+      transform-origin: 50% 50%;
+      transform: scale(1) translateY(0) translateZ(0);
+      transition: transform 350ms ease-out 40ms;
 
       @include md.tablet {
         width: 10rem;
@@ -479,5 +485,28 @@
   }
   .showcase__text {
     letter-spacing: -.06rem;
+  }
+
+  .showcase__guide-mobile {
+    @include md.tablet {
+      max-width: 42rem;
+    }
+  }
+
+  .points__button {
+    @include md.tablet {
+      width: 14rem;
+    }
+    @include md.mobile {
+      flex-basis: 33%;
+    }
+  }
+
+  .points__list {
+    align-items: flex-start;
+  }
+
+  .points-flame .points__text {
+    letter-spacing: -.1rem;
   }
 }

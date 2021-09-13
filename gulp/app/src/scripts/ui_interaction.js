@@ -424,7 +424,7 @@ var header = gsap.timeline({
   scrollTrigger: {
     trigger: '.wrap',
     start: "top top",
-    end:"bottom top",
+    end:"bottom -=100%",
     toggleClass: {targets: ".header", className: "is-active"}
   }
 });

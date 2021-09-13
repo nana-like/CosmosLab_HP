@@ -386,11 +386,12 @@
   .burger {
     transform: scale(1.2);
   }
+
   .burger__line {
     height: 0.1rem;
 
     &:nth-child(1) {
-      transform: translate3d(0, 8px, 0) rotate(46deg);
+      transform: translate3d(0, 7px, 0) rotate(45deg);
     }
 
     &:nth-child(2) {
@@ -400,7 +401,7 @@
 
     &:nth-child(3) {
       top: 12px;
-      transform: translate3d(0, -4px, 0) rotate(-46deg);
+      transform: translate3d(0, -5px, 0) rotate(-45deg);
     }
   }
 

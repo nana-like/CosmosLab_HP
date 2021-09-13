@@ -1,6 +1,6 @@
 
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
-
+var $header = $('.header');
 
 // * 팝업
 
@@ -65,7 +65,7 @@ $('.lp__dim').on('click', closePopup)
 // * 모바일 분기
 
 if(navigator.maxTouchPoints > 1 ) {
-  $('body').addClass('is-mobile');
+  $body.addClass('is-mobile');
 
   ScrollTrigger.config({
     autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load' // notice 'resize' isn't in the list
@@ -89,10 +89,13 @@ var isTabletSize = function () {
 var tabletEvt = function () {
   var winW = window.innerWidth;
   if (winW < breakPoint) {
-    $('body').addClass('mq-mobile');
+    $body.addClass('mq-mobile');
   } else {
-    $('.header').removeClass('is-opened');
-    $('body').removeClass('mq-mobile');
+    if( $header.hasClass('is-opened') ) {
+      $header.removeClass('is-opened');
+      allowScroll();
+    }
+    $body.removeClass('mq-mobile');
   }
 };
 

@@ -208,4 +208,9 @@ button {
   padding: 0;
   margin: 0;
   background-color: transparent;
+  font-family: "Noto Sans KR", "Helvetica Neue", Helvetica, AppleSDGothicNeo, sans-serif;
+
+  &:focus {
+    outline: 0;
+  }
 }

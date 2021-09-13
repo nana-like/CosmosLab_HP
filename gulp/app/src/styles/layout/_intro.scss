@@ -61,12 +61,16 @@
     visibility: visible;
     transition-delay: 400ms;
   }
+  .header {
+    pointer-events: none;
+  }
 }
 
 .is-loaded {
   .header {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto !important;
   }
   .intro {
     opacity: 0;
