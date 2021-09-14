@@ -117,61 +117,73 @@ ScrollTrigger.matchMedia({
   "( min-width: 1024px )": function() {
     sc_img
     .addLabel("start")
-    .to( showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
+    .to(showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
     .addLabel("show_0")
-    .to( showcaseImgs[0], { scale: 1, x: -208 })
-    .to( showcaseDots[0], { opacity: 1, } )
-    .set( showcaseDots[0], { className: "sc-dot is-active"}, "-=0.3")
-    .to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "-=0.3")
-    .to( showcaseSpans[0], { opacity: 1, x: 0 }, "-=0.2" )
-    .set( showcaseDots[0], { className: "sc-dot"})
-    .addLabel("show_1")
-    .to( showcaseImgs[1], { opacity: 1, y: 0, x: 0 }, "-=0.6" )
-    .to( showcaseDots[1],{ opacity: 1 }, "-=0.3" )
-    .set( showcaseDots[1], { className: "sc-dot is-active"}, "-=0.3")
-    .to( showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "-=0.3")
-    .to( showcaseSpans[1],{ opacity: 1, x: 0 }, "-=0.2" )
-    .set( showcaseDots[1], { className: "sc-dot"})
-    .addLabel("show_2")
-    .to( showcaseImgs[2],{ opacity: 1, x: -0 }, "-=0.6" )
-    .to( showcaseDots[2],{ opacity: 1 }, "-=0.3" )
-    .to( showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
-    .set( showcaseDots[2], { className: "sc-dot is-active"}, "-=0.3")
-    .to( showcaseSpans[2],{ opacity: 1, x: 0 }, "-=0.2" )
-    .set( showcaseDots[2], { className: "sc-dot"})
-    .addLabel("show_3")
-    .to(showcaseDots[3],{ opacity: 1 }, "-=0.3" )
-    .to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
-    .set( showcaseDots[3], { className: "sc-dot is-active"}, "-=0.3")
-    .to(showcaseImgs[3],{ opacity: 1, x: 0 }, "-=0.6" )
-    .to(showcaseSpans[3],{ opacity: 1, x: 0 }, "-=0.2" )
-    .set( showcaseDots[3], { className: "sc-dot"})
-    .addLabel("show_4")
-    .to(showcaseImgs[4],{ opacity: 1, x: 0 }, "-=0.4")
-    .addLabel("show_5")
-    .to(showcaseImgs[5],{ opacity: 1, x: 0 }, "-=0.4")
-    .addLabel("show_6")
-    .to(showcaseImgs[6],{ opacity: 1, x: 0 }, "-=0.4")
-    .addLabel("points")
-    .set(".points__list", { className: "points__list on"}, "-=0.2" )
+    .fromTo(showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+    .to(showcaseImgs[1], { opacity: 1, x: 0, duration: 0.4}, )
+    .to(showcaseImgs[2],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35" )
+    .to(showcaseImgs[3],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35" )
+    .to(showcaseImgs[4],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35")
+    .to(showcaseImgs[5],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35")
+    .to(showcaseImgs[6],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35")
+    .set(".points__list", { className: "points__list on"}, "-=0.3" )
     .addLabel("jump");
+    // .addLabel("start")
+    // .to( showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
+    // .addLabel("show_0")
+    // .to( showcaseImgs[0], { scale: 1, x: -208 })
+    // .to( showcaseDots[0], { opacity: 1, } )
+    // .set( showcaseDots[0], { className: "sc-dot is-active"}, "-=0.3")
+    // .to( showcasePaths[0], { opacity: 1, strokeDashoffset: 0, }, "-=0.3")
+    // .to( showcaseSpans[0], { opacity: 1, x: 0 }, "-=0.2" )
+    // .set( showcaseDots[0], { className: "sc-dot"})
+    // .addLabel("show_1")
+    // .to( showcaseImgs[1], { opacity: 1, y: 0, x: 0 }, "-=0.6" )
+    // .to( showcaseDots[1],{ opacity: 1 }, "-=0.3" )
+    // .set( showcaseDots[1], { className: "sc-dot is-active"}, "-=0.3")
+    // .to( showcasePaths[1],{ opacity: 1,strokeDashoffset: 0 }, "-=0.3")
+    // .to( showcaseSpans[1],{ opacity: 1, x: 0 }, "-=0.2" )
+    // .set( showcaseDots[1], { className: "sc-dot"})
+    // .addLabel("show_2")
+    // .to( showcaseImgs[2],{ opacity: 1, x: -0 }, "-=0.6" )
+    // .to( showcaseDots[2],{ opacity: 1 }, "-=0.3" )
+    // .to( showcasePaths[2],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+    // .set( showcaseDots[2], { className: "sc-dot is-active"}, "-=0.3")
+    // .to( showcaseSpans[2],{ opacity: 1, x: 0 }, "-=0.2" )
+    // .set( showcaseDots[2], { className: "sc-dot"})
+    // .addLabel("show_3")
+    // .to(showcaseDots[3],{ opacity: 1 }, "-=0.3" )
+    // .to(showcasePaths[3],{ opacity: 1, strokeDashoffset: 0 }, "-=0.3")
+    // .set( showcaseDots[3], { className: "sc-dot is-active"}, "-=0.3")
+    // .to(showcaseImgs[3],{ opacity: 1, x: 0 }, "-=0.6" )
+    // .to(showcaseSpans[3],{ opacity: 1, x: 0 }, "-=0.2" )
+    // .set( showcaseDots[3], { className: "sc-dot"})
+    // .addLabel("show_4")
+    // .to(showcaseImgs[4],{ opacity: 1, x: 0 }, "-=0.4")
+    // .addLabel("show_5")
+    // .to(showcaseImgs[5],{ opacity: 1, x: 0 }, "-=0.4")
+    // .addLabel("show_6")
+    // .to(showcaseImgs[6],{ opacity: 1, x: 0 }, "-=0.4")
+    // .addLabel("points")
+    // .set(".points__list", { className: "points__list on"}, "-=0.2" )
+    // .addLabel("jump");
 
-    battery_animation = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.showcase',
-        scrub: 1,
-        pin: true,
-        start: () => "0 " + getheaderHeight(),
-        end: "bottom -=20%",
-      }
-    });
+    // battery_animation = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: '.showcase',
+    //     scrub: 1,
+    //     // pin: true,
+    //     start: () => "0 " + getheaderHeight(),
+    //     end: "bottom -=20%",
+    //   }
+    // });
 
     ScrollTrigger.create({
       animation: sc_title,
       trigger: '.showcase__title',
       scrub: 1,
       start: "top 80%",
-      end: "bottom 60%",
+      end: "bottom 70%",
       ease: "back(2)"
     });
 
@@ -179,13 +191,15 @@ ScrollTrigger.matchMedia({
       animation: sc_img,
       trigger: '.showcase__main',
       scrub: 1,
-      start: "top 70%",
-      end: "bottom -=20%",
+      start: "top 90%",
+      toggleActions: 'play reverse play reverse',
+      markers: true,
+      end: "bottom 60%",
     });
   },
 
   // MOBILE
-  "( max-width: 1024px )": function() {
+  "( max-width: 1023px )": function() {
     sc_img_m
     .addLabel("start")
     .to(showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
@@ -474,28 +488,28 @@ $(".header__menu-link").on("click", function (e) {
 });
 
 // * 인트로
-function stopIntro(){
-  $('body').removeClass('is-intro');
-  $('body').addClass('is-loaded');
-  setTimeout(showIntro, 500);
-  setTimeout(allowScroll, 1000);
-}
+// function stopIntro(){
+//   $('body').removeClass('is-intro');
+//   $('body').addClass('is-loaded');
+//   setTimeout(showIntro, 500);
+//   setTimeout(allowScroll, 1000);
+// }
 
-$(window).on('beforeunload', function() {
-  $(window).scrollTop(0);
-});
+// $(window).on('beforeunload', function() {
+//   $(window).scrollTop(0);
+// });
 
-$(window).on('load', function(){
-  gsap.to(window, 1, {scrollTo: 0});
-  $('body').addClass('is-intro');
-  preventScroll();
-  setTimeout(function(){
-    stopIntro();
-  }, 2000);
+// $(window).on('load', function(){
+//   gsap.to(window, 1, {scrollTo: 0});
+//   $('body').addClass('is-intro');
+//   preventScroll();
+//   setTimeout(function(){
+//     stopIntro();
+//   }, 2000);
 
-  $('.intro').on('click', function(){
-    stopIntro();
-  });
+//   $('.intro').on('click', function(){
+//     stopIntro();
+//   });
 
-  $("#video").css('opacity', 1);
-});
+//   $("#video").css('opacity', 1);
+// });
