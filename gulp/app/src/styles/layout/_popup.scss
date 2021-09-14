@@ -76,6 +76,11 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    @include md.vh {
+      height: calc(50rem + 8vmin);
+      padding: calc(6rem + 4vmin);
+    }
+
     @include md.tablet {
       // padding: calc(5rem + 4vmin);
       height: 100%;
@@ -197,7 +202,14 @@
     width: 4rem;
     height: 4rem;
     background-image: svg.img(close);
+    background-size: 100%;
     background-repeat: no-repeat;
+
+    @include md.vh {
+      width: 3rem;
+      height: 3rem;
+      bottom: calc(100% + 2rem);
+    }
 
     @include md.tablet {
       // position: fixed;

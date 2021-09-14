@@ -9,6 +9,10 @@
   min-height: var.$inner-height;
   background-color: #1d1f2d;
 
+  @include md.vh {
+    min-height: 100vh;
+  }
+
   @include md.tablet {
     min-height: 100%;
   }
@@ -20,7 +24,8 @@
   &__inner {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    min-height: var.$inner-height;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -33,6 +38,7 @@
 
   &__title {
     text-align: center;
+    margin-top: -2rem;
     margin-bottom: 7rem;
     font-size: 10rem;
     font-weight: var.$light;
@@ -41,6 +47,10 @@
     padding: 0 2rem;
     box-sizing: border-box;
     color: #fff;
+
+    @include md.vh {
+      font-size: calc(5rem + 5vmin);
+    }
 
     span {
       display: block;

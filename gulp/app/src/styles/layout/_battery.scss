@@ -16,6 +16,10 @@
     background-color: #1d1f2d;
     box-sizing: border-box;
 
+    @include md.vh {
+      min-height: 96rem;
+    }
+
     @include md.tablet {
       height: calc(100vh - #{var.$mobile-header-height});
       min-height: 94rem;
@@ -43,6 +47,11 @@
       text-align: center;
       letter-spacing: -.2rem;
 
+      @include md.vh {
+        margin-bottom: 2rem;
+        font-size: calc(1.5rem + 3.5vmin);
+      }
+
       @include md.tablet {
         font-size: 3.4rem;
         margin-bottom: 2.7rem;
@@ -64,6 +73,10 @@
       position: relative;
       width: 100%;
       height: 40rem;
+
+      @include md.vh {
+        transform: scale(0.8);
+      }
 
       @include md.tablet {
         height: 28rem;
@@ -140,6 +153,7 @@
     }
 
     &__guide {
+      display: none; // ! v1.1 삭제
       position: relative;
       width: 100%;
       height: 100%;
@@ -339,6 +353,11 @@
     background-color: #1d1f2d;
     box-sizing: border-box;
 
+    @include md.vh {
+      padding-top: 6rem;
+      margin-bottom: 2rem;
+    }
+
     @include md.tablet {
       min-width: 100%;
       padding: 0 1rem;
@@ -386,6 +405,10 @@
       animation-duration: 700ms;
       animation-fill-mode: both;
 
+      @include md.vh {
+        font-size: 2rem;
+      }
+
       @include md.tablet {
         font-size: 1.9rem;
       }
@@ -396,6 +419,10 @@
 
       &:not(:first-child) {
         margin-left: 12rem;
+
+        @include md.vh {
+          margin-left: 8rem;
+        }
 
         @include md.tablet {
           margin-left: 0;
@@ -447,6 +474,11 @@
       transform-origin: 50% 50%;
       transform: scale(1) translateY(0) translateZ(0);
       transition: transform 350ms ease-out 40ms;
+
+      @include md.vh {
+        width: 10rem;
+        height: 10rem;
+      }
 
       @include md.tablet {
         width: 10rem;

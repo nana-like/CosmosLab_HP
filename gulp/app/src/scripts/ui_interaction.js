@@ -120,7 +120,7 @@ ScrollTrigger.matchMedia({
     .addLabel("start")
     .to(showcaseImgs[0], { opacity: 1, y: 0, duration: .9 })
     .addLabel("show_0")
-    .fromTo(showcaseImgs[0],{ scale: 1.3 }, { scale: 1, x: -208 })
+    .to(showcaseImgs[0], { scale: 1, x: -208 })
     .to(showcaseImgs[1], { opacity: 1, x: 0, duration: 0.4}, )
     .to(showcaseImgs[2],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35" )
     .to(showcaseImgs[3],{ opacity: 1, x: 0, duration: 0.4}, "-=0.35" )
@@ -194,7 +194,6 @@ ScrollTrigger.matchMedia({
       scrub: 1,
       start: "top 90%",
       toggleActions: 'play reverse play reverse',
-      markers: true,
       end: "bottom 60%",
     });
   },
@@ -357,7 +356,6 @@ ScrollTrigger.matchMedia({
       // start: "0 100px",
       start: "0 0",
       end: 'bottom -=100%',
-      markers: true,
       ease: 'quart.inOut',
     });
 
@@ -481,7 +479,8 @@ $(".header__menu-link").on("click", function (e) {
     if (isTabletSize()) {
       gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
     } else {
-      gsap.to(window, {scrollTo: {y: battery_animation.scrollTrigger.end}});
+      gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
+      // gsap.to(window, {scrollTo: {y: battery_animation.scrollTrigger.end}});
     }
   }
   if (target === "app") {
@@ -497,28 +496,28 @@ $(".header__menu-link").on("click", function (e) {
 });
 
 // * 인트로
-// function stopIntro(){
-//   $('body').removeClass('is-intro');
-//   $('body').addClass('is-loaded');
-//   setTimeout(showIntro, 500);
-//   setTimeout(allowScroll, 1000);
-// }
+function stopIntro(){
+  $('body').removeClass('is-intro');
+  $('body').addClass('is-loaded');
+  setTimeout(showIntro, 500);
+  setTimeout(allowScroll, 1000);
+}
 
-// $(window).on('beforeunload', function() {
-//   $(window).scrollTop(0);
-// });
+$(window).on('beforeunload', function() {
+  $(window).scrollTop(0);
+});
 
-// $(window).on('load', function(){
-//   gsap.to(window, 1, {scrollTo: 0});
-//   $('body').addClass('is-intro');
-//   preventScroll();
-//   setTimeout(function(){
-//     stopIntro();
-//   }, 2000);
+$(window).on('load', function(){
+  gsap.to(window, 1, {scrollTo: 0});
+  $('body').addClass('is-intro');
+  preventScroll();
+  setTimeout(function(){
+    stopIntro();
+  }, 2000);
 
-//   $('.intro').on('click', function(){
-//     stopIntro();
-//   });
+  $('.intro').on('click', function(){
+    stopIntro();
+  });
 
-//   $("#video").css('opacity', 1);
-// });
+  $("#video").css('opacity', 1);
+});
