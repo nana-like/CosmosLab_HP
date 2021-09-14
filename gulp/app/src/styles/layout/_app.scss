@@ -160,11 +160,15 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - var.$header-height);
+  height: calc(100vh - #{var.$header-height});
   min-height: 87rem;
 
+  @include md.vh {
+    height: calc(100vh - #{var.$vh-header-height});
+  }
+
   @include md.tablet {
-    height: calc(100vh - var.$mobile-header-height);
+    height: calc(100vh - #{var.$mobile-header-height});
     min-height: 100%;
   }
 
@@ -323,11 +327,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - #{var.$header-height});
     min-height: 87rem;
 
+    @include md.vh {
+      height: calc(100vh - #{var.$vh-header-height});
+    }
+
     @include md.tablet {
-      height: calc(100vh - 68px);
+      height: calc(100vh - #{var.$mobile-header-height});
     }
   }
 
