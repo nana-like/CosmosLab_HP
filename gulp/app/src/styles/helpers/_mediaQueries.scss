@@ -3,6 +3,7 @@ $desktop: 1920px;
 $laptop : 1280px;
 $tablet: 1024px;
 $mobile: 500px;
+$vh-height: 1080px;
 
 // Desktop
 @mixin desktop {
@@ -25,9 +26,15 @@ $mobile: 500px;
   }
 }
 
-// Tablet
+// Mobile
 @mixin mobile {
   @media screen and (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin vh {
+  @media screen and (min-width: #{$tablet}) and (max-height: #{$vh-height}) {
     @content;
   }
 }
