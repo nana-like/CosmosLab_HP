@@ -10,11 +10,12 @@ var showcasePoints = document.querySelectorAll(".points__button");
 
 // 반응형에 따른 헤더 높이 계산
 function getheaderHeight() {
-  if(isTabletSize()) {
-    headerHeight = 68;
-  } else {
-    headerHeight = 100;
-  }
+  // if(isTabletSize()) {
+  //   headerHeight = 68;
+  // } else {
+  //   headerHeight = 100;
+  // }
+  headerHeight = $('.header').height();
   return headerHeight;
 }
 
@@ -317,8 +318,8 @@ ScrollTrigger.create({
 var articles_animation = gsap.timeline();
 articles_animation.to('.article__title', { opacity: 1, duration: 0.5} )
 articles_animation.to('#at-bg1', { opacity: 1, x: 0, duration: 1.5} )
-articles_animation.to('#at-main0', { opacity: 0, x: 0, duration: 0.8 }, '0.5')
-articles_animation.to('#at-main1', { opacity: 1, x: 0, duration: 1.2 },  '1.2' )
+articles_animation.to('#at-main0', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4' )
+articles_animation.to('#at-main1', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
 articles_animation.to('#at-bg2', { opacity: 1, x: 0,  duration: 1.5}, '+=1.2')
 articles_animation.to('#at-main1', { opacity: 0, x: 0, duration: 0.8 }, '-=1.4')
 articles_animation.to('#at-main2', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
@@ -331,9 +332,10 @@ articles_animation.to('#at-main4', { opacity: 1, x: 0, duration: 1.2 },  '-=1' )
 articles_animation.to('.article__title', { opacity: 1,  duration: 0.5  },)
 
 
+
 var article_content = gsap.timeline();
-article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
-article_content.from('.article__main--camp', {opacity: 0, y: 10, duration: 0.5}, '0.2');
+// article_content.from('.article__title', {opacity: 0, y: 10, duration: 1});
+// article_content.from('#at-main0 .article__point, #at-main0 .article__text', {opacity: 0, y: 0, duration: 1}, 0);
 article_content.to('.at-line1', {opacity: 1, x: 0, duration: 0.5 }, 0);
 article_content.to('.at-line2', {opacity: 1, y: 0, duration: 0.5 }, 0);
 article_content.to('.at-line3', {opacity: 1, x: 0, duration: 0.5 }, 0);
@@ -341,19 +343,21 @@ article_content.to('.at-line4', {opacity: 1, y: 0, duration: 0.5 }, 0);
 article_content.from('.article__content-bg', {opacity: 0, duration: 0.5}, '-=0.2');
 article_content.to('.article__content-line', {opacity: 0, duration: 0.5}, '-=0.3');
 
+
 ScrollTrigger.matchMedia({
 
   // PC
   "( min-width: 1024px )": function() {
-    ScrollTrigger.create({
+    var articleST = ScrollTrigger.create({
       trigger: '.article',
       animation: articles_animation,
       pin: true,
       scrub: 1,
-      start: () => '0 ' + getheaderHeight(),
+      // start: () => '0 ' + getheaderHeight(),
+      // start: "0 100px",
       end: 'bottom -=100%',
+      markers: true,
       ease: 'quart.inOut',
-      invalidateOnRefresh: true
     });
 
 
@@ -364,6 +368,10 @@ ScrollTrigger.matchMedia({
       start: 'top 70%',
       end: 'top 100+=10%',
     });
+
+    // The relevant part to keeping the progress
+    // ScrollTrigger.addEventListener("refreshInit", () => progress = articleST.progress);
+    // ScrollTrigger.addEventListener("refresh", () => articleST.scroll(progress * ScrollTrigger.maxScroll(window)));
 
 
   },
@@ -378,7 +386,7 @@ ScrollTrigger.matchMedia({
       start: () => "0 " + getheaderHeight(),
       end: "bottom -=100%",
       ease: "quart.inOut",
-      // invalidateOnRefresh: false
+      invalidateOnRefresh: true
     });
   }
 });
