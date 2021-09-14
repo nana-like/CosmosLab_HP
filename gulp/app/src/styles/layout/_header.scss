@@ -19,6 +19,10 @@
     height: var.$mobile-header-height;
   }
 
+  @include md.vh {
+    height: var.$vh-header-height;
+  }
+
   &__inner {
     position: relative;
     display: flex;
@@ -118,6 +122,10 @@
     align-items: center;
     justify-content: space-between;
 
+    @include md.vh {
+      height: calc(100% - var.$vh-header-height);
+    }
+
     @include md.tablet {
       opacity: 0;
       visibility: hidden;
@@ -139,6 +147,10 @@
     display: flex;
     padding-top: .8rem;
 
+    @include md.vh {
+      padding-top: 0;
+    }
+
     @include md.tablet {
       width: 100%;
       padding-top: 0;
@@ -156,12 +168,16 @@
       cursor: pointer;
       letter-spacing: -.035rem;
       transform: scaleY(.9);
-      font-size: 1.82rem;
+      font-size: 1.8rem;
       text-decoration: none;
       white-space: nowrap;
       text-align: center;
       color: #fff;
       transition: color .5s;
+
+      @include md.vh {
+        font-size: 1.6rem;
+      }
 
       &:first-child {
         margin-left: 0;
@@ -228,10 +244,14 @@
       display: block;
       padding-bottom: .4rem;
       overflow: hidden;
+
+      @include md.vh {
+        padding-bottom: .2rem;
+      }
     }
 
     &-line {
-      top: calc(100% - .3rem);
+      top: 0;
       left: 2rem;
       opacity: 0;
       display: flex;
@@ -269,6 +289,11 @@
       text-transform: uppercase;
       cursor: pointer;
 
+      @include md.vh {
+        font-size: 1.5rem;
+        margin-left: 2.2rem;
+      }
+
       &:before {
         position: absolute;
         top: .6rem;
@@ -279,6 +304,11 @@
         height: 1.6rem;
         background-color: rgba(255, 255, 255, .6);
         transition: none;
+
+        @include md.vh {
+          height: 1.4rem;
+          left: -1.1rem;
+        }
       }
 
       &:first-child {
