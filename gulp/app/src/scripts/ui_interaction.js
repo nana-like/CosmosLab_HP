@@ -500,7 +500,7 @@ function stopIntro(){
   $('body').removeClass('is-intro');
   $('body').addClass('is-loaded');
   setTimeout(showIntro, 500);
-  setTimeout(allowScroll, 1000);
+  setTimeout(allowScroll, 1200);
 }
 
 $(window).on('beforeunload', function() {
@@ -509,8 +509,8 @@ $(window).on('beforeunload', function() {
 
 $(window).on('load', function(){
   gsap.to(window, 1, {scrollTo: 0});
-  $('body').addClass('is-intro');
   preventScroll();
+  $('body').addClass('is-intro');
   setTimeout(function(){
     stopIntro();
   }, 2000);

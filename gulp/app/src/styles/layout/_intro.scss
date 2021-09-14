@@ -67,6 +67,7 @@
 }
 
 .is-loaded {
+  overflow: initial;
   .header {
     opacity: 1;
     visibility: visible;
@@ -76,4 +77,8 @@
     opacity: 0;
     visibility: hidden;
   }
+}
+
+body {
+  overflow: hidden;
 }
