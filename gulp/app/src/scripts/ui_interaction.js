@@ -355,6 +355,7 @@ ScrollTrigger.matchMedia({
       scrub: 1,
       // start: () => '0 ' + getheaderHeight(),
       // start: "0 100px",
+      start: "0 0",
       end: 'bottom -=100%',
       markers: true,
       ease: 'quart.inOut',
