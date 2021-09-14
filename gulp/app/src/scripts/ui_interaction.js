@@ -10,11 +10,12 @@ var showcasePoints = document.querySelectorAll(".points__button");
 
 // 반응형에 따른 헤더 높이 계산
 function getheaderHeight() {
-  if(isTabletSize()) {
-    headerHeight = 68;
-  } else {
-    headerHeight = 100;
-  }
+  headerHeight = $('.header').height();
+  // if(isTabletSize()) {
+  //   headerHeight = 68;
+  // } else {
+  //   headerHeight = 100;
+  // }
   return headerHeight;
 }
 
