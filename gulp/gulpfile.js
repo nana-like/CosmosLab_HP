@@ -172,7 +172,7 @@ const tasks = {
       html,
       styleSheet,
       scripts,
-      image
+      // image
     )
   ),
   sync: gulp.series(
@@ -199,7 +199,7 @@ gulp.task('image', async function () {
 });
 
 gulp.task('clean', async function () {
-  cleanAll();
+  // cleanAll();
 });
 
 gulp.task('default', async function () {
