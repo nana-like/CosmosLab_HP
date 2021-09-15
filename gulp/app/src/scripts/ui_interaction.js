@@ -60,7 +60,7 @@ function showIntro() {
     ease: "power4",
     y: 0,
     opacity: 1,
-    duration: 2.2,
+    duration: 1.8,
     stagger: 0.3,
     delay: 0.2,
   })
@@ -476,12 +476,7 @@ $(".header__menu-link").on("click", function (e) {
   var target = $(this).attr("href").split("#")[1];
 
   if (target === "battery") {
-    if (isTabletSize()) {
-      gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
-    } else {
-      gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
-      // gsap.to(window, {scrollTo: {y: battery_animation.scrollTrigger.end}});
-    }
+    gsap.to(window, {scrollTo: {y: "#battery", offsetY: getheaderHeight()}});
   }
   if (target === "app") {
     gsap.to(window, {scrollTo: {y: "#app", offsetY: getheaderHeight()}});
@@ -497,23 +492,43 @@ $(".header__menu-link").on("click", function (e) {
 
 // * 인트로
 function stopIntro(){
+  setTimeout(showIntro, 100);
+  setTimeout(function(){
+    $body.css({
+      'overflow': '',
+      'padding-right': ''
+    });
+    $('.header__inner').css('margin-right', '');
+  }, 2000);
+
   $('body').removeClass('is-intro');
-  $('body').addClass('is-loaded');
-  setTimeout(showIntro, 500);
-  setTimeout(allowScroll, 1200);
+  setTimeout(function(){
+    $('body').addClass('is-loaded');
+  }, 2000);
 }
+
+$(document).on('ready', function(){
+  // gsap.to(window, 1, {scrollTo: 0});
+})
 
 $(window).on('beforeunload', function() {
   $(window).scrollTop(0);
 });
 
 $(window).on('load', function(){
-  gsap.to(window, 1, {scrollTo: 0});
-  preventScroll();
+  $(window).scrollTop(0);
   $('body').addClass('is-intro');
+  preventScroll();
+  // $body.css({
+  //   'overflow': 'hidden',
+  //   'padding-right': scrollBarWidth + 'px'
+  // });
+  // $(window).scrollTop(0);
+
+
   setTimeout(function(){
     stopIntro();
-  }, 2000);
+  }, 1600);
 
   $('.intro').on('click', function(){
     stopIntro();
