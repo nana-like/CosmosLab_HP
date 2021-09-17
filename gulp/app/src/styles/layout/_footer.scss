@@ -84,10 +84,14 @@
       margin-left: 0;
     }
 
+    &:last-child p {
+      margin-right: 0;
+    }
+
     p {
       flex-shrink: 0;
       position: relative;
-      // margin-right: 3.2rem;
+      margin-right: 3.2rem;
 
       @include md.tablet {
         margin-top: .3rem;
@@ -143,7 +147,7 @@
 
   a,
   a[x-apple-data-detectors=true] {
-    color:#bcbcc0 !important;
+    color: inherit !important;
     text-decoration: none !important;
   }
 }
