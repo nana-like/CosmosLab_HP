@@ -92,6 +92,6 @@ body {
 
 .wrap {
   @include md.mobile {
-    // overflow-x: hidden;
+    overflow-x: hidden;
   }
 }
