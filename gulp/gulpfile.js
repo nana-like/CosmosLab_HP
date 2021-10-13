@@ -39,7 +39,7 @@ const html = () => {
     })
     if (isBuildMode && langType === 'en' || isDistMode && langType === 'en') {
       stream = stream.pipe(rename({
-        suffix: '_en',
+        basename: 'en',
         extname: '.html'
       }))
     }
